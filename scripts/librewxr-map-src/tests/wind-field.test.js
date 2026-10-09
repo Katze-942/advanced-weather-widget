@@ -205,6 +205,54 @@ test('needsFetch: a stored grid from before the fixed lattice is fetched again',
   assert.equal(WindField.needsFetch(view, { spec, grid: {}, zoom: 10, fetchedAt: 1000 }, 2000, 3600000), true);
 });
 
+const WEST_PAN = { west: -150, east: 75, south: -58, north: 80 };   // the two screenshots
+const EAST_PAN = { west: -28, east: 197, south: -58, north: 80 };
+
+test('needsFetch: a grid spanning a full turn serves any east-west pan', () => {
+  const spec = WindField.gridSpec(WEST_PAN);
+  assert.ok(spec.east - spec.west >= 360, 'world view: the box spans a full turn');
+  const cached = { spec, grid: {}, zoom: 2.5, fetchedAt: 1000 };
+  assert.equal(WindField.needsFetch({ bounds: EAST_PAN, zoom: 2.5 }, cached, 2000, 3600000), false);
+});
+
+test('needsFetch: the same view on the next copy of the world needs no fetch', () => {
+  const b = { west: 6.2, south: 47.9, east: 6.8, north: 48.2 };
+  const spec = WindField.gridSpec(b);
+  const cached = { spec, grid: {}, zoom: 10, fetchedAt: 1000 };
+  const shifted = { west: b.west + 360, south: b.south, east: b.east + 360, north: b.north };
+  assert.equal(WindField.needsFetch({ bounds: shifted, zoom: 10 }, cached, 2000, 3600000), false);
+  const back = { west: b.west - 720, south: b.south, east: b.east - 720, north: b.north };
+  assert.equal(WindField.needsFetch({ bounds: back, zoom: 10 }, cached, 2000, 3600000), false);
+});
+
+test('coverage: a grid spanning a full turn covers any east-west pan', () => {
+  close(WindField.coverage(EAST_PAN, WindField.gridSpec(WEST_PAN)), 1);
+  const b = { west: 6.2, south: 47.9, east: 6.8, north: 48.2 };
+  close(WindField.coverage({ west: b.west + 360, south: b.south, east: b.east + 360, north: b.north }, WindField.gridSpec(b)), 1);
+});
+
+test('sample: a longitude on another copy of the world gets the same wind', () => {
+  // A full-turn grid whose values depend on the wrapped longitude only, as
+  // Open-Meteo answers the same meridian the same way.
+  const spec = WindField.gridSpec(WEST_PAN);
+  const pts = [];
+  for (const la of spec.lats) {
+    for (const lo of spec.lons) {
+      const w = wrap(lo);
+      pts.push({ elevation: 0, hourly: { time: [1000], wind_speed_10m: [5 + w / 100 + la / 1000], wind_direction_10m: [270] } });
+    }
+  }
+  const g = WindField.buildGrid(spec, pts);
+  const tw = { i: 0, frac: 0 };
+  for (const lon of [-150, 150, 179, 200, 350, -300]) {
+    const a = WindField.sample(g, 60, lon, tw, NaN, 0);
+    const b = WindField.sample(g, 60, lon + 360, tw, NaN, 0);
+    const c = WindField.sample(g, 60, lon - 360, tw, NaN, 0);
+    assert.ok(a && b && c, 'lon ' + lon);
+    close(b.u, a.u, 1e-4); close(c.u, a.u, 1e-4);
+  }
+});
+
 test('coverage: fraction of the view covered by a grid spec', () => {
   const spec = { west: 6.0, south: 48.0, east: 7.0, north: 49.0 };
   close(WindField.coverage({ west: 6.2, south: 48.2, east: 6.8, north: 48.8 }, spec), 1);

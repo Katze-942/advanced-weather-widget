@@ -106,7 +106,17 @@ var WidgetWind = (function () {
       if (nowMs - cached.fetchedAt > ttlMs) return true;
       if (Math.abs(view.zoom - cached.zoom) >= 1) return true;
       var b = view.bounds, s = cached.spec;
-      return b.west < s.west || b.east > s.east || b.south < s.south || b.north > s.north;
+      if (b.south < s.south || b.north > s.north) return true;
+      if (s.east - s.west >= 360) return false;   // a full turn: every longitude has a copy inside
+      var k = WindField.lonShift(b, s);
+      return b.west + k < s.west || b.east + k > s.east;
+    },
+
+    /** Whole turns (a multiple of 360) that bring a view's longitudes toward
+        a grid box. Leaflet keeps counting past +-180 when the map is panned
+        around the world, while the lattice repeats every 360 degrees. */
+    lonShift: function (bounds, spec) {
+      return 360 * Math.round(((spec.west + spec.east) - (bounds.west + bounds.east)) / 720);
     },
 
     /** After WindSource.ensure(): draw the entry when it covers most of the
@@ -120,7 +130,9 @@ var WidgetWind = (function () {
     /** Fraction (0..1) of the view area that a grid spec covers. */
     coverage: function (bounds, spec) {
       if (!spec) return 0;
-      var w = Math.min(bounds.east, spec.east) - Math.max(bounds.west, spec.west);
+      var k = WindField.lonShift(bounds, spec);
+      var w = spec.east - spec.west >= 360 ? bounds.east - bounds.west
+        : Math.min(bounds.east + k, spec.east) - Math.max(bounds.west + k, spec.west);
       var h = Math.min(bounds.north, spec.north) - Math.max(bounds.south, spec.south);
       if (w <= 0 || h <= 0) return 0;
       var area = (bounds.east - bounds.west) * (bounds.north - bounds.south);
@@ -173,13 +185,17 @@ var WidgetWind = (function () {
 
     /** Wind (u, v m/s) at lat/lon: bilinear on the grid, blended in time, and
         when sigma > 0 and hP is a number, weighted by elevation similarity so a
-        valley particle follows valley grid points. null outside the grid.
+        valley particle follows valley grid points. null outside the grid
+        (on every copy of the world).
         `level` picks a wind level id (see LEVELS); unknown or absent levels
         fall back to the grid's default (10 m) arrays. */
     sample: function (grid, lat, lon, tw, hP, sigma, level) {
       var lats = grid.lats, lons = grid.lons, rows = lats.length, cols = lons.length;
       var lv = (level && grid.levels && grid.levels[level]) || grid;
       var north = lats[0], south = lats[rows - 1], west = lons[0], east = lons[cols - 1];
+      // The same meridian on another copy of the world (see lonShift).
+      if (lon < west) lon += 360 * Math.ceil((west - lon) / 360);
+      else if (lon > east) lon -= 360 * Math.ceil((lon - east) / 360);
       if (lat > north || lat < south || lon < west || lon > east) return null;
       var r = (north - lat) / (north - south) * (rows - 1);
       var c = (lon - west) / (east - west) * (cols - 1);
