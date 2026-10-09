@@ -10,7 +10,7 @@ const view = { bounds: { west: 6.5, south: 48.0, east: 6.7, north: 48.1 }, zoom:
 
 function fakePoints(spec) {
   const out = [];
-  for (let i = 0; i < spec.n * spec.n; i++) {
+  for (let i = 0; i < spec.lats.length * spec.lons.length; i++) {
     out.push({ elevation: 400 + i, hourly: { time: [1000, 4600], wind_speed_10m: [2, 3], wind_direction_10m: [270, 270] } });
   }
   return out;
@@ -30,12 +30,12 @@ function fakeStorage() {
   return { getItem: (k) => (m.has(k) ? m.get(k) : null), setItem: (k, v) => m.set(k, v), map: m };
 }
 
-test('url: all n*n coordinates, m/s, unix time, 2 past + 4 forecast hours', () => {
+test('url: all rows*cols coordinates, m/s, unix time, 2 past + 4 forecast hours', () => {
   const src = new WindSource({ fetch: () => {}, storage: null });
   const spec = WindField.gridSpec(view.bounds);
   const url = src.url(spec);
   assert.ok(url.startsWith('https://api.open-meteo.com/v1/forecast?latitude='));
-  assert.equal(url.split('&longitude=')[1].split('&')[0].split(',').length, spec.n * spec.n);
+  assert.equal(url.split('&longitude=')[1].split('&')[0].split(',').length, spec.lats.length * spec.lons.length);
   for (const p of ['hourly=wind_speed_10m,wind_direction_10m,wind_speed_700hPa,wind_direction_700hPa', 'wind_speed_unit=ms', 'timeformat=unixtime', 'past_hours=2', 'forecast_hours=4']) {
     assert.ok(url.includes(p), p);
   }
@@ -48,7 +48,7 @@ test('ensure: fetches once, builds the grid, persists, then serves from memory',
   const src = new WindSource({ fetch: fakeFetch(log), storage, now: () => t });
   const e1 = await src.ensure(view);
   assert.equal(log.length, 1);
-  assert.equal(e1.grid.n, e1.spec.n);
+  assert.equal(e1.grid.lons.length, e1.spec.lons.length);
   assert.equal(e1.zoom, 10);
   assert.ok(storage.map.has(WindSource.STORAGE_KEY));
   t += 60 * 1000;
@@ -65,7 +65,7 @@ test('restore: a fresh page reuses the stored grid without fetching', async () =
   const b = new WindSource({ fetch: fakeFetch(log), storage, now: () => 2000 });
   const e = await b.ensure(view);
   assert.equal(log.length, 1);
-  assert.equal(e.grid.n, e.spec.n);
+  assert.equal(e.grid.lons.length, e.spec.lons.length);
 });
 
 test('ensure: expired cache triggers a new fetch', async () => {

@@ -11,7 +11,12 @@ var WidgetWind = (function () {
   var DEG = Math.PI / 180;
   var KM_PER_DEG = 111.32;
 
+  var MAX_LAT = 85.0511;   // Web Mercator's (and Leaflet's) last latitude
+
   function round4(x) { return Math.round(x * 1e4) / 1e4; }
+
+  /** Web Mercator y (radians) of a latitude. */
+  function mercatorY(lat) { return Math.log(Math.tan(Math.PI / 4 + lat * DEG / 2)); }
 
   function bilinearWeights(fr, fc) {
     return [(1 - fr) * (1 - fc), (1 - fr) * fc, fr * (1 - fc), fr * fc];
@@ -37,44 +42,67 @@ var WidgetWind = (function () {
       return { u: -speed * Math.sin(a), v: -speed * Math.cos(a) };
     },
 
-    /** Grid spec for a viewport: bounds widened by `margin` on each side and an
-        N x N grid whose spacing is about `targetKm` (N clamped to minN..maxN).
-        lats run north to south, lons west to east. */
+    /** Grid spec for a viewport: the bounds widened by `margin` on each side,
+        covered by grid points on a lattice fixed to the Earth. Meridians sit
+        on multiples of a step that divides 360 and parallels on multiples of
+        a step that divides 90, so two pans of the same view sample the wind
+        at the same points, whichever copy of the world they show. Both steps
+        come from the view's size alone (its longitude span and its Mercator
+        height), which a pan does not change. About `targetKm` apart, with
+        minN - 1 to maxN points per side. lats run north to south, lons west
+        to east. */
     gridSpec: function (bounds, opts) {
       opts = opts || {};
       var margin = opts.margin == null ? 0.3 : opts.margin;
       var targetKm = opts.targetKm || 3;
       var minN = opts.minN || 6, maxN = opts.maxN || 12;
       var w = bounds.east - bounds.west, h = bounds.north - bounds.south;
-      var west = bounds.west - w * margin, east = bounds.east + w * margin;
-      var south = Math.max(-85, bounds.south - h * margin);
-      var north = Math.min(85, bounds.north + h * margin);
-      var widthKm = (east - west) * KM_PER_DEG * Math.cos((north + south) / 2 * DEG);
-      var n = Math.max(minN, Math.min(maxN, Math.round(widthKm / targetKm)));
-      var lats = [], lons = [];
-      for (var i = 0; i < n; i++) {
-        lats.push(round4(north - (north - south) * i / (n - 1)));
-        lons.push(round4(west + (east - west) * i / (n - 1)));
-      }
-      return { west: west, south: south, east: east, north: north, n: n, lats: lats, lons: lons, widthKm: widthKm };
+      var clampLat = function (x) { return Math.max(-MAX_LAT, Math.min(MAX_LAT, x)); };
+      var mercH = (mercatorY(clampLat(bounds.north)) - mercatorY(clampLat(bounds.south))) / DEG;
+      var lonSpan = w * (1 + 2 * margin);
+      var latSpan = Math.min(180, mercH * (1 + 2 * margin));   // the most a latitude span gets
+      // n points over the span, then the next coarser lattice step: snapping
+      // the box outward adds at most one point on each side.
+      var stepFor = function (span, period) {
+        var n = Math.max(minN, Math.min(maxN, Math.round(span * KM_PER_DEG / targetKm)));
+        return period / Math.max(1, Math.floor(period / (span / (n - 2))));
+      };
+      var lonStep = stepFor(lonSpan, 360), latStep = stepFor(latSpan, 90);
+      var iw = Math.floor((bounds.west - w * margin) / lonStep);
+      var ie = Math.max(iw + 1, Math.ceil((bounds.east + w * margin) / lonStep));
+      // Up to the parallel at or past Leaflet's last latitude, never past a pole.
+      var jn = Math.ceil(clampLat(bounds.north + h * margin) / latStep);
+      var js = Math.min(jn - 1, Math.floor(clampLat(bounds.south - h * margin) / latStep));
+      var lats = [], lons = [], i;
+      for (i = jn; i >= js; i--) lats.push(round4(i * latStep));
+      for (i = iw; i <= ie; i++) lons.push(round4(i * lonStep));
+      return {
+        west: lons[0], south: lats[lats.length - 1], east: lons[lons.length - 1], north: lats[0],
+        lats: lats, lons: lons, lonStep: lonStep, latStep: latStep
+      };
     },
 
-    /** Comma-separated coordinate lists for Open-Meteo, row-major (lat rows, lon columns). */
+    /** Comma-separated coordinate lists for Open-Meteo, row-major (lat rows,
+        lon columns). Zoomed out on the whole world the box runs past +-180,
+        which Open-Meteo rejects (HTTP 400): it gets the same meridian inside
+        -180..180, while the grid keeps its unwrapped geometry. */
     pointLists: function (spec) {
       var la = [], lo = [];
-      for (var i = 0; i < spec.n; i++) {
-        // Zoomed out on the whole world the widened box runs past +-180,
-        // which Open-Meteo rejects (HTTP 400): ask for the same meridian
-        // inside -180..180. The grid keeps its unwrapped geometry.
-        for (var j = 0; j < spec.n; j++) { la.push(spec.lats[i]); lo.push(round4(((spec.lons[j] + 180) % 360 + 360) % 360 - 180)); }
+      for (var i = 0; i < spec.lats.length; i++) {
+        for (var j = 0; j < spec.lons.length; j++) {
+          la.push(spec.lats[i]);
+          lo.push(round4(((spec.lons[j] + 180) % 360 + 360) % 360 - 180));
+        }
       }
       return { latitude: la.join(','), longitude: lo.join(',') };
     },
 
-    /** True when the cached grid cannot serve the view: none, expired, zoom
-        moved by a level or more, or the view left the fetched box. */
+    /** True when the cached grid cannot serve the view: none, expired, laid
+        out before the fixed lattice, zoom moved by a level or more, or the
+        view left the fetched box. */
     needsFetch: function (view, cached, nowMs, ttlMs) {
       if (!cached || !cached.spec || !cached.grid) return true;
+      if (!cached.spec.lonStep) return true;
       if (nowMs - cached.fetchedAt > ttlMs) return true;
       if (Math.abs(view.zoom - cached.zoom) >= 1) return true;
       var b = view.bounds, s = cached.spec;
@@ -101,7 +129,7 @@ var WidgetWind = (function () {
 
     /** Open-Meteo multi-location response -> typed u/v grids per hour. */
     buildGrid: function (spec, points) {
-      var n = spec.n, count = n * n;
+      var count = spec.lats.length * spec.lons.length;
       if (!points || points.length !== count) {
         throw new Error('wind: expected ' + count + ' points, got ' + (points ? points.length : 0));
       }
@@ -129,7 +157,7 @@ var WidgetWind = (function () {
         levels[name] = { u: u, v: v };
       }
       var base = levels[DEFAULT_LEVEL] || { u: [], v: [] };
-      return { n: n, lats: spec.lats, lons: spec.lons, elev: elev, times: times, u: base.u, v: base.v, levels: levels };
+      return { lats: spec.lats, lons: spec.lons, elev: elev, times: times, u: base.u, v: base.v, levels: levels };
     },
 
     /** Hour index containing nowSec and the fraction toward the next hour. */
@@ -149,15 +177,15 @@ var WidgetWind = (function () {
         `level` picks a wind level id (see LEVELS); unknown or absent levels
         fall back to the grid's default (10 m) arrays. */
     sample: function (grid, lat, lon, tw, hP, sigma, level) {
-      var n = grid.n, lats = grid.lats, lons = grid.lons;
+      var lats = grid.lats, lons = grid.lons, rows = lats.length, cols = lons.length;
       var lv = (level && grid.levels && grid.levels[level]) || grid;
-      var north = lats[0], south = lats[n - 1], west = lons[0], east = lons[n - 1];
+      var north = lats[0], south = lats[rows - 1], west = lons[0], east = lons[cols - 1];
       if (lat > north || lat < south || lon < west || lon > east) return null;
-      var r = (north - lat) / (north - south) * (n - 1);
-      var c = (lon - west) / (east - west) * (n - 1);
-      var i0 = Math.min(n - 2, Math.floor(r)), j0 = Math.min(n - 2, Math.floor(c));
+      var r = (north - lat) / (north - south) * (rows - 1);
+      var c = (lon - west) / (east - west) * (cols - 1);
+      var i0 = Math.min(rows - 2, Math.floor(r)), j0 = Math.min(cols - 2, Math.floor(c));
       var fr = r - i0, fc = c - j0;
-      var idx = [i0 * n + j0, i0 * n + j0 + 1, (i0 + 1) * n + j0, (i0 + 1) * n + j0 + 1];
+      var idx = [i0 * cols + j0, i0 * cols + j0 + 1, (i0 + 1) * cols + j0, (i0 + 1) * cols + j0 + 1];
       var w = bilinearWeights(fr, fc), k;
       if (sigma > 0 && typeof hP === 'number' && isFinite(hP)) {
         var sum = 0;
@@ -373,7 +401,7 @@ var WidgetWind = (function () {
       self.inflight = null;
       self.failures = 0;
       self.blockedUntil = self.now() + self.minIntervalMs;
-      if (typeof console !== 'undefined') console.log('[wind] grid ' + spec.n + 'x' + spec.n + ' fetched in ' + (self.now() - t0) + ' ms');
+      if (typeof console !== 'undefined') console.log('[wind] grid ' + spec.lats.length + 'x' + spec.lons.length + ' fetched in ' + (self.now() - t0) + ' ms');
       return entry;
     }).catch(function (err) {
       clearTimeout(timer);

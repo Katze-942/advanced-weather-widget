@@ -18,20 +18,88 @@ test('toUV: meteorological direction is where the wind comes from', () => {
   close(r.u, -10); close(r.v, 0);
 });
 
-test('gridSpec: widened bounds, N clamped to 6..12, rows north to south', () => {
-  // ~37 km wide at 48N, widened to ~60 km -> 60/3 = 20 -> clamped to 12
-  const wide = WindField.gridSpec({ west: 6.3, south: 47.85, east: 6.8, north: 48.2 });
-  assert.equal(wide.n, 12);
-  assert.equal(wide.lats.length, 12);
-  assert.equal(wide.lons.length, 12);
-  close(wide.west, 6.3 - 0.5 * 0.3); close(wide.east, 6.8 + 0.5 * 0.3);
-  close(wide.south, 47.85 - 0.35 * 0.3); close(wide.north, 48.2 + 0.35 * 0.3);
-  assert.ok(wide.lats[0] > wide.lats[11], 'lats descend (north first)');
-  assert.ok(wide.lons[0] < wide.lons[11], 'lons ascend (west first)');
-  close(wide.lats[0], wide.north, 1e-4); close(wide.lats[11], wide.south, 1e-4);
-  // ~7 km wide -> widened ~12 km -> 4 -> clamped to 6
-  const narrow = WindField.gridSpec({ west: 6.55, south: 48.0, east: 6.65, north: 48.05 });
-  assert.equal(narrow.n, 6);
+const wrap = (x) => ((x + 180) % 360 + 360) % 360 - 180;
+const yOfLat = (lat) => Math.log(Math.tan(Math.PI / 4 + lat * Math.PI / 360));
+const latOfY = (y) => (2 * Math.atan(Math.exp(y)) - Math.PI / 2) * 180 / Math.PI;
+
+/** Grid points of a spec inside a lat/lon box, longitudes wrapped, as 'lat,lon' strings. */
+function pointsIn(spec, box) {
+  const out = new Set();
+  for (const la of spec.lats) {
+    for (const lo of spec.lons) {
+      const w = wrap(lo);
+      if (la >= box.south && la <= box.north && w >= box.west && w <= box.east) out.add(la.toFixed(3) + ',' + w.toFixed(3));
+    }
+  }
+  return out;
+}
+
+test('gridSpec: two pans of the same view put Alaska on the same grid points', () => {
+  // The two screenshots: same zoom and size, Alaska on the left edge, then
+  // past +180 on the right edge. The wind there must come from the same points.
+  const westPan = WindField.gridSpec({ west: -150, east: 75, south: -58, north: 80 });
+  const eastPan = WindField.gridSpec({ west: -28, east: 197, south: -58, north: 80 });
+  const alaska = { west: -170, east: -140, south: 50, north: 75 };
+  const a = pointsIn(westPan, alaska), b = pointsIn(eastPan, alaska);
+  assert.ok(a.size >= 2, [...a].join(' '));
+  assert.deepEqual([...b].sort(), [...a].sort());
+});
+
+test('gridSpec: a vertical pan keeps the same meridians and parallels', () => {
+  // Same zoom and size: the Mercator height of the view does not change.
+  const h = yOfLat(55) - yOfLat(35);
+  const low = WindField.gridSpec({ west: 0, east: 40, south: 35, north: latOfY(yOfLat(35) + h) });
+  const high = WindField.gridSpec({ west: 0, east: 40, south: 45, north: latOfY(yOfLat(45) + h) });
+  assert.deepEqual(high.lons, low.lons);
+  const shared = (spec, other) => spec.lats.filter((x) => x >= other.south && x <= other.north);
+  assert.ok(shared(low, high).length >= 2);
+  assert.deepEqual(shared(low, high), shared(high, low));
+});
+
+test('gridSpec: at most 12 x 12 points, regular, covering the widened view', () => {
+  const views = [
+    { west: -150, east: 75, south: -58, north: 80 },      // whole world
+    { west: -28, east: 197, south: -58, north: 80 },
+    { west: 0, east: 20, south: -30, north: 30 },         // tall view on the equator
+    { west: -10, east: 30, south: 38, north: 58 },        // Europe
+    { west: 6.3, south: 47.85, east: 6.8, north: 48.2 },  // ~37 km
+    { west: 6.55, south: 48.0, east: 6.56, north: 48.005 } // far in
+  ];
+  for (const b of views) {
+    const s = WindField.gridSpec(b);
+    const tag = JSON.stringify(b);
+    assert.ok(s.lats.length >= 2 && s.lats.length <= 12, tag + ' rows ' + s.lats.length);
+    assert.ok(s.lons.length >= 2 && s.lons.length <= 12, tag + ' cols ' + s.lons.length);
+    assert.ok(s.west <= b.west - 0.3 * (b.east - b.west) + 1e-9 && s.east >= b.east + 0.3 * (b.east - b.west) - 1e-9, tag);
+    assert.ok(s.north >= Math.min(85.05, b.north) && s.south <= Math.max(-85.05, b.south), tag);
+    assert.ok(s.north <= 90 && s.south >= -90, tag);
+    close(s.lats[0], s.north, 1e-4); close(s.lons[0], s.west, 1e-4);
+    for (let i = 1; i < s.lats.length; i++) close(s.lats[i - 1] - s.lats[i], s.lats[0] - s.lats[1], 1e-3);
+    for (let j = 1; j < s.lons.length; j++) close(s.lons[j] - s.lons[j - 1], s.lons[1] - s.lons[0], 1e-3);
+  }
+});
+
+test('gridSpec: zoomed far in, still at least 5 points per side', () => {
+  const s = WindField.gridSpec({ west: 6.55, south: 48.0, east: 6.56, north: 48.005 });
+  assert.ok(s.lons.length >= 5, 'cols ' + s.lons.length);
+  assert.ok(s.lats.length >= 5, 'rows ' + s.lats.length);
+});
+
+test('pointLists: rows x cols coordinates, row-major, longitudes wrapped into -180..180', () => {
+  const pl = WindField.pointLists({ lats: [60, 50], lons: [170, 190, 210] });
+  assert.equal(pl.latitude, '60,60,60,50,50,50');
+  assert.equal(pl.longitude, '170,-170,-150,170,-170,-150');
+});
+
+test('buildGrid + sample: a grid with more columns than rows', () => {
+  const spec = { lats: [48.1, 48.0], lons: [6.5, 6.6, 6.7] };
+  const mk = (u) => ({ elevation: 0, hourly: { time: [1000], wind_speed_10m: [u], wind_direction_10m: [270] } });
+  const g = WindField.buildGrid(spec, [1, 2, 3, 4, 5, 6].map(mk));
+  const tw = { i: 0, frac: 0 };
+  close(WindField.sample(g, 48.1, 6.7, tw, NaN, 0).u, 3);
+  close(WindField.sample(g, 48.0, 6.5, tw, NaN, 0).u, 4);
+  close(WindField.sample(g, 48.05, 6.65, tw, NaN, 0).u, 4);   // (2 + 3 + 5 + 6) / 4
+  assert.equal(WindField.sample(g, 48.05, 6.75, tw, NaN, 0), null);
 });
 
 test('pointLists: n*n coordinates, row-major (lat rows, lon columns)', () => {
@@ -47,7 +115,7 @@ test('pointLists: longitudes past the antimeridian are wrapped into -180..180 fo
   assert.ok(spec.west < -180 && spec.east > 180, 'the spec itself stays unwrapped');
   const lons = WindField.pointLists(spec).longitude.split(',').map(Number);
   assert.ok(lons.every((x) => x >= -180 && x < 180), lons.join(','));
-  assert.equal(lons[0], 52);   // -308 is the same meridian as 52
+  assert.equal(lons[0], 0);    // -360 is the same meridian as 0
 });
 
 test('timeWeights: hour index and fraction, clamped at both ends', () => {
@@ -121,7 +189,7 @@ test('sample: skips missing (NaN) corners', () => {
 });
 
 test('needsFetch: null, stale, zoom change, out of box', () => {
-  const spec = { west: 6.0, south: 47.8, east: 7.0, north: 48.3 };
+  const spec = { west: 6.0, south: 47.8, east: 7.0, north: 48.3, lonStep: 0.1, latStep: 0.05 };
   const cached = { spec, grid: {}, zoom: 10, fetchedAt: 1000 };
   const inside = { bounds: { west: 6.2, south: 47.9, east: 6.8, north: 48.2 }, zoom: 10 };
   assert.equal(WindField.needsFetch(inside, null, 2000, 3600000), true);
@@ -129,6 +197,12 @@ test('needsFetch: null, stale, zoom change, out of box', () => {
   assert.equal(WindField.needsFetch(inside, cached, 1000 + 3600001, 3600000), true);
   assert.equal(WindField.needsFetch({ bounds: inside.bounds, zoom: 11 }, cached, 2000, 3600000), true);
   assert.equal(WindField.needsFetch({ bounds: { west: 5.9, south: 47.9, east: 6.8, north: 48.2 }, zoom: 10 }, cached, 2000, 3600000), true);
+});
+
+test('needsFetch: a stored grid from before the fixed lattice is fetched again', () => {
+  const spec = { west: 6.0, south: 47.8, east: 7.0, north: 48.3, n: 12 };
+  const view = { bounds: { west: 6.2, south: 47.9, east: 6.8, north: 48.2 }, zoom: 10 };
+  assert.equal(WindField.needsFetch(view, { spec, grid: {}, zoom: 10, fetchedAt: 1000 }, 2000, 3600000), true);
 });
 
 test('coverage: fraction of the view covered by a grid spec', () => {
