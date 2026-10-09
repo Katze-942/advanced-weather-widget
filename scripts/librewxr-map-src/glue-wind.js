@@ -67,9 +67,13 @@ var WidgetWind = (function () {
         var n = Math.max(minN, Math.min(maxN, Math.round(span * KM_PER_DEG / targetKm)));
         return period / Math.max(1, Math.floor(period / (span / (n - 2))));
       };
-      var lonStep = stepFor(lonSpan, 360), latStep = stepFor(latSpan, 90);
+      // Past a full turn (zoomed out on several copies of the world), one
+      // turn is enough: sample() finds every longitude on it.
+      var fullTurn = lonSpan >= 360;
+      var lonStep = stepFor(Math.min(lonSpan, 360), 360), latStep = stepFor(latSpan, 90);
       var iw = Math.floor((bounds.west - w * margin) / lonStep);
-      var ie = Math.max(iw + 1, Math.ceil((bounds.east + w * margin) / lonStep));
+      var ie = fullTurn ? iw + Math.round(360 / lonStep)
+        : Math.max(iw + 1, Math.ceil((bounds.east + w * margin) / lonStep));
       // Up to the parallel at or past Leaflet's last latitude, never past a pole.
       var jn = Math.ceil(clampLat(bounds.north + h * margin) / latStep);
       var js = Math.min(jn - 1, Math.floor(clampLat(bounds.south - h * margin) / latStep));

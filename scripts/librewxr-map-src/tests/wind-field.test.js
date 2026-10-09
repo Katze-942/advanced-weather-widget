@@ -56,7 +56,7 @@ test('gridSpec: a vertical pan keeps the same meridians and parallels', () => {
   assert.deepEqual(shared(low, high), shared(high, low));
 });
 
-test('gridSpec: at most 12 x 12 points, regular, covering the widened view', () => {
+test('gridSpec: at most 12 x 12 points, regular, covering the widened view or a full turn', () => {
   const views = [
     { west: -150, east: 75, south: -58, north: 80 },      // whole world
     { west: -28, east: 197, south: -58, north: 80 },
@@ -70,12 +70,26 @@ test('gridSpec: at most 12 x 12 points, regular, covering the widened view', () 
     const tag = JSON.stringify(b);
     assert.ok(s.lats.length >= 2 && s.lats.length <= 12, tag + ' rows ' + s.lats.length);
     assert.ok(s.lons.length >= 2 && s.lons.length <= 12, tag + ' cols ' + s.lons.length);
-    assert.ok(s.west <= b.west - 0.3 * (b.east - b.west) + 1e-9 && s.east >= b.east + 0.3 * (b.east - b.west) - 1e-9, tag);
+    // The widened view, or one full turn that sample() repeats around the world.
+    const covers = s.west <= b.west - 0.3 * (b.east - b.west) + 1e-9 && s.east >= b.east + 0.3 * (b.east - b.west) - 1e-9;
+    assert.ok(covers || Math.abs(s.east - s.west - 360) < 1e-6, tag);
     assert.ok(s.north >= Math.min(85.05, b.north) && s.south <= Math.max(-85.05, b.south), tag);
     assert.ok(s.north <= 90 && s.south >= -90, tag);
     close(s.lats[0], s.north, 1e-4); close(s.lons[0], s.west, 1e-4);
     for (let i = 1; i < s.lats.length; i++) close(s.lats[i - 1] - s.lats[i], s.lats[0] - s.lats[1], 1e-3);
     for (let j = 1; j < s.lons.length; j++) close(s.lons[j] - s.lons[j - 1], s.lons[1] - s.lons[0], 1e-3);
+  }
+});
+
+test('gridSpec: zoomed out past a full turn, one turn of the lattice at the usual step', () => {
+  // 970 px wide popup: zoom 2 shows 341 degrees, zoom 0.5 almost three worlds.
+  const world = WindField.gridSpec({ west: -110, east: 130, south: -60, north: 75 });
+  for (const z of [2, 1, 0.5]) {
+    const w = 970 / (256 * 2 ** z) * 360;
+    const s = WindField.gridSpec({ west: 10 - w / 2, east: 10 + w / 2, south: -60, north: 75 });
+    assert.equal(s.lonStep, world.lonStep, 'zoom ' + z);
+    close(s.east - s.west, 360, 1e-6);
+    assert.ok(s.lons.length <= 12, 'zoom ' + z + ' cols ' + s.lons.length);
   }
 });
 
@@ -110,12 +124,12 @@ test('pointLists: n*n coordinates, row-major (lat rows, lon columns)', () => {
 });
 
 test('pointLists: longitudes past the antimeridian are wrapped into -180..180 for Open-Meteo', () => {
-  // Zoomed out on the whole world, the widened box runs past +-180.
+  // Zoomed out on the whole world, the one-turn box starts west of -180.
   const spec = WindField.gridSpec({ west: -200, east: 160, south: -70, north: 80 });
-  assert.ok(spec.west < -180 && spec.east > 180, 'the spec itself stays unwrapped');
+  assert.ok(spec.west < -180, 'the spec itself stays unwrapped');
   const lons = WindField.pointLists(spec).longitude.split(',').map(Number);
   assert.ok(lons.every((x) => x >= -180 && x < 180), lons.join(','));
-  assert.equal(lons[0], 0);    // -360 is the same meridian as 0
+  assert.equal(lons[0], 36);   // -324 is the same meridian as 36
 });
 
 test('timeWeights: hour index and fraction, clamped at both ends', () => {
