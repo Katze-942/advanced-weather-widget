@@ -19,7 +19,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Dialogs
-import QtMultimedia
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 
@@ -34,6 +33,7 @@ KCM.SimpleKCM {
     property bool cfg_alertNotificationsCriticalEnabled: true
     property bool cfg_alertNotificationsUpcomingEnabled: true
     property bool cfg_alertNotificationsRepeatEnabled: true
+    property bool cfg_alertNotificationsIncludeTests: false
     property string cfg_alertNotificationsTypeSettings: "{}"
 
     // Per-severity sound toggle, independent from the visual severity
@@ -443,10 +443,9 @@ KCM.SimpleKCM {
                         text: i18n("Test")
                         icon.name: "media-playback-start"
                         onClicked: {
-                            testMediaPlayer.source = root.cfg_alertNotificationsSoundFile.length > 0
+                            testSoundLoader.play(root.cfg_alertNotificationsSoundFile.length > 0
                                 ? root.cfg_alertNotificationsSoundFile
-                                : root.defaultAlertSoundUrl;
-                            testMediaPlayer.play();
+                                : root.defaultAlertSoundUrl);
                         }
                     }
 
@@ -463,8 +462,8 @@ KCM.SimpleKCM {
                 Layout.fillWidth: true
                 type: Kirigami.MessageType.Warning
                 showCloseButton: false
-                visible: testMediaPlayer.error !== MediaPlayer.NoError
-                text: i18n("Couldn't play that sound file: %1", testMediaPlayer.errorString)
+                visible: testSoundLoader.item ? testSoundLoader.item.hasError : false
+                text: i18n("Couldn't play that sound file: %1", testSoundLoader.item ? testSoundLoader.item.errorString : "")
             }
 
             FileDialog {
@@ -474,13 +473,25 @@ KCM.SimpleKCM {
                 onAccepted: root.cfg_alertNotificationsSoundFile = selectedFile.toString()
             }
 
-            // Mirrors main.qml's alertMediaPlayer: MediaPlayer rather than
+            // Mirrors main.qml's alertSoundLoader: MediaPlayer rather than
             // SoundEffect, since SoundEffect only supports uncompressed WAV
             // on Linux and this "Test" button needs to preview whatever
             // format the user picked (mp3/ogg included).
-            MediaPlayer {
-                id: testMediaPlayer
-                audioOutput: AudioOutput {}
+            //
+            // Loaded on the first click of "Test". See
+            // components/AlertSoundPlayer.qml for how the sound is played.
+            Loader {
+                id: testSoundLoader
+                visible: false
+                active: false
+                asynchronous: false
+                source: Qt.resolvedUrl("../components/AlertSoundPlayer.qml")
+
+                function play(url) {
+                    active = true;
+                    if (item)
+                        item.playUrl(url);
+                }
             }
 
             WrappingSwitch {
@@ -529,6 +540,24 @@ KCM.SimpleKCM {
                 showCloseButton: true
                 visible: root.cfg_alertNotificationsEnabled && !root.cfg_alertNotificationsRepeatEnabled
                 text: i18n("Each alert is shown only once, without Dismiss and Postpone buttons.")
+            }
+
+            WrappingSwitch {
+                enabled: root.cfg_alertNotificationsEnabled
+                opacity: enabled ? 1.0 : 0.5
+                text: i18n("Also notify about routine test alerts")
+                checked: root.cfg_alertNotificationsIncludeTests
+                onToggled: root.cfg_alertNotificationsIncludeTests = checked
+            }
+
+            Kirigami.InlineMessage {
+                Layout.fillWidth: true
+                type: Kirigami.MessageType.Information
+                showCloseButton: true
+                visible: root.cfg_alertNotificationsEnabled
+                text: root.cfg_alertNotificationsIncludeTests
+                    ? i18n("Routine tests (for example \"Required Weekly Test\") will show a notification, but never play an alert sound.")
+                    : i18n("Routine tests (for example \"Required Weekly Test\") are ignored: no notification and no sound.")
             }
 
             // ── Per-type overrides ─────────────────────────────────────────
