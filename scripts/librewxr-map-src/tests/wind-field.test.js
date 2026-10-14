@@ -267,6 +267,16 @@ test('sample: a longitude on another copy of the world gets the same wind', () =
   }
 });
 
+test('needsFetch: the world grid serves the views of the whole world only', () => {
+  const world = { spec: WindField.gridSpec(WindField.WORLD), world: true, grid: {}, zoom: null, fetchedAt: 1000 };
+  const at = (b, zoom) => WindField.needsFetch({ bounds: b, zoom }, world, 2000, 3600000);
+  assert.equal(at({ west: -150, east: 75, south: -58, north: 80 }, 2.5), false);
+  const w = 970 / (256 * 2 ** 1) * 360;
+  assert.equal(at({ west: 10 - w / 2, east: 10 + w / 2, south: -80, north: 80 }, 1), false);
+  assert.equal(at({ west: 6.2, south: 47.9, east: 6.8, north: 48.2 }, 10), true);
+  assert.equal(WindField.needsFetch({ bounds: { west: -150, east: 75, south: -58, north: 80 }, zoom: 2.5 }, world, 1000 + 3600001, 3600000), true, 'expired');
+});
+
 test('coverage: fraction of the view covered by a grid spec', () => {
   const spec = { west: 6.0, south: 48.0, east: 7.0, north: 49.0 };
   close(WindField.coverage({ west: 6.2, south: 48.2, east: 6.8, north: 48.8 }, spec), 1);
