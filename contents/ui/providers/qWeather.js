@@ -103,6 +103,23 @@ function _calcDewPoint(T, rh) {
     return Math.round((c * gamma) / (b - gamma) * 10) / 10;
 }
 
+/**
+ * Parse a UTC offset (in minutes) from a QWeather ISO8601 timestamp.
+ * QWeather's obsTime/updateTime look like "2026-10-12T23:07+08:00" (or "Z").
+ * Returns NaN when the string carries no usable zone info.
+ */
+function _qwOffsetMinsFromIso(s) {
+    if (!s) return NaN;
+    s = String(s).trim();
+    if (/[Zz]$/.test(s)) return 0;
+    var m = s.match(/([+-])(\d{2}):?(\d{2})\s*$/);
+    if (!m) return NaN;
+    var sign = (m[1] === "-") ? -1 : 1;
+    var h = parseInt(m[2], 10), mi = parseInt(m[3], 10);
+    if (isNaN(h) || isNaN(mi)) return NaN;
+    return sign * (h * 60 + mi);
+}
+
 /** The calendar date (YYYY-MM-DD) immediately after dateStr, in the widget's
  *  own local time - used to append the closing 00:00 entry so the hourly
  *  forecast reads 00:00..00:00 instead of stopping at 23:00. */
@@ -174,6 +191,7 @@ function fetchCurrent(service, W, chain, idx) {
             return;
         }
         var n = d.now;
+        var _qwOff = _qwOffsetMinsFromIso(n.obsTime || d.updateTime);
         service._qw_cur = {
             temperatureC:    parseFloat(n.temp),
             apparentC:       parseFloat(n.feelsLike),
@@ -190,7 +208,7 @@ function fetchCurrent(service, W, chain, idx) {
             snowDepthCm:     NaN,
             weatherCode:     _qwCodeToWmo(n.icon),
             isDay:           _isDay(n.icon),
-            locationUtcOffsetMins: 0,
+            locationUtcOffsetMins: (isNaN(_qwOff) ? 0 : _qwOff),
             sunriseTimeText: "--",
             sunsetTimeText:  "--",
             dailyData:       []
@@ -256,6 +274,14 @@ function _fetchDailyAttempt(service, W, key, loc, gen, base, spans, spanIdx) {
             _fetchDailyAttempt(service, W, key, loc, gen, base, spans, spanIdx + 1);
             return;
         }
+        // QWeather daily responses carry their own updateTime with the
+        // location's +HH:MM zone (e.g. "+08:00" for Shanghai). If the /now
+        // response had no usable obsTime, try the daily one before giving up.
+        if (!service._qw_cur.locationUtcOffsetMins && d && d.updateTime) {
+            var _off2 = _qwOffsetMinsFromIso(d.updateTime);
+            if (!isNaN(_off2)) service._qw_cur.locationUtcOffsetMins = _off2;
+        }
+        var _needSunPatch = !service._qw_cur.locationUtcOffsetMins;
         service._qw_cur.dailyData = nd;
         var r = service.weatherRoot;
         r.weatherDataStaged = service._qw_cur;
@@ -264,6 +290,16 @@ function _fetchDailyAttempt(service, W, key, loc, gen, base, spans, spanIdx) {
         r.updateText = service._formatUpdateText("qWeather");
 
         service._fetchAlertsIfNeeded();
+        // QWeather's own sunrise/sunset strings ARE already location-local
+        // "HH:mm", but without a numeric UTC offset every DetailsView calc
+        // combining them with locationUtcOffsetMins (sun-arc progress,
+        // time-until-sunset, moon arc, upcoming events) silently uses UTC.
+        // The ISO parse above fixes the common case with no extra request;
+        // fall back to Open-Meteo (same as BBC/met.no/stormGlass) when the
+        // timestamps carried no zone info.
+        if (_needSunPatch) {
+            try { service._fetchSunTimesOpenMeteo(); } catch (e) {}
+        }
         // Air quality: QWeather's /airquality/v1/current returns whichever
         // of its 70+ supported index standards it defaults to when no
         // `type=` filter is requested (its own proprietary QAQI most
