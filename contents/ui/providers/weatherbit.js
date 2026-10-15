@@ -192,6 +192,11 @@ function _fetchDailyForecast(service, W, gen) {
         // No native alerts - fall back to MeteoAlarm / NWS
         service._fetchAlertsIfNeeded();
 
+        // Weatherbit sunrise/sunset ARE location-local, but the payload gives
+        // no numeric UTC offset, so sun/moon progress would silently use UTC
+        // for any non-UTC location. Same Open-Meteo backfill as BBC/met.no.
+        try { service._fetchSunTimesOpenMeteo(); } catch (e) {}
+
         // Air quality fetched in parallel from WeatherService.refreshNow()
     };
     req.send();

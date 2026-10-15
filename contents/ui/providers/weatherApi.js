@@ -153,6 +153,12 @@ function fetchCurrent(service, W, chain, idx) {
         r.loading = false;
         r.updateText = service._formatUpdateText("weatherApi");
 
+        // WeatherAPI's astro sunrise/sunset ARE location-local, but the payload
+        // gives no numeric UTC offset (only an IANA tz_id Qt V4 can't resolve
+        // on its own). Without it sun/moon progress falls back to UTC.
+        // Same Open-Meteo backfill as BBC/met.no/stormGlass.
+        try { service._fetchSunTimesOpenMeteo(); } catch (e) {}
+
         // Parse native alerts if available
         if (d.alerts && d.alerts.alert && d.alerts.alert.length > 0) {
             if (_parseAlerts(r, d.alerts.alert))

@@ -198,9 +198,11 @@ function _fetchForecast(service, W, gen) {
             } catch (e) { /* ignore parse errors */ }
         }
 
-        if (!haveSunTimes) {
-            service._fetchSunTimesOpenMeteo();
-        }
+        // Always backfill the UTC offset from Open-Meteo: Tomorrow.io's own
+        // sunrise/sunset ARE location-local, but with locationUtcOffsetMins
+        // left at 0 every sun/moon progress calc silently uses UTC. The patch
+        // also refreshes sunrise/sunset (within minutes) as a side effect.
+        try { service._fetchSunTimesOpenMeteo(); } catch (e) {}
 
         r.weatherDataStaged = service._tio_cur;
         service._tio_cur = null;
