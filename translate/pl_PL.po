@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
 "POT-Creation-Date: 2026-10-13 06:29+0300\n"
-"PO-Revision-Date: 2026-09-30 21:44+0200\n"
+"PO-Revision-Date: 2026-10-14 21:32+0200\n"
 "Last-Translator: l3monic <translate@ajnulo.ovh>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -97,7 +97,7 @@ msgstr "0 = auto. Zwiększ jeżeli elementy są przycięte."
 
 #: contents/ui/main.qml:1099
 msgid "1 Alert"
-msgstr "1 Alert"
+msgstr "1 Ostrzeżenie"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:835
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:709
@@ -335,7 +335,7 @@ msgstr "Olcha"
 
 #: contents/ui/config/configNotifications.qml:418
 msgid "Alert sound:"
-msgstr "Dźwięk alertu:"
+msgstr "Dźwięk ostrzeżenia:"
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:483
 #: contents/ui/config/configAppearance.qml:1897
@@ -343,27 +343,27 @@ msgstr "Dźwięk alertu:"
 #: contents/ui/config/configAppearance.qml:2143 contents/ui/DetailsView.qml:368
 #: contents/ui/SimpleView.qml:269
 msgid "Alerts"
-msgstr "Alerty"
+msgstr "Ostrzeżenia"
 
 #: contents/ui/config/tabs/ConfigAlertsTab.qml:73
 msgid "Alerts provider:"
-msgstr "Dostawca alertów:"
+msgstr "Dostawca ostrzeżeń:"
 
 #: contents/ui/config/tabs/ConfigAlertsTab.qml:132
 msgid "Alerts provider: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>KDE's FOSS Public Alert Server collects official severe-weather warnings in CAP format from agencies worldwide and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr "Dostawca alertów: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>FOSS Public Alert Server od KDE gromadzi oficjalne ostrzeżenia o trudnych warunkach pogodowych w formacie CAP od agencji z całego świata i przypisuje je do Twojej dokładnej lokalizacji. Powiadomienia o ostrzeżeniach działają tak samo, jak w przypadku natywnego dostawcy."
+msgstr "Dostawca ostrzeżeń: <a href='https://alerts.kde.org/'>FOSS Public Alert Server</a><br/><br/>FOSS Public Alert Server od KDE gromadzi oficjalne ostrzeżenia o trudnych warunkach pogodowych w formacie CAP od agencji z całego świata i przypisuje je do Twojej dokładnej lokalizacji. Powiadomienia o ostrzeżeniach działają tak samo, jak w przypadku natywnego dostawcy."
 
 #: contents/ui/config/tabs/ConfigAlertsTab.qml:122
 msgid "Alerts provider: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR is a free, open-source weather API that aggregates official CAP alerts worldwide (WMO Severe Weather Information Centre, NOAA NWS, and others) and matches them to your exact location. Alert notifications work the same as with the native provider."
-msgstr "Dostawca alertów: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR to bezpłatny, pogodowy interfejs API typu open source, który gromadzi oficjalne ostrzeżenia CAP z całego świata (Centrum Informacji o Zagrożeniach Pogodowych WMO, NOAA NWS i inne) oraz dopasowuje je do Twojej dokładnej lokalizacji. Powiadomienia o ostrzeżeniach działają tak samo jak w przypadku natywnego dostawcy."
+msgstr "Dostawca ostrzeżeń: <a href='https://librewxr.net/'>LibreWXR</a><br/><br/>LibreWXR to bezpłatny, pogodowy interfejs API typu open source, który gromadzi oficjalne ostrzeżenia CAP z całego świata (Centrum Informacji o Zagrożeniach Pogodowych WMO, NOAA NWS i inne) oraz dopasowuje je do Twojej dokładnej lokalizacji. Powiadomienia o ostrzeżeniach działają tak samo jak w przypadku natywnego dostawcy."
 
 #: contents/ui/config/tabs/ConfigAlertsTab.qml:112
 msgid "Alerts provider: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/>European locations use the official MeteoAlarm feeds (38 countries), US locations use the NOAA National Weather Service alerts API, with met.no MetAlerts as a fallback. If your weather provider delivers its own alerts (e.g. WeatherAPI.com, Pirate Weather), those are used directly."
-msgstr "Dostawca alertów: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/> w przypadku lokalizacji w Europie wykorzystywane są oficjalne kanały MeteoAlarm (38 krajów), natomiast w przypadku lokalizacji w Stanach Zjednoczonych - interfejs API alertów Narodowej Służby Meteorologicznej NOAA, z MetAlerts od met.no jako rozwiązaniem rezerwowym. Jeśli dostawca danych pogodowych udostępnia własne alerty (np. WeatherAPI.com, Pirate Weather), są one wykorzystywane bezpośrednio."
+msgstr "Dostawca ostrzeżeń: <a href='https://www.meteoalarm.org/'>EUMETNET MeteoAlarm</a> + <a href='https://www.weather.gov/'>NOAA NWS</a><br/><br/> w przypadku lokalizacji w Europie wykorzystywane są oficjalne kanały MeteoAlarm (38 krajów), natomiast w przypadku lokalizacji w Stanach Zjednoczonych - interfejs API ostrzeżeń Narodowej Służby Meteorologicznej NOAA, z MetAlerts od met.no jako rozwiązaniem rezerwowym. Jeśli dostawca danych pogodowych udostępnia własne ostrzeżenia (np. WeatherAPI.com, Pirate Weather), są one wykorzystywane bezpośrednio."
 
 #: contents/ui/TooltipContent.qml:485
 msgid "Alerts:"
-msgstr "Alerty:"
+msgstr "Ostrzeżenia:"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:1177
 msgid "All days show hourly forecast when opening the tab"
@@ -391,7 +391,7 @@ msgstr "Godziny, które już minęły, pozostaną (wyszarzone) zamiast zostać u
 
 #: contents/ui/config/configNotifications.qml:548
 msgid "Also notify about routine test alerts"
-msgstr "Powiadamiaj także o rutynowych alertach testowych"
+msgstr "Powiadamiaj także o rutynowych, próbnych ostrzeżeniach"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:354
 msgid "Alt: %1 %2"
@@ -667,7 +667,7 @@ msgstr "CO"
 #: contents/ui/config/tabs/ConfigMiscTab.qml:463
 #: contents/ui/config/tabs/ConfigMiscTab.qml:507
 msgid "Canadian AQHI (1-10+)"
-msgstr "Canadian AQHI (1-10+)"
+msgstr "Kanadyjski AQHI (1-10+)"
 
 #: contents/ui/config/configAppearance.qml:506
 #: contents/ui/config/configAppearance.qml:1034
@@ -726,7 +726,7 @@ msgstr "Chiński dostawca z globalnym pokryciem. Klucz API wymagany poniżej."
 
 #: contents/ui/config/configNotifications.qml:471
 msgid "Choose Alert Sound"
-msgstr "Wybierz dźwięk alertu"
+msgstr "Wybierz dźwięk ostrzeżenia"
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1262
 msgid "Choose Simple Mode Font"
@@ -954,7 +954,7 @@ msgstr "Ustawienia prognozy dziennej"
 
 #: contents/ui/config/tabs/ConfigProviderTab.qml:191
 msgid "Dark Sky-compatible API with US alerts. API key required below."
-msgstr "API kompatybilne z Dark Sky z alertami z USA. Klucz API wymagany poniżej."
+msgstr "API kompatybilne z Dark Sky, z ostrzeżeniami z USA. Klucz API wymagany poniżej."
 
 #: contents/ui/components/RadarWebEngineViewLibreWXR.qml:496
 msgid "Dark map"
@@ -1186,7 +1186,7 @@ msgstr "Wbudowany radar wstrzymany"
 
 #: contents/ui/config/configNotifications.qml:297
 msgid "Enable alert notifications"
-msgstr "Włącz powiadomienia o alertach"
+msgstr "Włącz powiadomienia o ostrzeżeniach"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:568
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:633
@@ -1324,7 +1324,7 @@ msgstr "Bardzo zła"
 
 #: contents/ui/config/tabs/ConfigAlertsTab.qml:92
 msgid "FOSS Public Alert Server"
-msgstr "Serwer alertów publicznych FOSS"
+msgstr "Serwer ostrzeżeń publicznych FOSS"
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:316
 msgid "Fahrenheit (°F)"
@@ -1499,7 +1499,7 @@ msgstr "Pełnia"
 
 #: contents/ui/DetailsView.qml:2828
 msgid "Future alerts"
-msgstr "Przyszłe alerty"
+msgstr "Przyszłe ostrzeżenia"
 
 #: contents/ui/config/configLocation.qml:1606
 msgid "GPS / GeoClue2 unavailable (install qt6-qtlocation for best accuracy). Using IP-based detection."
@@ -1526,7 +1526,7 @@ msgstr "Aktywność geomagnetyczna"
 
 #: contents/ui/main.qml:2130
 msgid "Geomagnetic activity is expected to be %1 (Kp %2)"
-msgstr "Geomagnetic activity is expected to be %1 (Kp %2)"
+msgstr "Prognozowana aktywność magnetyczna: %1 (Kp %2)"
 
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:262
 msgid "Glow intensity:"
@@ -2407,7 +2407,7 @@ msgstr "Potrzebujesz współrzędnych dla miejsca? Możesz sprawdzić je na <a h
 
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1236
 msgid "Negative spacing pulls panel items closer together than their natural gap and can make icons or text overlap."
-msgstr "Negative spacing pulls panel items closer together than their natural gap and can make icons or text overlap."
+msgstr "Ujemne odstępy zbliżają do siebie elementy panelu bardziej, niż wynikałoby to z ich naturalnych odstępów, co może powodować nakładanie się ikon lub tekstu."
 
 #: contents/ui/config/subpages/ConfigLocationManualSubPage.qml:370
 msgid "Network error"
@@ -2482,7 +2482,7 @@ msgstr "Nie znaleziono stacji pogodowych dla '%1'"
 #: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:1097
 #: contents/ui/main.qml:1099
 msgid "None"
-msgstr "Żadne"
+msgstr "Brak"
 
 #: contents/ui/config/configLocation.qml:670
 msgid "None Selected"
@@ -2514,7 +2514,7 @@ msgstr "Powiadomienia"
 
 #: contents/ui/config/configNotifications.qml:516
 msgid "Notify about upcoming alerts before they start"
-msgstr "Powiadamiaj o nadchodzących alertach, zanim się rozpoczną"
+msgstr "Powiadamiaj o nadchodzących ostrzeżeniach, zanim się rozpoczną"
 
 #: contents/ui/config/configNotifications.qml:656
 msgid "Notify about upcoming rain/storms"
@@ -2743,7 +2743,7 @@ msgstr "Zatrzymaj"
 
 #: contents/ui/config/configNotifications.qml:568
 msgid "Per alert type:"
-msgstr "Po rodzaju alertu:"
+msgstr "Po rodzaju ostrzeżenia:"
 
 #: contents/ui/config/configAppearance.qml:1341
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:509
@@ -2781,7 +2781,7 @@ msgstr "Odtwarzaj"
 
 #: contents/ui/config/configNotifications.qml:403
 msgid "Plays a sound alongside the notification for alerts of that severity. A switch greyed out here means that severity is turned off above, so it never notifies - with or without sound. By default only Red and Purple play a sound."
-msgstr "Odtwarza dźwięk towarzyszący powiadomieniu o alertach danego stopnia ważności. Jeśli przełącznik jest tu wyszarzony, oznacza to, że dany stopień ważności został wyłączony powyżej, więc powiadomienia nie są generowane – ani z dźwiękiem, ani bez niego. Domyślnie dźwięk jest odtwarzany tylko dla alertów stopnia czerwonego i fioletowego."
+msgstr "Odtwarza dźwięk towarzyszący powiadomieniu o ostrzeżeniach danego stopnia ważności. Jeśli przełącznik jest tu wyszarzony, oznacza to, że dany stopień ważności został wyłączony powyżej, więc powiadomienia nie są generowane – ani z dźwiękiem, ani bez niego. Domyślnie dźwięk jest odtwarzany tylko dla ostrzeżeń stopnia czerwonego i fioletowego."
 
 #: contents/ui/config/configAppearance.qml:1883
 #: contents/ui/config/configAppearance.qml:2006
@@ -2931,7 +2931,7 @@ msgstr "Fioletowy"
 
 #: contents/ui/config/configGeneral.qml:594
 msgid "QWeather (Key Required)"
-msgstr "QWeather (Wymagany klucz"
+msgstr "QWeather (Wymagany klucz)"
 
 #: contents/ui/config/tabs/ConfigProviderTab.qml:446
 msgid "QWeather API Host:"
@@ -2943,7 +2943,7 @@ msgstr "Klucz API QWeather:"
 
 #: contents/ui/config/configGeneral.qml:511
 msgid "QWeather error (code %1). Check your API key."
-msgstr "BłądQWeather (kod %1). Sprawdź swój klucz API."
+msgstr "Błąd QWeather (kod %1). Sprawdź swój klucz API."
 
 #: contents/ui/ForecastView.qml:865
 msgid "QWeather provides hourly forecasts for up to 168 hours (7 days). Daily forecast is still available for this date."
@@ -3031,7 +3031,7 @@ msgstr "Deszcz/Burza"
 
 #: contents/ui/config/tabs/ConfigProviderTab.qml:163
 msgid "Read-only while Adaptive mode is on - turn it off above to choose a specific provider."
-msgstr "Read-only while Adaptive mode is on - turn it off above to choose a specific provider."
+msgstr "Tylko do odczytu przy włączonym trybie adaptacyjnym – wyłącz go powyżej, aby wybrać konkretnego dostawcę."
 
 #: contents/ui/components/RadarWebEngineView.qml:158
 msgid "Real-time"
@@ -3052,7 +3052,7 @@ msgstr "Czerwony"
 
 #: contents/ui/js/airQuality.js:122
 msgid "Reduce or reschedule strenuous outdoor activities, especially if you experience symptoms."
-msgstr "Reduce or reschedule strenuous outdoor activities, especially if you experience symptoms."
+msgstr "Ogranicz intensywną aktywność na zewnątrz lub przełóż ją na inny termin, zwłaszcza jeśli wystąpią u Ciebie objawy."
 
 #: contents/ui/config/configLocation.qml:1609 contents/ui/FullView.qml:430
 #: contents/ui/main.qml:413
@@ -3217,7 +3217,7 @@ msgstr "Dodatkowa jednostka pokazywana jest jako pierwsza (np. °F / °C)"
 
 #: contents/ui/config/configNotifications.qml:526
 msgid "Sends a single, low-priority heads-up as soon as a future alert is published (e.g. \"Heat warning starts tomorrow at 11:00\"). The normal alert notification above still fires separately once it actually becomes active."
-msgstr "Sends a single, low-priority heads-up as soon as a future alert is published (e.g. \"Heat warning starts tomorrow at 11:00\"). The normal alert notification above still fires separately once it actually becomes active."
+msgstr "Wysyła pojedyncze, niskopriorytetowe powiadomienie wstępne, gdy tylko zostanie opublikowane przyszłe ostrzeżenie (np. „Ostrzeżenie przed upałem zaczyna obowiązywać jutro o 11:00”). Standardowe powiadomienie o ostrzeżeniu (opisane powyżej) jest nadal wysyłane oddzielnie w momencie, gdy ostrzeżenie faktycznie wchodzi w życie."
 
 #: contents/ui/config/tabs/ConfigMiscTab.qml:161
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1143
@@ -4007,7 +4007,7 @@ msgstr "Górna prawa"
 
 #: contents/ui/config/configNotifications.qml:500
 msgid "Treat alert notifications as critical"
-msgstr "Traktuj powiadomienia z alertami jako ważne"
+msgstr "Traktuj powiadomienia z ostrzeżeniami jako ważne"
 
 #: contents/ui/config/tabs/ConfigTooltipTab.qml:120
 msgid "Truncate (single line)"
@@ -4057,7 +4057,7 @@ msgstr "Prognoza indeksu UV:"
 
 #: contents/ui/main.qml:2085
 msgid "UV index will be %1 (%2)"
-msgstr "UV index will be %1 (%2)"
+msgstr "Indeks UV będzie %1 (%2)"
 
 #: contents/ui/config/configAppearance.qml:1870
 #: contents/ui/config/configAppearance.qml:1993
@@ -4277,11 +4277,11 @@ msgstr "Twoja wykryta lokalizacja to:<b>%1</b>."
 
 #: contents/ui/config/configGeneral.qml:626
 msgid "Weather Alerts"
-msgstr "Alerty pogodowe"
+msgstr "Ostrzeżenia pogodowe"
 
 #: contents/ui/config/tabs/ConfigAlertsTab.qml:68
 msgid "Weather Alerts Provider"
-msgstr "Dostawca alertów pogodowych"
+msgstr "Dostawca ostrzeżeń pogodowych"
 
 #: contents/ui/config/tabs/ConfigProviderTab.qml:68
 msgid "Weather Provider"
@@ -4293,14 +4293,14 @@ msgstr "Widżet Pogody"
 
 #: contents/ui/main.qml:1493 contents/ui/main.qml:1570
 msgid "Weather alert"
-msgstr "Alert pogodowy"
+msgstr "Ostrzeżenie pogodowe"
 
 #: contents/ui/config/configAppearance.qml:1898
 #: contents/ui/config/configAppearance.qml:2021
 #: contents/ui/config/configAppearance.qml:2144
 #: contents/ui/config/configNotifications.qml:294
 msgid "Weather alerts"
-msgstr "Alerty pogodowe"
+msgstr "Ostrzeżenia pogodowe"
 
 #: contents/ui/config/configAppearance.qml:2053
 msgid "Weather condition text"
@@ -4333,14 +4333,14 @@ msgid ""
 "\n"
 "Turn a level off to stop receiving notifications for alerts of that severity."
 msgstr ""
-"Poziomy alertów pogodowych, od najniższego do najwyższego:\n"
+"Poziomy ostrzeżeń pogodowych, od najniższego do najwyższego:\n"
 "\n"
 "🟡 Żółty - Niski: miej świadomość warunków.\n"
 "🟠 Pomarańczowy - Moderate: bądź w gotowości.\n"
 "🔴 Czerwony - Wysoki: podejmij działania.\n"
 "🟣 Fioletowy - Ekstremalny: niezwykle niebezpieczny, podejmij działania natychmiast.\n"
 "\n"
-"Wyłącz poziom, aby przestać otrzymywać powiadomienia o alertach o tej ważności."
+"Wyłącz poziom, aby przestać otrzymywać powiadomienia o ostrzeżeniach o tej ważności."
 
 #: contents/ui/config/configGeneral.qml:570
 msgid "WeatherAPI.com (Key Required)"
