@@ -250,17 +250,20 @@ QtObject {
     property var _aqiAccum: null
     property int _aqiAccumGen: -1
 
-    // Safety timer - if loading stays true for 20 s, force-reset state
+    property var _activeProviderChain: null
+    property int _activeProviderIndex: -1
+
+    // Safety timer - if a provider stays loading for 20 s, advance the chain
     // so the widget never gets stuck in "Loading…" forever.
     property Timer _safetyTimer: Timer {
         interval: 20000
         repeat: false
         onTriggered: {
             if (weatherRoot && weatherRoot.loading) {
-                console.warn("[WeatherService] Safety timeout - forcing loading=false");
-                weatherRoot.loading = false;
-                service._clearUpdateMetadata();
-                weatherRoot.updateText = i18n("Update timed out. Click the refresh button to retry.");
+                console.warn("[WeatherService] Provider timed out:",
+                             service._activeProviderChain[service._activeProviderIndex]);
+                service.refreshNow(false, true, service._activeProviderChain.slice(),
+                                   service._activeProviderIndex + 1);
             }
         }
     }
@@ -321,10 +324,10 @@ QtObject {
 
     /** Full weather refresh - current + daily forecast.
      *  force=true bypasses the space weather fetch throttle (manual refresh).
-     *  isAutoRetry=true marks a call made by _totalFailureRetryTimer itself -
+     *  isAutoRetry=true marks an automatic retry or provider continuation -
      *  it preserves _totalFailureRetryCount instead of resetting it, so the
      *  timer's own retries don't reset their own backoff. */
-    function refreshNow(force, isAutoRetry) {
+    function refreshNow(force, isAutoRetry, retryChain, retryIndex) {
         _refreshGen++;
         _safetyTimer.stop();
         _totalFailureRetryTimer.stop();
@@ -353,7 +356,6 @@ QtObject {
             return;
         }
         r.loading = true;
-        _safetyTimer.restart();
         // Don't blank r.weatherAlerts here - that would hide the still-valid
         // alert from the UI for the whole duration of the fetch. The provider
         // (or the AlertsJS fallback) replaces it once new data is actually in.
@@ -376,9 +378,10 @@ QtObject {
             // than silently substituting a different provider's data.
             chain = [provider];
         }
+        if (retryChain) chain = retryChain;
         chain._gen = _refreshGen;
 
-        _tryProvider(chain, 0);
+        _tryProvider(chain, retryIndex === undefined ? 0 : retryIndex);
         // Fetch air quality + pollen in parallel with the main weather request.
         // Pirate Weather supplies AQI natively; other providers (and pollen,
         // which has no PW equivalent) fall back to Open-Meteo.
@@ -433,7 +436,7 @@ QtObject {
     /** Hourly data fetch for a specific date string (yyyy-MM-dd) */
     function fetchHourlyForDate(dateStr) {
         var provider = Plasmoid.configuration.weatherProvider || "adaptive";
-        var ap = (provider === "adaptive") ? "openMeteo" : provider;
+        var ap = (provider === "adaptive") ? (service._updateProvider || "openMeteo") : provider;
 
         var _p = _providers();
         if (!_p || !_p.fetchHourly(ap, service, dateStr))
@@ -451,7 +454,7 @@ QtObject {
      */
     function fetchHourlyForDateDirect(dateStr, callback) {
         var provider = Plasmoid.configuration.weatherProvider || "adaptive";
-        var ap = (provider === "adaptive") ? "openMeteo" : provider;
+        var ap = (provider === "adaptive") ? (service._updateProvider || "openMeteo") : provider;
         var lat = service.latitude;
         var lon = service.longitude;
         var tz  = service.timezone || "auto";
@@ -1156,6 +1159,9 @@ QtObject {
             weatherRoot.updateText = i18n("Failed to load weather providers");
             return;
         }
+        _activeProviderChain = chain;
+        _activeProviderIndex = idx;
+        _safetyTimer.restart();
         _p.fetchCurrent(p, service, chain, idx);
     }
 
