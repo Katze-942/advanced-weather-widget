@@ -61,10 +61,7 @@ PlasmoidItem {
     // on the desktop prefer the full view.
     // In the system tray, leave unset (null) so Plasma's tray container
     // manages compact/full switching on its own.
-    preferredRepresentation: inTray ? null
-        : (Plasmoid.formFactor === PlasmaCore.Types.Horizontal ||
-           Plasmoid.formFactor === PlasmaCore.Types.Vertical)
-          ? compactRepresentation : fullRepresentation
+    preferredRepresentation: inTray ? null : (Plasmoid.formFactor === PlasmaCore.Types.Horizontal || Plasmoid.formFactor === PlasmaCore.Types.Vertical) ? compactRepresentation : fullRepresentation
 
     hideOnWindowDeactivate: !Plasmoid.configuration.keepOpen
 
@@ -73,14 +70,12 @@ PlasmoidItem {
     // the network is up for the map too. Plasma may build the full view at
     // startup on its own (applets opened often get preloaded), so FullView
     // waits for radarBackgroundReady rather than for the view to exist.
-    readonly property bool radarKeepLoaded: Plasmoid.configuration.radarKeepLoaded === true
-        && Plasmoid.configuration.radarEnabled !== false
+    readonly property bool radarKeepLoaded: Plasmoid.configuration.radarKeepLoaded === true && Plasmoid.configuration.radarEnabled !== false
     readonly property bool _shellStarted: {
         var corona = Plasmoid.containment ? Plasmoid.containment.corona : null;
         return !corona || corona.isStartupCompleted === true;
     }
-    readonly property bool _radarPreloadReady: radarKeepLoaded && _shellStarted
-        && ((!loading && !isNaN(temperatureC)) || _radarPreloadWaited)
+    readonly property bool _radarPreloadReady: radarKeepLoaded && _shellStarted && ((!loading && !isNaN(temperatureC)) || _radarPreloadWaited)
     // A weather request that fails (rate limit, provider down) must not hold
     // the radar back for good: give up waiting for it after a minute.
     property bool _radarPreloadWaited: false
@@ -115,8 +110,7 @@ PlasmoidItem {
     function _detectInTray() {
         // Method 1: containmentType == 129 (CustomEmbedded) + Horizontal
         try {
-            if (Plasmoid.containment.containmentType == 129
-                && Plasmoid.formFactor == 2) {
+            if (Plasmoid.containment.containmentType == 129 && Plasmoid.formFactor == 2) {
                 return true;
             }
         } catch (e) {}
@@ -142,7 +136,9 @@ PlasmoidItem {
     // when the UI thread is idle instead of blocking the network callback.
     property var weatherDataStaged: null
     property var weatherData: null
-    function _applyWeatherData() { weatherData = weatherDataStaged; }
+    function _applyWeatherData() {
+        weatherData = weatherDataStaged;
+    }
     onWeatherDataStagedChanged: Qt.callLater(_applyWeatherData)
     // Sunrise/sunset (and therefore isNightTime()) only settle once weatherData
     // lands for the new location - which can be after the location-switch
@@ -151,28 +147,30 @@ PlasmoidItem {
     // day/night state instead of briefly inheriting the previous city's.
     onWeatherDataChanged: weatherService.recomputeAuroraForLocation()
 
-    readonly property real   temperatureC:          weatherData ? weatherData.temperatureC          : NaN
-    readonly property real   apparentC:             weatherData ? weatherData.apparentC             : NaN
-    readonly property real   windKmh:               weatherData ? weatherData.windKmh               : NaN
-    readonly property real   windDirection:         weatherData ? weatherData.windDirection         : NaN
-    readonly property real   pressureHpa:           weatherData ? weatherData.pressureHpa           : NaN
-    readonly property real   humidityPercent:       weatherData ? weatherData.humidityPercent       : NaN
-    readonly property real   visibilityKm:          weatherData ? weatherData.visibilityKm          : NaN
-    readonly property real   dewPointC:             weatherData ? weatherData.dewPointC             : NaN
-    readonly property real   precipMmh:             weatherData ? weatherData.precipMmh             : NaN
-    readonly property real   uvIndex:               weatherData ? weatherData.uvIndex               : NaN
-    readonly property real   snowDepthCm:           weatherData ? weatherData.snowDepthCm           : NaN
-    readonly property int    weatherCode:           weatherData ? weatherData.weatherCode           : -1
-    readonly property int    isDay:                 weatherData ? weatherData.isDay                 : -1
-    readonly property int    locationUtcOffsetMins: weatherData ? weatherData.locationUtcOffsetMins : 0
-    readonly property string sunriseTimeText:       weatherData ? weatherData.sunriseTimeText       : "--"
-    readonly property string sunsetTimeText:        weatherData ? weatherData.sunsetTimeText        : "--"
-    readonly property var    dailyData:             weatherData ? weatherData.dailyData             : []
-    readonly property real   precipSumMm:           dailyData.length > 0 && !isNaN(dailyData[0].precipMm) ? dailyData[0].precipMm : NaN
+    readonly property real temperatureC: weatherData ? weatherData.temperatureC : NaN
+    readonly property real apparentC: weatherData ? weatherData.apparentC : NaN
+    readonly property real windKmh: weatherData ? weatherData.windKmh : NaN
+    readonly property real windDirection: weatherData ? weatherData.windDirection : NaN
+    readonly property real pressureHpa: weatherData ? weatherData.pressureHpa : NaN
+    readonly property real humidityPercent: weatherData ? weatherData.humidityPercent : NaN
+    readonly property real visibilityKm: weatherData ? weatherData.visibilityKm : NaN
+    readonly property real dewPointC: weatherData ? weatherData.dewPointC : NaN
+    readonly property real precipMmh: weatherData ? weatherData.precipMmh : NaN
+    readonly property real uvIndex: weatherData ? weatherData.uvIndex : NaN
+    readonly property real snowDepthCm: weatherData ? weatherData.snowDepthCm : NaN
+    readonly property int weatherCode: weatherData ? weatherData.weatherCode : -1
+    readonly property int isDay: weatherData ? weatherData.isDay : -1
+    readonly property int locationUtcOffsetMins: weatherData ? weatherData.locationUtcOffsetMins : 0
+    readonly property string sunriseTimeText: weatherData ? weatherData.sunriseTimeText : "--"
+    readonly property string sunsetTimeText: weatherData ? weatherData.sunsetTimeText : "--"
+    readonly property var dailyData: weatherData ? weatherData.dailyData : []
+    readonly property real precipSumMm: dailyData.length > 0 && !isNaN(dailyData[0].precipMm) ? dailyData[0].precipMm : NaN
 
     property var aqiDataStaged: null
     property var aqiData: null
-    function _applyAqiData() { aqiData = aqiDataStaged; }
+    function _applyAqiData() {
+        aqiData = aqiDataStaged;
+    }
     onAqiDataStagedChanged: Qt.callLater(_applyAqiData)
 
     // Inline accessors - callers subscribe to aqiData directly rather than
@@ -187,11 +185,20 @@ PlasmoidItem {
         return AQI.resolveStandard(Plasmoid.configuration.countryCode, Plasmoid.configuration.aqiStandard || "auto");
     }
     function airQualityDisplay() {
-        if (!aqiData) return { value: NaN, band: null, standardLabel: "" };
+        if (!aqiData)
+            return {
+                value: NaN,
+                band: null,
+                standardLabel: ""
+            };
         return AQI.standardDisplay(airQualityStandard(), aqiData.europeanAqi, aqiData.usAqi, aqiData.aqhi);
     }
-    function airQualityIndex() { return airQualityDisplay().value; }
-    function airQualityBand()  { return airQualityDisplay().band; }
+    function airQualityIndex() {
+        return airQualityDisplay().value;
+    }
+    function airQualityBand() {
+        return airQualityDisplay().band;
+    }
     function airQualityLabel() {
         var b = airQualityBand();
         return b ? i18n(b.label) : "";
@@ -204,32 +211,46 @@ PlasmoidItem {
     // standard, so airQualityDisplays() is a superset of airQualityDisplay()
     // rather than a separate concept.
     function airQualityMultiMode() {
-        return (Plasmoid.configuration.aqiShowUs === true)
-            || (Plasmoid.configuration.aqiShowEu === true)
-            || (Plasmoid.configuration.aqiShowCa === true);
+        return (Plasmoid.configuration.aqiShowUs === true) || (Plasmoid.configuration.aqiShowEu === true) || (Plasmoid.configuration.aqiShowCa === true);
     }
     function airQualityActiveStandards() {
         if (!airQualityMultiMode())
             return [airQualityStandard()];
         var list = [];
-        if (Plasmoid.configuration.aqiShowUs === true) list.push("us");
-        if (Plasmoid.configuration.aqiShowEu === true) list.push("eu");
-        if (Plasmoid.configuration.aqiShowCa === true) list.push("ca");
+        if (Plasmoid.configuration.aqiShowUs === true)
+            list.push("us");
+        if (Plasmoid.configuration.aqiShowEu === true)
+            list.push("eu");
+        if (Plasmoid.configuration.aqiShowCa === true)
+            list.push("ca");
         return list;
     }
     function airQualityDisplays() {
-        if (!aqiData) return [];
+        if (!aqiData)
+            return [];
         var d = aqiData;
         return airQualityActiveStandards().map(function (std) {
             return AQI.standardDisplay(std, d.europeanAqi, d.usAqi, d.aqhi);
         });
     }
-    function aqiPm10()  { return aqiData ? aqiData.pm10  : NaN; }
-    function aqiPm2_5() { return aqiData ? aqiData.pm2_5 : NaN; }
-    function aqiCo()    { return aqiData ? aqiData.co    : NaN; }
-    function aqiNo2()   { return aqiData ? aqiData.no2   : NaN; }
-    function aqiSo2()   { return aqiData ? aqiData.so2   : NaN; }
-    function aqiO3()    { return aqiData ? aqiData.o3    : NaN; }
+    function aqiPm10() {
+        return aqiData ? aqiData.pm10 : NaN;
+    }
+    function aqiPm2_5() {
+        return aqiData ? aqiData.pm2_5 : NaN;
+    }
+    function aqiCo() {
+        return aqiData ? aqiData.co : NaN;
+    }
+    function aqiNo2() {
+        return aqiData ? aqiData.no2 : NaN;
+    }
+    function aqiSo2() {
+        return aqiData ? aqiData.so2 : NaN;
+    }
+    function aqiO3() {
+        return aqiData ? aqiData.o3 : NaN;
+    }
     property var weatherAlerts: []         // [{headline, severity, description}]
     // Per-alert notification state, keyed by alert fingerprint (identity -
     // not location), so dismiss/postpone survive switching locations:
@@ -249,7 +270,9 @@ PlasmoidItem {
     property real _notificationHourlyLastFetchMs: 0
     property var pollenDataStaged: []
     property var pollenData: []             // [{key, value}] UPI 0-12 per pollen type - set via _applyPollenData
-    function _applyPollenData() { pollenData = pollenDataStaged; }
+    function _applyPollenData() {
+        pollenData = pollenDataStaged;
+    }
     onPollenDataStagedChanged: Qt.callLater(_applyPollenData)
     property var spaceWeather: null         // NOAA SWPC data object
     property var spaceWeatherDailyForecast: ({}) // dateStr -> {kp, gScale}, ~3 days ahead
@@ -276,22 +299,24 @@ PlasmoidItem {
     // Individual typed fields - QML detects per-field changes precisely,
     // avoiding the full var-object dirty cascade.
     property string _activeLocName: ""
-    property real   _activeLocLat:  0
-    property real   _activeLocLon:  0
-    property string _activeLocTz:   ""
-    property string _activeLocCC:   ""
-    property real   _activeLocAlt:  0
+    property real _activeLocLat: 0
+    property real _activeLocLon: 0
+    property string _activeLocTz: ""
+    property string _activeLocCC: ""
+    property real _activeLocAlt: 0
 
     function _applyActiveLoc() {
-        if (_batchingLocation) return;
+        if (_batchingLocation)
+            return;
         var o = activeLocStaged;
-        if (!o) return;
-        _activeLocName = o.name        || "";
-        _activeLocLat  = o.lat         || 0;
-        _activeLocLon  = o.lon         || 0;
-        _activeLocTz   = o.timezone    || "";
-        _activeLocCC   = o.countryCode || "";
-        _activeLocAlt  = o.altitude    !== undefined ? o.altitude : 0;
+        if (!o)
+            return;
+        _activeLocName = o.name || "";
+        _activeLocLat = o.lat || 0;
+        _activeLocLon = o.lon || 0;
+        _activeLocTz = o.timezone || "";
+        _activeLocCC = o.countryCode || "";
+        _activeLocAlt = o.altitude !== undefined ? o.altitude : 0;
         // No refreshDebounce here - activeLocation (the source for
         // WeatherService._activeLoc) hasn't been written yet at this point.
         // The actual refresh is triggered by:
@@ -305,9 +330,15 @@ PlasmoidItem {
     // Prefer Plasmoid.configuration (reliably updated by both popup _applyPendingLocFields
     // and KCM Apply via cfg_* sync) over the in-memory _activeLoc* snapshots which can
     // lag when activeLocation JSON fails to propagate from the KCM context.
-    function _locName() { return Plasmoid.configuration.locationName || _activeLocName || ""; }
-    function _locLat()  { return Plasmoid.configuration.latitude  !== 0 ? Plasmoid.configuration.latitude  : _activeLocLat; }
-    function _locLon()  { return Plasmoid.configuration.longitude !== 0 ? Plasmoid.configuration.longitude : _activeLocLon; }
+    function _locName() {
+        return Plasmoid.configuration.locationName || _activeLocName || "";
+    }
+    function _locLat() {
+        return Plasmoid.configuration.latitude !== 0 ? Plasmoid.configuration.latitude : _activeLocLat;
+    }
+    function _locLon() {
+        return Plasmoid.configuration.longitude !== 0 ? Plasmoid.configuration.longitude : _activeLocLon;
+    }
 
     // Imperative rather than reactive - only notifies subscribers when the
     // boolean value actually flips. A reactive binding re-notifies on every
@@ -326,11 +357,12 @@ PlasmoidItem {
         } else {
             next = false;
         }
-        if (hasSelectedTown !== next) hasSelectedTown = next;
+        if (hasSelectedTown !== next)
+            hasSelectedTown = next;
     }
-    on_ActiveLocNameChanged:  _updateHasSelectedTown()
-    on_ActiveLocLatChanged:   _updateHasSelectedTown()
-    on_ActiveLocLonChanged:   _updateHasSelectedTown()
+    on_ActiveLocNameChanged: _updateHasSelectedTown()
+    on_ActiveLocLatChanged: _updateHasSelectedTown()
+    on_ActiveLocLonChanged: _updateHasSelectedTown()
     onActiveLocStagedChanged: Qt.callLater(_applyActiveLoc)
 
     // ══════════════════════════════════════════════════════════════════════
@@ -380,16 +412,20 @@ PlasmoidItem {
         // two happens to apply last.
 
         Layout.minimumWidth: {
-            if (root.inTray) return 0;
-            if (!root.hasSelectedTown) return 280;
+            if (root.inTray)
+                return 0;
+            if (!root.hasSelectedTown)
+                return 280;
             var isSimple = (Plasmoid.configuration.widgetLayoutMode || "advanced") === "simple";
             if ((Plasmoid.configuration.widgetMinWidthMode || "auto") === "manual")
                 return Math.max(200, Plasmoid.configuration.widgetMinWidth || (isSimple ? 765 : 800));
             return isSimple ? 765 : 800;
         }
         Layout.minimumHeight: {
-            if (root.inTray) return 0;
-            if (!root.hasSelectedTown) return 220;
+            if (root.inTray)
+                return 0;
+            if (!root.hasSelectedTown)
+                return 220;
             var isSimple = (Plasmoid.configuration.widgetLayoutMode || "advanced") === "simple";
             if ((Plasmoid.configuration.widgetMinHeightMode || "auto") === "manual")
                 return Math.max(200, Plasmoid.configuration.widgetMinHeight || (isSimple ? 550 : 750));
@@ -478,9 +514,7 @@ PlasmoidItem {
         componentName: "plasma_workspace"
         eventId: "notification"
         iconName: _bundledAlertIcon("storm-warning")
-        flags: root._alertNotificationRepeatEnabled()
-            ? (Notification.Persistent | Notification.SkipGrouping | Notification.DefaultEvent)
-            : (Notification.CloseOnTimeout | Notification.SkipGrouping | Notification.DefaultEvent)
+        flags: root._alertNotificationRepeatEnabled() ? (Notification.Persistent | Notification.SkipGrouping | Notification.DefaultEvent) : (Notification.CloseOnTimeout | Notification.SkipGrouping | Notification.DefaultEvent)
 
         actions: root._alertNotificationRepeatEnabled() ? [dismissAlertAction, postponeAlertAction] : []
 
@@ -572,7 +606,7 @@ PlasmoidItem {
     //
     // Tier 1: GeoClue2 explicitly (PositionSource name: "geoclue2")
     // Tier 2: Any available Qt Positioning plugin (PositionSource, no name)
-    // Tier 3: IP-based geolocation (geo.kamero.ai → reallyfreegeoip.org)
+    // Tier 3: IP-based geolocation (ip-api.com → reallyfreegeoip.org)
     //
     // Active whenever the user has chosen "Automatically detect location".
     // On every position update it:
@@ -588,7 +622,24 @@ PlasmoidItem {
     // Which tier is currently active: 0 = idle, 1 = geoclue2, 2 = generic, 3 = IP
     property int _locationTier: 0
 
-    function _applyAutoPosition(lat, lon, alt) {
+    /** Joins "City, Region, Country", skipping empty parts and parts that
+     *  repeat an earlier one (e.g. city-states where city == region). */
+    function _ipLocationName(city, region, country) {
+        var parts = [];
+        [city, region, country].forEach(function (p) {
+            p = (p || "").trim();
+            if (p.length > 0 && parts.every(function (x) {
+                return x.toLowerCase() !== p.toLowerCase();
+            }))
+                parts.push(p);
+        });
+        return parts.join(", ");
+    }
+
+    // ipInfo (optional, IP-based tier only): { name, countryCode } taken from
+    // the IP geolocation response. When it carries a name, that name is used
+    // directly and the Nominatim reverse geocode is skipped.
+    function _applyAutoPosition(lat, lon, alt, ipInfo) {
         // Deactivate sources after a successful fix to avoid duplicate callbacks
         geoclue2Source.active = false;
         genericPositionSource.active = false;
@@ -596,13 +647,20 @@ PlasmoidItem {
         Plasmoid.configuration.longitude = lon;
         if (!isNaN(alt) && alt > 0)
             Plasmoid.configuration.altitude = Math.round(alt);
+        if (ipInfo && ipInfo.name && ipInfo.name.length > 0) {
+            Plasmoid.configuration.locationName = ipInfo.name;
+            if (ipInfo.countryCode && ipInfo.countryCode.length > 0)
+                Plasmoid.configuration.countryCode = ipInfo.countryCode.toUpperCase();
+            return;
+        }
         // Always reverse-geocode: on first run locationName is empty and
         // would never get populated if we skipped it.
         _autoReverseGeocode(lat, lon);
     }
 
     function _startAutoDetect() {
-        if (!Plasmoid.configuration.autoDetectLocation) return;
+        if (!Plasmoid.configuration.autoDetectLocation)
+            return;
         _locationTier = 1;
         geoclue2Source.active = true;
         geoclue2Source.update();
@@ -625,7 +683,9 @@ PlasmoidItem {
     }
 
     Timer {
-        id: _geoclue2Timer; interval: 8000; repeat: false
+        id: _geoclue2Timer
+        interval: 8000
+        repeat: false
         onTriggered: {
             if (_locationTier === 1) {
                 console.log("[Location] GeoClue2 timed out, trying generic PositionSource…");
@@ -634,7 +694,9 @@ PlasmoidItem {
         }
     }
     Timer {
-        id: _genericSourceTimer; interval: 8000; repeat: false
+        id: _genericSourceTimer
+        interval: 8000
+        repeat: false
         onTriggered: {
             if (_locationTier === 2) {
                 console.log("[Location] Generic PositionSource timed out, trying IP geolocation…");
@@ -643,7 +705,9 @@ PlasmoidItem {
         }
     }
     Timer {
-        id: _ipGeoTimer; interval: 10000; repeat: false
+        id: _ipGeoTimer
+        interval: 10000
+        repeat: false
         property var _activeReq: null
         onTriggered: {
             if (_locationTier === 3 && _activeReq) {
@@ -671,7 +735,8 @@ PlasmoidItem {
 
         onPositionChanged: {
             var c = position.coordinate;
-            if (!c || !c.isValid) return;
+            if (!c || !c.isValid)
+                return;
             _geoclue2Timer.stop();
             _locationTier = 0;
             console.log("[Location] Tier 1 (GeoClue2): position acquired");
@@ -694,7 +759,8 @@ PlasmoidItem {
 
         onPositionChanged: {
             var c = position.coordinate;
-            if (!c || !c.isValid) return;
+            if (!c || !c.isValid)
+                return;
             _genericSourceTimer.stop();
             _locationTier = 0;
             console.log("[Location] Tier 2 (generic PositionSource): position acquired");
@@ -711,27 +777,34 @@ PlasmoidItem {
 
     // Tier 3 - IP-based geolocation
     function _ipGeolocate() {
-        console.log("[Location] Tier 3: trying geo.kamero.ai…");
+        console.log("[Location] Tier 3: trying ip-api.com…");
         var req = new XMLHttpRequest();
         _ipGeoTimer._activeReq = req;
         _ipGeoTimer.restart();
-        req.open("GET", "https://geo.kamero.ai/api/geo");
+
+        req.open("GET", "http://ip-api.com/json/?fields=status,lat,lon,city,regionName,country,countryCode");
         req.onreadystatechange = function () {
-            if (req.readyState !== XMLHttpRequest.DONE) return;
+            if (req.readyState !== XMLHttpRequest.DONE)
+                return;
             if (req.status === 200) {
                 try {
                     var data = JSON.parse(req.responseText);
-                    var lat = parseFloat(data.latitude);
-                    var lon = parseFloat(data.longitude);
-                    if (!isNaN(lat) && !isNaN(lon)) {
+                    var lat = parseFloat(data.lat);
+                    var lon = parseFloat(data.lon);
+                    if (data.status === "success" && !isNaN(lat) && !isNaN(lon)) {
                         _ipGeoTimer.stop();
                         _ipGeoTimer._activeReq = null;
                         _locationTier = 0;
-                        console.log("[Location] Tier 3 (geo.kamero.ai): position acquired");
-                        _applyAutoPosition(lat, lon, NaN);
+                        console.log("[Location] Tier 3 (ip-api.com): position acquired");
+                        _applyAutoPosition(lat, lon, NaN, {
+                            name: _ipLocationName(data.city, data.regionName, data.country),
+                            countryCode: data.countryCode || ""
+                        });
                         return;
                     }
-                } catch (e) { console.warn("[Location] geo.kamero.ai parse error:", e); }
+                } catch (e) {
+                    console.warn("[Location] ip-api.com parse error:", e);
+                }
             }
             // Fallback to reallyfreegeoip.org
             _ipGeolocateFallback();
@@ -746,7 +819,8 @@ PlasmoidItem {
         _ipGeoTimer.restart();
         req.open("GET", "https://reallyfreegeoip.org/json/");
         req.onreadystatechange = function () {
-            if (req.readyState !== XMLHttpRequest.DONE) return;
+            if (req.readyState !== XMLHttpRequest.DONE)
+                return;
             _ipGeoTimer.stop();
             _ipGeoTimer._activeReq = null;
             if (req.status === 200) {
@@ -757,10 +831,15 @@ PlasmoidItem {
                     if (!isNaN(lat) && !isNaN(lon)) {
                         _locationTier = 0;
                         console.log("[Location] Tier 3 (reallyfreegeoip.org): position acquired");
-                        _applyAutoPosition(lat, lon, NaN);
+                        _applyAutoPosition(lat, lon, NaN, {
+                            name: _ipLocationName(data.city, data.region_name, data.country_name),
+                            countryCode: data.country_code || ""
+                        });
                         return;
                     }
-                } catch (e) { console.warn("[Location] reallyfreegeoip parse error:", e); }
+                } catch (e) {
+                    console.warn("[Location] reallyfreegeoip parse error:", e);
+                }
             }
             _locationTier = 0;
             console.warn("[Location] All 3 tiers failed - no position available");
@@ -808,7 +887,9 @@ PlasmoidItem {
                 var cc = (a.country_code || "").toUpperCase();
                 if (cc.length > 0)
                     Plasmoid.configuration.countryCode = cc;
-            } catch (e) { console.warn("[Location] reverse geocode parse error:", e); }
+            } catch (e) {
+                console.warn("[Location] reverse geocode parse error:", e);
+            }
         };
         req.send();
     }
@@ -822,24 +903,28 @@ PlasmoidItem {
     /** Sync individual config fields from the pending location - called deferred. */
     function _applyPendingLocFields() {
         var loc = _pendingLoc;
-        if (!loc) return;
+        if (!loc)
+            return;
         _pendingLoc = null;
         _batchingLocation = true;
         Plasmoid.configuration.autoDetectLocation = false;
         Plasmoid.configuration.activeLocation = JSON.stringify({
-            name:        loc.name        || "",
-            lat:         loc.lat         || 0,
-            lon:         loc.lon         || 0,
-            altitude:    loc.altitude    !== undefined ? loc.altitude : 0,
-            timezone:    loc.timezone    || "",
+            name: loc.name || "",
+            lat: loc.lat || 0,
+            lon: loc.lon || 0,
+            altitude: loc.altitude !== undefined ? loc.altitude : 0,
+            timezone: loc.timezone || "",
             countryCode: loc.countryCode || ""
         });
-        Plasmoid.configuration.locationName  = loc.name        || "";
-        Plasmoid.configuration.latitude      = loc.lat         || 0;
-        Plasmoid.configuration.longitude     = loc.lon         || 0;
-        if (loc.altitude  !== undefined) Plasmoid.configuration.altitude    = loc.altitude;
-        if (loc.timezone)               Plasmoid.configuration.timezone     = loc.timezone;
-        if (loc.countryCode)            Plasmoid.configuration.countryCode  = loc.countryCode;
+        Plasmoid.configuration.locationName = loc.name || "";
+        Plasmoid.configuration.latitude = loc.lat || 0;
+        Plasmoid.configuration.longitude = loc.lon || 0;
+        if (loc.altitude !== undefined)
+            Plasmoid.configuration.altitude = loc.altitude;
+        if (loc.timezone)
+            Plasmoid.configuration.timezone = loc.timezone;
+        if (loc.countryCode)
+            Plasmoid.configuration.countryCode = loc.countryCode;
         _batchingLocation = false;
         refreshDebounce.restart();
     }
@@ -849,11 +934,11 @@ PlasmoidItem {
         // Stage both the in-memory update and the KConfig persist - both deferred
         // so the click handler returns in <1ms and the popup closes without a hang.
         activeLocStaged = {
-            name:        loc.name        || "",
-            lat:         loc.lat         || 0,
-            lon:         loc.lon         || 0,
-            altitude:    loc.altitude    !== undefined ? loc.altitude : 0,
-            timezone:    loc.timezone    || "",
+            name: loc.name || "",
+            lat: loc.lat || 0,
+            lon: loc.lon || 0,
+            altitude: loc.altitude !== undefined ? loc.altitude : 0,
+            timezone: loc.timezone || "",
             countryCode: loc.countryCode || ""
         };
         // _applyActiveLoc fires via onActiveLocStagedChanged → Qt.callLater
@@ -887,12 +972,17 @@ PlasmoidItem {
     function _formatItemDateTime(dateFmt, timeFmt) {
         var now = new Date();
         var dateStr = "";
-        if (dateFmt === "locale-long")       dateStr = now.toLocaleDateString(Qt.locale(), Locale.LongFormat);
-        else if (dateFmt === "locale-short") dateStr = now.toLocaleDateString(Qt.locale(), Locale.ShortFormat);
-        else if (dateFmt && dateFmt !== "")  dateStr = Qt.formatDate(now, dateFmt);
+        if (dateFmt === "locale-long")
+            dateStr = now.toLocaleDateString(Qt.locale(), Locale.LongFormat);
+        else if (dateFmt === "locale-short")
+            dateStr = now.toLocaleDateString(Qt.locale(), Locale.ShortFormat);
+        else if (dateFmt && dateFmt !== "")
+            dateStr = Qt.formatDate(now, dateFmt);
         var timeStr = "";
-        if (timeFmt === "locale")            timeStr = now.toLocaleTimeString(Qt.locale(), Locale.ShortFormat);
-        else if (timeFmt && timeFmt !== "") timeStr = Qt.formatTime(now, timeFmt);
+        if (timeFmt === "locale")
+            timeStr = now.toLocaleTimeString(Qt.locale(), Locale.ShortFormat);
+        else if (timeFmt && timeFmt !== "")
+            timeStr = Qt.formatTime(now, timeFmt);
         var sep = (dateStr.length > 0 && timeStr.length > 0) ? "  " : "";
         return dateStr + sep + timeStr;
     }
@@ -904,20 +994,19 @@ PlasmoidItem {
         return Plasmoid.configuration.temperatureUnit || "C";
     }
     function tempValue(celsius, context) {
-        if (W.isNotSupported(celsius)) return i18n("N/A");
+        if (W.isNotSupported(celsius))
+            return i18n("N/A");
         var unit = _tempUnit();
         var primary = W.formatTemp(celsius, unit, Plasmoid.configuration.roundValues, Plasmoid.configuration.showTempUnit);
-        if (!Plasmoid.configuration.dualTempEnabled) return primary;
-        var inCtx = (context === "panel"   && Plasmoid.configuration.dualTempInPanel)
-                 || (context === "tooltip" && Plasmoid.configuration.dualTempInTooltip)
-                 || (context !== "panel" && context !== "tooltip" && Plasmoid.configuration.dualTempInWidget);
-        if (!inCtx) return primary;
+        if (!Plasmoid.configuration.dualTempEnabled)
+            return primary;
+        var inCtx = (context === "panel" && Plasmoid.configuration.dualTempInPanel) || (context === "tooltip" && Plasmoid.configuration.dualTempInTooltip) || (context !== "panel" && context !== "tooltip" && Plasmoid.configuration.dualTempInWidget);
+        if (!inCtx)
+            return primary;
         var altUnit = (unit === "C") ? "F" : "C";
         var sep = Plasmoid.configuration.dualTempSeparator !== undefined ? Plasmoid.configuration.dualTempSeparator : " / ";
         var secondary = W.formatTemp(celsius, altUnit, Plasmoid.configuration.roundValues, Plasmoid.configuration.showTempUnit);
-        return Plasmoid.configuration.dualTempSwapOrder
-            ? secondary + sep + primary
-            : primary + sep + secondary;
+        return Plasmoid.configuration.dualTempSwapOrder ? secondary + sep + primary : primary + sep + secondary;
     }
 
     function _windUnit() {
@@ -926,7 +1015,8 @@ PlasmoidItem {
         return Plasmoid.configuration.windSpeedUnit || "kmh";
     }
     function windValue(kmh) {
-        if (isNaN(kmh) || kmh === null || kmh === undefined) return "--";
+        if (isNaN(kmh) || kmh === null || kmh === undefined)
+            return "--";
         var unit = _windUnit();
         return W.formatWindValue(kmh, unit) + " " + i18n(W.windUnitLabel(unit));
     }
@@ -937,8 +1027,10 @@ PlasmoidItem {
         return Plasmoid.configuration.pressureUnit || "hPa";
     }
     function pressureValue(hpa) {
-        if (W.isNotSupported(hpa)) return i18n("N/A");
-        if (isNaN(hpa) || hpa === null || hpa === undefined) return "--";
+        if (W.isNotSupported(hpa))
+            return i18n("N/A");
+        if (isNaN(hpa) || hpa === null || hpa === undefined)
+            return "--";
         var unit = _pressureUnit();
         return W.formatPressureValue(hpa, unit) + " " + i18n(W.pressureUnitLabel(unit));
     }
@@ -950,24 +1042,30 @@ PlasmoidItem {
     }
 
     function precipValue(mmh) {
-        if (W.isNotSupported(mmh)) return i18n("N/A");
-        if (isNaN(mmh)) return "--";
+        if (W.isNotSupported(mmh))
+            return i18n("N/A");
+        if (isNaN(mmh))
+            return "--";
         if (_isImperial())
             return (mmh / 25.4).toFixed(2) + " " + i18n("in/h");
         return mmh.toFixed(1) + " " + i18n("mm/h");
     }
 
     function precipSumText(mm) {
-        if (W.isNotSupported(mm)) return i18n("N/A");
-        if (isNaN(mm)) return "--";
+        if (W.isNotSupported(mm))
+            return i18n("N/A");
+        if (isNaN(mm))
+            return "--";
         if (_isImperial())
             return (mm / 25.4).toFixed(2) + " " + i18n("in");
         return mm.toFixed(1) + " " + i18n("mm");
     }
 
     function visibilityValue(km) {
-        if (W.isNotSupported(km)) return i18n("N/A");
-        if (isNaN(km)) return "--";
+        if (W.isNotSupported(km))
+            return i18n("N/A");
+        if (isNaN(km))
+            return "--";
         if (_isImperial())
             return (km * 0.621371).toFixed(1) + " " + i18n("mi");
         return km.toFixed(1) + " " + i18n("km");
@@ -984,7 +1082,8 @@ PlasmoidItem {
     function kpForecastForHour(dateStr, hhmm) {
         var arr = spaceWeatherForecastPeriods || [];
         var t = _hourSampleEpoch(dateStr, hhmm);
-        if (isNaN(t)) return null;
+        if (isNaN(t))
+            return null;
         for (var i = arr.length - 1; i >= 0; i--) {
             var p = arr[i];
             if (p.startMs <= t)
@@ -994,13 +1093,19 @@ PlasmoidItem {
     }
 
     function uvIndexText(uv) {
-        if (W.isNotSupported(uv)) return i18n("N/A");
-        if (isNaN(uv)) return "--";
+        if (W.isNotSupported(uv))
+            return i18n("N/A");
+        if (isNaN(uv))
+            return "--";
         var v = Math.round(uv * 10) / 10;
-        if (v <= 2) return v + " (" + i18n("Low") + ")";
-        if (v <= 5) return v + " (" + i18n("Moderate") + ")";
-        if (v <= 7) return v + " (" + i18n("High") + ")";
-        if (v <= 10) return v + " (" + i18n("Very High") + ")";
+        if (v <= 2)
+            return v + " (" + i18n("Low") + ")";
+        if (v <= 5)
+            return v + " (" + i18n("Moderate") + ")";
+        if (v <= 7)
+            return v + " (" + i18n("High") + ")";
+        if (v <= 10)
+            return v + " (" + i18n("Very High") + ")";
         return v + " (" + i18n("Extreme") + ")";
     }
 
@@ -1009,7 +1114,8 @@ PlasmoidItem {
         var parts = [];
         for (var i = 0; i < displays.length; i++) {
             var d = displays[i];
-            if (!d.band || isNaN(d.value)) continue;
+            if (!d.band || isNaN(d.value))
+                continue;
             parts.push(d.band.emoji + " " + i18n(d.band.label) + " \u00B7 " + i18n(d.standardLabel) + ": " + Math.round(d.value));
         }
         return parts.length > 0 ? parts.join("   |   ") : "--";
@@ -1020,28 +1126,49 @@ PlasmoidItem {
      * Format: "<PollenName>: <Label> (<value>)"
      */
     function pollenText() {
-        if (!pollenData || pollenData.length === 0) return "--";
+        if (!pollenData || pollenData.length === 0)
+            return "--";
         var best = null;
         for (var i = 0; i < pollenData.length; i++) {
             var p = pollenData[i];
-            if (isNaN(p.value) || p.value === null) continue;
-            if (!best || p.value > best.value) best = p;
+            if (isNaN(p.value) || p.value === null)
+                continue;
+            if (!best || p.value > best.value)
+                best = p;
         }
-        if (!best) return "--";
+        if (!best)
+            return "--";
         var label = "";
-        if (best.value < 2.5)      label = i18n("Low");
-        else if (best.value < 4.9) label = i18n("Moderate");
-        else if (best.value < 7.3) label = i18n("High");
-        else                       label = i18n("Very High");
+        if (best.value < 2.5)
+            label = i18n("Low");
+        else if (best.value < 4.9)
+            label = i18n("Moderate");
+        else if (best.value < 7.3)
+            label = i18n("High");
+        else
+            label = i18n("Very High");
         var name = "";
         switch (best.key) {
-            case "alder":   name = i18n("Alder");   break;
-            case "birch":   name = i18n("Birch");   break;
-            case "grass":   name = i18n("Grass");   break;
-            case "mugwort": name = i18n("Mugwort"); break;
-            case "olive":   name = i18n("Olive");   break;
-            case "ragweed": name = i18n("Ragweed"); break;
-            default:        name = best.key;
+        case "alder":
+            name = i18n("Alder");
+            break;
+        case "birch":
+            name = i18n("Birch");
+            break;
+        case "grass":
+            name = i18n("Grass");
+            break;
+        case "mugwort":
+            name = i18n("Mugwort");
+            break;
+        case "olive":
+            name = i18n("Olive");
+            break;
+        case "ragweed":
+            name = i18n("Ragweed");
+            break;
+        default:
+            name = best.key;
         }
         return name + ": " + label + " (" + best.value.toFixed(1) + ")";
     }
@@ -1052,13 +1179,16 @@ PlasmoidItem {
      */
     function spaceWeatherText() {
         var sw = spaceWeather;
-        if (!sw || isNaN(sw.kp)) return "--";
+        if (!sw || isNaN(sw.kp))
+            return "--";
         return "Kp " + sw.kp.toFixed(1) + " · " + (sw.gScale || "G0");
     }
 
     function snowDepthText(cm) {
-        if (W.isNotSupported(cm)) return i18n("N/A");
-        if (isNaN(cm)) return "--";
+        if (W.isNotSupported(cm))
+            return i18n("N/A");
+        if (isNaN(cm))
+            return "--";
         if (_isImperial())
             return (cm / 2.54).toFixed(1) + " " + i18n("in");
         return cm.toFixed(1) + " " + i18n("cm");
@@ -1067,9 +1197,12 @@ PlasmoidItem {
     /** Returns a numeric priority for an alert color - higher = more severe. */
     function alertColorPriority(color) {
         var c = (color || "").toLowerCase();
-        if (c === "red")    return 3;
-        if (c === "orange") return 2;
-        if (c === "yellow") return 1;
+        if (c === "red")
+            return 3;
+        if (c === "orange")
+            return 2;
+        if (c === "yellow")
+            return 1;
         return 0;
     }
 
@@ -1078,15 +1211,17 @@ PlasmoidItem {
      * or the first alert if none are active yet.
      */
     function primaryAlert() {
-        if (!weatherAlerts || weatherAlerts.length === 0) return null;
+        if (!weatherAlerts || weatherAlerts.length === 0)
+            return null;
         var now = new Date();
         var best = null;
         for (var i = 0; i < weatherAlerts.length; i++) {
             var a = weatherAlerts[i];
-            var onset   = a.onset   ? new Date(a.onset)   : null;
+            var onset = a.onset ? new Date(a.onset) : null;
             var expires = a.expires ? new Date(a.expires) : null;
-            var active  = (!onset || onset <= now) && (!expires || expires >= now);
-            if (!active) continue;
+            var active = (!onset || onset <= now) && (!expires || expires >= now);
+            if (!active)
+                continue;
             if (!best || alertColorPriority(a.color) > alertColorPriority(best.color))
                 best = a;
         }
@@ -1094,26 +1229,40 @@ PlasmoidItem {
     }
 
     function alertsText() {
-        if (!weatherAlerts || weatherAlerts.length === 0) return i18n("None");
+        if (!weatherAlerts || weatherAlerts.length === 0)
+            return i18n("None");
         var p = primaryAlert();
         return p ? (p.displayName || p.headline || i18n("1 Alert")) : i18n("None");
     }
 
     function alertTypeGlyph(typeNum) {
         switch (typeNum) {
-            case 1:  return "\uF050"; // wind
-            case 2:  return "\uF076"; // snow/ice
-            case 3:  return "\uF01E"; // thunderstorm
-            case 4:  return "\uF014"; // fog
-            case 5:  return "\uF072"; // high temperature
-            case 6:  return "\uF076"; // low temperature
-            case 7:  return "\uF0CD"; // coastal event
-            case 8:  return "\uF0C7"; // forest fire
-            case 9:  return "\uF076"; // avalanche
-            case 10: return "\uF019"; // rain
-            case 11: return "\uF04E"; // flooding
-            case 12: return "\uF019"; // rain-flood
-            default: return "\uF0CE"; // generic warning
+        case 1:
+            return "\uF050"; // wind
+        case 2:
+            return "\uF076"; // snow/ice
+        case 3:
+            return "\uF01E"; // thunderstorm
+        case 4:
+            return "\uF014"; // fog
+        case 5:
+            return "\uF072"; // high temperature
+        case 6:
+            return "\uF076"; // low temperature
+        case 7:
+            return "\uF0CD"; // coastal event
+        case 8:
+            return "\uF0C7"; // forest fire
+        case 9:
+            return "\uF076"; // avalanche
+        case 10:
+            return "\uF019"; // rain
+        case 11:
+            return "\uF04E"; // flooding
+        case 12:
+            return "\uF019"; // rain-flood
+        default:
+            return "\uF0CE"; // generic warning
         }
     }
 
@@ -1121,17 +1270,50 @@ PlasmoidItem {
      *  rain-flood (12) is folded into rain (10); unknown (0) is not configurable. */
     function _alertTypeList() {
         return [
-            { type: 1,  name: i18n("Wind") },
-            { type: 2,  name: i18n("Snow/Ice") },
-            { type: 3,  name: i18n("Thunderstorm") },
-            { type: 4,  name: i18n("Fog") },
-            { type: 5,  name: i18n("High temperature") },
-            { type: 6,  name: i18n("Low temperature") },
-            { type: 7,  name: i18n("Coastal event") },
-            { type: 8,  name: i18n("Forest fire") },
-            { type: 9,  name: i18n("Avalanche") },
-            { type: 10, name: i18n("Rain") },
-            { type: 11, name: i18n("Flood") }
+            {
+                type: 1,
+                name: i18n("Wind")
+            },
+            {
+                type: 2,
+                name: i18n("Snow/Ice")
+            },
+            {
+                type: 3,
+                name: i18n("Thunderstorm")
+            },
+            {
+                type: 4,
+                name: i18n("Fog")
+            },
+            {
+                type: 5,
+                name: i18n("High temperature")
+            },
+            {
+                type: 6,
+                name: i18n("Low temperature")
+            },
+            {
+                type: 7,
+                name: i18n("Coastal event")
+            },
+            {
+                type: 8,
+                name: i18n("Forest fire")
+            },
+            {
+                type: 9,
+                name: i18n("Avalanche")
+            },
+            {
+                type: 10,
+                name: i18n("Rain")
+            },
+            {
+                type: 11,
+                name: i18n("Flood")
+            }
         ];
     }
 
@@ -1140,8 +1322,10 @@ PlasmoidItem {
      *  unknown stays 0 and is treated as always-allowed with the global interval). */
     function _alertConfigType(awarenessType) {
         var t = parseInt(awarenessType, 10);
-        if (isNaN(t)) return 0;
-        if (t === 12) return 10;   // rain-flood → rain
+        if (isNaN(t))
+            return 0;
+        if (t === 12)
+            return 10;   // rain-flood → rain
         return t;
     }
 
@@ -1165,9 +1349,11 @@ PlasmoidItem {
      *  Unknown types (0) and types with no stored setting default to enabled. */
     function _alertTypeEnabled(awarenessType) {
         var t = _alertConfigType(awarenessType);
-        if (t === 0) return true;
+        if (t === 0)
+            return true;
         var s = _alertTypeSettings[t];
-        if (!s || s.enabled === undefined) return true;
+        if (!s || s.enabled === undefined)
+            return true;
         return s.enabled === true;
     }
 
@@ -1176,7 +1362,8 @@ PlasmoidItem {
         var t = _alertConfigType(awarenessType);
         var s = (t !== 0) ? _alertTypeSettings[t] : null;
         var m = (s && s.minutes !== undefined) ? parseInt(s.minutes, 10) : NaN;
-        if (isNaN(m)) m = _defaultAlertRepeatMinutes;
+        if (isNaN(m))
+            m = _defaultAlertRepeatMinutes;
         return Math.max(1, Math.min(720, m));
     }
 
@@ -1204,20 +1391,29 @@ PlasmoidItem {
     function _notificationTimeToMinutes(raw, fallback) {
         var s = (raw || "").trim();
         var m = /^([01]?\d|2[0-3]):([0-5]\d)$/.exec(s);
-        if (!m) return fallback;
+        if (!m)
+            return fallback;
         return parseInt(m[1], 10) * 60 + parseInt(m[2], 10);
     }
 
     function _notificationTypeEnabled(type) {
         switch (type) {
-        case "alerts": return Plasmoid.configuration.alertNotificationsEnabled === true;
-        case "today": return Plasmoid.configuration.notificationTodayEnabled === true;
-        case "tomorrow": return Plasmoid.configuration.notificationTomorrowEnabled === true;
-        case "rain": return Plasmoid.configuration.notificationRainEnabled === true;
-        case "snow": return Plasmoid.configuration.notificationSnowEnabled === true;
-        case "uv": return Plasmoid.configuration.notificationUvEnabled === true;
-        case "space": return Plasmoid.configuration.notificationSpaceWeatherEnabled === true;
-        default: return false;
+        case "alerts":
+            return Plasmoid.configuration.alertNotificationsEnabled === true;
+        case "today":
+            return Plasmoid.configuration.notificationTodayEnabled === true;
+        case "tomorrow":
+            return Plasmoid.configuration.notificationTomorrowEnabled === true;
+        case "rain":
+            return Plasmoid.configuration.notificationRainEnabled === true;
+        case "snow":
+            return Plasmoid.configuration.notificationSnowEnabled === true;
+        case "uv":
+            return Plasmoid.configuration.notificationUvEnabled === true;
+        case "space":
+            return Plasmoid.configuration.notificationSpaceWeatherEnabled === true;
+        default:
+            return false;
         }
     }
 
@@ -1237,20 +1433,27 @@ PlasmoidItem {
      *  NPT/DMO/ADR, MeteoAlarm-style flags); the title is only a last-resort
      *  fallback for providers that don't pass those fields through. */
     function _isTestAlert(a) {
-        if (!a) return false;
-        function norm(v) { return (v === undefined || v === null) ? "" : String(v).trim().toLowerCase(); }
+        if (!a)
+            return false;
+        function norm(v) {
+            return (v === undefined || v === null) ? "" : String(v).trim().toLowerCase();
+        }
 
         // 1. Explicit boolean flags, if a parser sets one.
-        if (a.isTest === true || a.test === true) return true;
+        if (a.isTest === true || a.test === true)
+            return true;
 
         // 2. CAP status / message type: "Test" and "Exercise" are never real warnings.
         var status = norm(a.status);
-        if (status === "test" || status === "exercise" || status === "draft") return true;
+        if (status === "test" || status === "exercise" || status === "draft")
+            return true;
         var msgType = norm(a.messageType || a.msgType);
-        if (msgType === "test") return true;
+        if (msgType === "test")
+            return true;
         // CAP scope "Private"/"Restricted" is used for internal exercises.
         var scope = norm(a.scope);
-        if (scope === "private" || scope === "restricted") return true;
+        if (scope === "private" || scope === "restricted")
+            return true;
 
         // 3. Event code (EAS/SAME-style test codes).
         var codes = [a.eventCode, a.code, a.event_code, a.sameCode];
@@ -1269,7 +1472,8 @@ PlasmoidItem {
         var testRe = /\b(required\s+(weekly|monthly|annual)\s+test|(weekly|monthly|routine|national|periodic|scheduled)\s+(test|exercise|drill)|test\s+(alert|message|warning)|(alert|warning|emergency)\s+system\s+test|this\s+is\s+a\s+test|test\s+of\s+the\s+\w+(\s+\w+){0,3}\s+(system|network))\b/i;
         for (var j = 0; j < titles.length; j++) {
             var t = norm(titles[j]);
-            if (t.length > 0 && testRe.test(t)) return true;
+            if (t.length > 0 && testRe.test(t))
+                return true;
         }
         return false;
     }
@@ -1283,9 +1487,7 @@ PlasmoidItem {
         var c = (color || "").toLowerCase();
         var s = (severity || "").toLowerCase();
         // Backward-compatible fallback to old minSeverity if new switches are absent.
-        var hasSwitches = (Plasmoid.configuration.alertNotificationsYellowEnabled !== undefined)
-            && (Plasmoid.configuration.alertNotificationsOrangeEnabled !== undefined)
-            && (Plasmoid.configuration.alertNotificationsRedEnabled !== undefined);
+        var hasSwitches = (Plasmoid.configuration.alertNotificationsYellowEnabled !== undefined) && (Plasmoid.configuration.alertNotificationsOrangeEnabled !== undefined) && (Plasmoid.configuration.alertNotificationsRedEnabled !== undefined);
         if (!hasSwitches) {
             var p = alertColorPriority(c);
             var minSeverity = (Plasmoid.configuration.alertNotificationsMinSeverity || "orange").toLowerCase();
@@ -1384,14 +1586,19 @@ PlasmoidItem {
     function _alertEntry(fingerprint) {
         var entry = _alertNotificationState[fingerprint];
         if (!entry) {
-            entry = { dismissed: false, nextDueMs: 0, expiresMs: 0 };
+            entry = {
+                dismissed: false,
+                nextDueMs: 0,
+                expiresMs: 0
+            };
             _alertNotificationState[fingerprint] = entry;
         }
         return entry;
     }
 
     function _dismissAlertNotification() {
-        if (!_activeAlertNotificationFingerprint) return;
+        if (!_activeAlertNotificationFingerprint)
+            return;
         var entry = _alertEntry(_activeAlertNotificationFingerprint);
         entry.dismissed = true;
         _persistAlertNotificationState();
@@ -1404,14 +1611,17 @@ PlasmoidItem {
      *  full repeat interval. */
     function _alertPostponeMs(expiresMs, awarenessType) {
         var maxMs = _alertTypeRepeatMinutes(awarenessType) * 60000;
-        if (!expiresMs) return maxMs;
+        if (!expiresMs)
+            return maxMs;
         var untilExpiry = expiresMs - Date.now();
-        if (untilExpiry <= 0) return maxMs;
+        if (untilExpiry <= 0)
+            return maxMs;
         return Math.min(maxMs, Math.max(60000, Math.round(untilExpiry / 2)));
     }
 
     function _postponeAlertNotification() {
-        if (!_activeAlertNotificationFingerprint) return;
+        if (!_activeAlertNotificationFingerprint)
+            return;
         var entry = _alertEntry(_activeAlertNotificationFingerprint);
         entry.dismissed = false;
         entry.nextDueMs = Date.now() + _alertPostponeMs(entry.expiresMs, entry.awarenessType);
@@ -1419,27 +1629,32 @@ PlasmoidItem {
     }
 
     function _formatAlertTimestamp(raw) {
-        if (!raw) return "";
+        if (!raw)
+            return "";
         var d = new Date(raw);
-        if (isNaN(d.getTime())) return "";
-        return d.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + " "
-            + d.toLocaleTimeString(Qt.locale(), Locale.ShortFormat);
+        if (isNaN(d.getTime()))
+            return "";
+        return d.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + " " + d.toLocaleTimeString(Qt.locale(), Locale.ShortFormat);
     }
 
     /** "<onset> - <expires>" / "until <expires>" / "from <onset>" / "". */
     function _alertEffectiveRangeText(a) {
         var onset = _formatAlertTimestamp(a.onset || a.effective);
         var expires = _formatAlertTimestamp(a.expires);
-        if (onset && expires) return onset + " - " + expires;
-        if (onset) return i18n("from %1", onset);
-        if (expires) return i18n("until %1", expires);
+        if (onset && expires)
+            return onset + " - " + expires;
+        if (onset)
+            return i18n("from %1", onset);
+        if (expires)
+            return i18n("until %1", expires);
         return "";
     }
 
     /** Notification title: "<Location>, <Region>" (region from the alert area, if known). */
     function _alertNotificationTitle(a, location) {
         var loc = (location || "").trim();
-        if (loc.length === 0) loc = i18n("your location");
+        if (loc.length === 0)
+            loc = i18n("your location");
         var region = (a.area || "").trim();
         return region.length > 0 ? (loc + ", " + region) : loc;
     }
@@ -1456,11 +1671,15 @@ PlasmoidItem {
      *  Severe (both of which the parsers map to color "red"). */
     function _alertSeverityEmoji(color, severity) {
         var s = (severity || "").toLowerCase();
-        if (s === "extreme") return "🟣"; // 🟣 purple - Extreme
+        if (s === "extreme")
+            return "🟣"; // 🟣 purple - Extreme
         var c = (color || "").toLowerCase();
-        if (c === "red")    return "🔴"; // 🔴
-        if (c === "orange") return "🟠"; // 🟠
-        if (c === "yellow") return "🟡"; // 🟡
+        if (c === "red")
+            return "🔴"; // 🔴
+        if (c === "orange")
+            return "🟠"; // 🟠
+        if (c === "yellow")
+            return "🟡"; // 🟡
         return "";
     }
 
@@ -1471,12 +1690,21 @@ PlasmoidItem {
     function _alertSeverityLabel(severity) {
         var s = (severity || "").trim().toLowerCase();
         switch (s) {
-        case "extreme":              return i18nc("Alert severity", "EXTREME");
-        case "severe":  case "red":  return i18nc("Alert severity", "SEVERE");
-        case "moderate": case "orange": return i18nc("Alert severity", "MODERATE");
-        case "minor":   case "yellow": return i18nc("Alert severity", "MINOR");
-        case "unknown":              return i18nc("Alert severity", "UNKNOWN");
-        case "green":                return i18nc("Alert severity", "MINIMAL");
+        case "extreme":
+            return i18nc("Alert severity", "EXTREME");
+        case "severe":
+        case "red":
+            return i18nc("Alert severity", "SEVERE");
+        case "moderate":
+        case "orange":
+            return i18nc("Alert severity", "MODERATE");
+        case "minor":
+        case "yellow":
+            return i18nc("Alert severity", "MINOR");
+        case "unknown":
+            return i18nc("Alert severity", "UNKNOWN");
+        case "green":
+            return i18nc("Alert severity", "MINIMAL");
         }
         return (severity || "").toUpperCase();
     }
@@ -1517,20 +1745,36 @@ PlasmoidItem {
     function _alertNotificationIconName(a) {
         switch (a.awarenessType) {
         case 2:                                         // snow/ice
-        case 9:  return "weather-snow";                 // avalanche
-        case 3:  return "weather-storm";                // thunderstorm
-        case 4:  return "weather-fog";                  // fog
+        case 9:
+            return "weather-snow";                 // avalanche
+        case 3:
+            return "weather-storm";                // thunderstorm
+        case 4:
+            return "weather-fog";                  // fog
         case 10:
-        case 12: return "weather-showers";              // rain / rain-flood
+        case 12:
+            return "weather-showers";              // rain / rain-flood
         }
         var stem = "storm-warning";
         switch (a.awarenessType) {
-        case 1:  stem = "strong-wind"; break;          // wind
-        case 5:  stem = "hot"; break;                  // high temperature
-        case 6:  stem = "snowflake-cold"; break;       // low temperature
-        case 7:  stem = "small-craft-advisory"; break; // coastal event
-        case 8:  stem = "fire"; break;                 // forest fire
-        case 11: stem = "flood"; break;                // flooding
+        case 1:
+            stem = "strong-wind";
+            break;          // wind
+        case 5:
+            stem = "hot";
+            break;                  // high temperature
+        case 6:
+            stem = "snowflake-cold";
+            break;       // low temperature
+        case 7:
+            stem = "small-craft-advisory";
+            break; // coastal event
+        case 8:
+            stem = "fire";
+            break;                 // forest fire
+        case 11:
+            stem = "flood";
+            break;                // flooding
         }
         return _bundledAlertIcon(stem);
     }
@@ -1547,9 +1791,7 @@ PlasmoidItem {
             weatherAlertNotification.urgency = Notification.CriticalUrgency;
         } else {
             var p = alertColorPriority(alert.color);
-            weatherAlertNotification.urgency = (p >= 3) ? Notification.HighUrgency
-                : (p >= 2) ? Notification.NormalUrgency
-                : Notification.LowUrgency;
+            weatherAlertNotification.urgency = (p >= 3) ? Notification.HighUrgency : (p >= 2) ? Notification.NormalUrgency : Notification.LowUrgency;
         }
         weatherAlertNotification.sendEvent();
         _playAlertSound(alert);
@@ -1594,11 +1836,16 @@ PlasmoidItem {
      *  so simultaneously-due notifications don't clobber each other (see the
      *  comment above the Notification declarations). */
     function _notificationObjectForKey(key) {
-        if (key.indexOf("today:") === 0) return todayNotification;
-        if (key.indexOf("tomorrow:") === 0) return tomorrowNotification;
-        if (key.indexOf("rain-") === 0) return rainNotification;
-        if (key.indexOf("uv-") === 0) return uvNotification;
-        if (key.indexOf("space-") === 0) return spaceWeatherNotification;
+        if (key.indexOf("today:") === 0)
+            return todayNotification;
+        if (key.indexOf("tomorrow:") === 0)
+            return tomorrowNotification;
+        if (key.indexOf("rain-") === 0)
+            return rainNotification;
+        if (key.indexOf("uv-") === 0)
+            return uvNotification;
+        if (key.indexOf("space-") === 0)
+            return spaceWeatherNotification;
         return todayNotification;
     }
 
@@ -1650,7 +1897,8 @@ PlasmoidItem {
         var now = Date.now();
         var pruned = {};
         for (var k in _alertNotificationState) {
-            if (!_alertNotificationState.hasOwnProperty(k)) continue;
+            if (!_alertNotificationState.hasOwnProperty(k))
+                continue;
             var entry = _alertNotificationState[k];
             if (!entry.expiresMs || entry.expiresMs >= now)
                 pruned[k] = entry;
@@ -1719,7 +1967,14 @@ PlasmoidItem {
             var fp = _alertFingerprint(a);
             var entry = _alertNotificationState[fp];
             if (!entry) {
-                entry = { dismissed: false, nextDueMs: 0, expiresMs: 0, shownOnce: false, awarenessType: 0, upcomingNotified: false };
+                entry = {
+                    dismissed: false,
+                    nextDueMs: 0,
+                    expiresMs: 0,
+                    shownOnce: false,
+                    awarenessType: 0,
+                    upcomingNotified: false
+                };
                 _alertNotificationState[fp] = entry;
                 didChange = true;
             }
@@ -1776,7 +2031,8 @@ PlasmoidItem {
 
     /** Lowercases the first character, for mid-sentence use (e.g. "Overcast" -> "overcast"). */
     function _lowercaseFirst(s) {
-        if (!s || s.length === 0) return s;
+        if (!s || s.length === 0)
+            return s;
         return s.charAt(0).toLowerCase() + s.slice(1);
     }
 
@@ -1784,8 +2040,7 @@ PlasmoidItem {
     function _highLowSummary(dayLabel, condition, d) {
         var hi = tempValue(d.maxC);
         var lo = tempValue(d.minC);
-        return i18n("%1 there will be %2 with a low of %3 and a high of %4.",
-            dayLabel, _lowercaseFirst(condition), lo, hi);
+        return i18n("%1 there will be %2 with a low of %3 and a high of %4.", dayLabel, _lowercaseFirst(condition), lo, hi);
     }
 
     function _processTodayNotification(now) {
@@ -1806,47 +2061,87 @@ PlasmoidItem {
     }
 
     function _conditionPriority(code) {
-        if (code === 95 || code === 96 || code === 99) return 6; // thunderstorm
-        if (code >= 71 && code <= 86) return 5;                  // snow / snow showers
-        if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) return 4; // drizzle/rain/showers
-        if (code === 45 || code === 48) return 3;                // fog
-        if (code === 3) return 2;
-        if (code === 2) return 1;
+        if (code === 95 || code === 96 || code === 99)
+            return 6; // thunderstorm
+        if (code >= 71 && code <= 86)
+            return 5;                  // snow / snow showers
+        if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82))
+            return 4; // drizzle/rain/showers
+        if (code === 45 || code === 48)
+            return 3;                // fog
+        if (code === 3)
+            return 2;
+        if (code === 2)
+            return 1;
         return 0;
     }
 
     function _conditionPhrase(code) {
-        if (code === 96 || code === 99) return i18n("showers and thunderstorms");
-        if (code === 95) return i18n("thunderstorms");
-        if (code === 85 || code === 86) return i18n("snow showers");
-        if (code >= 71 && code <= 77) return i18n("snow");
-        if (code >= 80 && code <= 82) return i18n("showers");
-        if (code === 56 || code === 57 || code === 66 || code === 67) return i18n("freezing rain");
-        if (code >= 61 && code <= 65) return i18n("rain");
-        if (code === 51 || code === 53 || code === 55) return i18n("drizzle");
-        if (code === 45 || code === 48) return i18n("fog");
-        if (code === 3) return i18n("overcast skies");
-        if (code === 2) return i18n("cloudy skies");
-        if (code === 1) return i18n("a few clouds");
+        if (code === 96 || code === 99)
+            return i18n("showers and thunderstorms");
+        if (code === 95)
+            return i18n("thunderstorms");
+        if (code === 85 || code === 86)
+            return i18n("snow showers");
+        if (code >= 71 && code <= 77)
+            return i18n("snow");
+        if (code >= 80 && code <= 82)
+            return i18n("showers");
+        if (code === 56 || code === 57 || code === 66 || code === 67)
+            return i18n("freezing rain");
+        if (code >= 61 && code <= 65)
+            return i18n("rain");
+        if (code === 51 || code === 53 || code === 55)
+            return i18n("drizzle");
+        if (code === 45 || code === 48)
+            return i18n("fog");
+        if (code === 3)
+            return i18n("overcast skies");
+        if (code === 2)
+            return i18n("cloudy skies");
+        if (code === 1)
+            return i18n("a few clouds");
         return i18n("clear skies");
     }
 
     /** Picks the most notable part-of-day condition (morning/afternoon/tonight) for dateStr. */
     function _dayConditionSummary(dateStr, fallbackCode) {
         var segs = [
-            { label: i18n("Morning"), startH: 6, endH: 12, best: -1, code: 0 },
-            { label: i18n("Afternoon"), startH: 12, endH: 18, best: -1, code: 0 },
-            { label: i18n("Tonight"), startH: 18, endH: 24, best: -1, code: 0 }
+            {
+                label: i18n("Morning"),
+                startH: 6,
+                endH: 12,
+                best: -1,
+                code: 0
+            },
+            {
+                label: i18n("Afternoon"),
+                startH: 12,
+                endH: 18,
+                best: -1,
+                code: 0
+            },
+            {
+                label: i18n("Tonight"),
+                startH: 18,
+                endH: 24,
+                best: -1,
+                code: 0
+            }
         ];
         var arr = _notificationHourlyWindow || [];
         for (var i = 0; i < arr.length; i++) {
             var p = arr[i];
-            if (p.dateStr !== dateStr) continue;
+            if (p.dateStr !== dateStr)
+                continue;
             var hour = new Date(p.timeMs).getHours();
             for (var s = 0; s < segs.length; s++) {
                 if (hour >= segs[s].startH && hour < segs[s].endH) {
                     var pr = _conditionPriority(p.code);
-                    if (pr > segs[s].best) { segs[s].best = pr; segs[s].code = p.code; }
+                    if (pr > segs[s].best) {
+                        segs[s].best = pr;
+                        segs[s].code = p.code;
+                    }
                 }
             }
         }
@@ -1855,7 +2150,8 @@ PlasmoidItem {
             if (segs[k].best >= 3 && (!winner || segs[k].best > winner.best))
                 winner = segs[k];
         }
-        if (winner) return i18n("%1 %2", winner.label, _conditionPhrase(winner.code));
+        if (winner)
+            return i18n("%1 %2", winner.label, _conditionPhrase(winner.code));
         return weatherCodeToText(fallbackCode);
     }
 
@@ -1887,7 +2183,8 @@ PlasmoidItem {
     }
 
     function _isRainOrStormCode(code) {
-        if (_isStormCode(code)) return true;
+        if (_isStormCode(code))
+            return true;
         // Drizzle (51-57), rain & freezing rain (61-67), rain showers (80-82).
         // Deliberately excludes the snow band (71-77, 85-86) so snowfall does
         // not trigger a "Rain expected" notification.
@@ -1930,9 +2227,21 @@ PlasmoidItem {
             if (c.timeMs <= nowMs)
                 continue;
             if (wantStart && !prevActive && c[field])
-                return { timeMs: c.timeMs, active: c[field], code: c.code, dateStr: c.dateStr, prevCode: prevCode };
+                return {
+                    timeMs: c.timeMs,
+                    active: c[field],
+                    code: c.code,
+                    dateStr: c.dateStr,
+                    prevCode: prevCode
+                };
             if (!wantStart && prevActive && !c[field])
-                return { timeMs: c.timeMs, active: c[field], code: c.code, dateStr: c.dateStr, prevCode: prevCode };
+                return {
+                    timeMs: c.timeMs,
+                    active: c[field],
+                    code: c.code,
+                    dateStr: c.dateStr,
+                    prevCode: prevCode
+                };
             prevActive = c[field];
             prevCode = c.code;
         }
@@ -1954,10 +2263,13 @@ PlasmoidItem {
 
     /** "in the next hours" / "this morning" / "this afternoon" / "tonight" for a target time. */
     function _dayPartLabel(targetMs, nowMs) {
-        if ((targetMs - nowMs) <= 3 * 3600000) return i18n("in the next few hours");
+        if ((targetMs - nowMs) <= 3 * 3600000)
+            return i18n("in the next few hours");
         var h = new Date(targetMs).getHours();
-        if (h >= 6 && h < 12) return i18n("this morning");
-        if (h >= 12 && h < 18) return i18n("this afternoon");
+        if (h >= 6 && h < 12)
+            return i18n("this morning");
+        if (h >= 12 && h < 18)
+            return i18n("this afternoon");
         return i18n("tonight");
     }
 
@@ -1997,8 +2309,10 @@ PlasmoidItem {
         var endEv = _nextRainTransition(nowMs, false);
         // Events past today are tomorrow-outlook territory, not "expected soon".
         var cutoffMs = _conditionNotificationCutoffMs(nowMs);
-        if (startEv && startEv.timeMs >= cutoffMs) startEv = null;
-        if (endEv && endEv.timeMs >= cutoffMs) endEv = null;
+        if (startEv && startEv.timeMs >= cutoffMs)
+            startEv = null;
+        if (endEv && endEv.timeMs >= cutoffMs)
+            endEv = null;
         if (startEv && (!endEv || startEv.timeMs <= endEv.timeMs)) {
             var label = _rainOrThunderLabel(startEv.code);
             var title = i18n("%1 is expected", label);
@@ -2028,8 +2342,10 @@ PlasmoidItem {
         var endEv = _nextSnowTransition(nowMs, false);
         // Events past today are tomorrow-outlook territory, not "expected soon".
         var cutoffMs = _conditionNotificationCutoffMs(nowMs);
-        if (startEv && startEv.timeMs >= cutoffMs) startEv = null;
-        if (endEv && endEv.timeMs >= cutoffMs) endEv = null;
+        if (startEv && startEv.timeMs >= cutoffMs)
+            startEv = null;
+        if (endEv && endEv.timeMs >= cutoffMs)
+            endEv = null;
         if (startEv && (!endEv || startEv.timeMs <= endEv.timeMs)) {
             var title = i18n("Snow is expected");
             var msg = i18n("Snow is possible %1.", _dayPartLabel(startEv.timeMs, nowMs));
@@ -2051,17 +2367,24 @@ PlasmoidItem {
 
     /** "an increase/decrease/similar ... from yesterday", or "" if no valid prior value. */
     function _trendText(curr, prevVal, prevDateStr, todayStr) {
-        if (prevDateStr !== _yesterdayDateStr(todayStr) || isNaN(prevVal) || prevVal < 0) return "";
-        if (curr > prevVal + 0.05) return i18n("an increase from yesterday");
-        if (curr < prevVal - 0.05) return i18n("a decrease from yesterday");
+        if (prevDateStr !== _yesterdayDateStr(todayStr) || isNaN(prevVal) || prevVal < 0)
+            return "";
+        if (curr > prevVal + 0.05)
+            return i18n("an increase from yesterday");
+        if (curr < prevVal - 0.05)
+            return i18n("a decrease from yesterday");
         return i18n("similar to yesterday");
     }
 
     function _uvLevelText(uv) {
-        if (uv <= 2) return i18n("low");
-        if (uv <= 5) return i18n("moderate");
-        if (uv <= 7) return i18n("high");
-        if (uv <= 10) return i18n("very high");
+        if (uv <= 2)
+            return i18n("low");
+        if (uv <= 5)
+            return i18n("moderate");
+        if (uv <= 7)
+            return i18n("high");
+        if (uv <= 10)
+            return i18n("very high");
         return i18n("extreme");
     }
 
@@ -2079,15 +2402,14 @@ PlasmoidItem {
         if (uvMax === null || isNaN(uvMax))
             return;
         var todayStr = d.dateStr || Qt.formatDate(now, "yyyy-MM-dd");
-        var trend = _trendText(uvMax, Plasmoid.configuration.notificationUvLastValue,
-            Plasmoid.configuration.notificationUvLastDate, todayStr);
+        var trend = _trendText(uvMax, Plasmoid.configuration.notificationUvLastValue, Plasmoid.configuration.notificationUvLastDate, todayStr);
         var valueText = (Math.round(uvMax * 10) / 10).toString();
         var msg = i18n("UV index will be %1 (%2)", _uvLevelText(uvMax), valueText);
-        if (trend.length > 0) msg = msg + ", " + trend;
+        if (trend.length > 0)
+            msg = msg + ", " + trend;
         msg = msg + ".";
         var title = i18n("UV index");
-        var fired = _sendNotificationOnce("uv-today:" + todayStr, title,
-            msg, Notification.NormalUrgency, "weather-clear");
+        var fired = _sendNotificationOnce("uv-today:" + todayStr, title, msg, Notification.NormalUrgency, "weather-clear");
         if (fired) {
             Plasmoid.configuration.notificationUvLastDate = todayStr;
             Plasmoid.configuration.notificationUvLastValue = uvMax;
@@ -2102,12 +2424,18 @@ PlasmoidItem {
 
     function _kpLevelText(gScale) {
         switch (_gScaleToNumber(gScale || "G0")) {
-        case 0: return i18n("quiet");
-        case 1: return i18n("minor");
-        case 2: return i18n("moderate");
-        case 3: return i18n("strong");
-        case 4: return i18n("severe");
-        default: return i18n("extreme");
+        case 0:
+            return i18n("quiet");
+        case 1:
+            return i18n("minor");
+        case 2:
+            return i18n("moderate");
+        case 3:
+            return i18n("strong");
+        case 4:
+            return i18n("severe");
+        default:
+            return i18n("extreme");
         }
     }
 
@@ -2125,14 +2453,13 @@ PlasmoidItem {
         var gVal = (fc && fc.gScale) ? fc.gScale : ((sw && sw.gScale) ? sw.gScale : "G0");
         if (isNaN(kpVal))
             return;
-        var trend = _trendText(kpVal, Plasmoid.configuration.notificationSpaceWeatherLastKp,
-            Plasmoid.configuration.notificationSpaceWeatherLastDate, todayStr);
+        var trend = _trendText(kpVal, Plasmoid.configuration.notificationSpaceWeatherLastKp, Plasmoid.configuration.notificationSpaceWeatherLastDate, todayStr);
         var msg = i18n("Geomagnetic activity is expected to be %1 (Kp %2)", _kpLevelText(gVal), kpVal.toFixed(1));
-        if (trend.length > 0) msg = msg + ", " + trend;
+        if (trend.length > 0)
+            msg = msg + ", " + trend;
         msg = msg + ".";
         var title = i18n("Geomagnetic activity");
-        var fired = _sendNotificationOnce("space-today:" + todayStr, title,
-            msg, Notification.NormalUrgency, "weather-clear-night");
+        var fired = _sendNotificationOnce("space-today:" + todayStr, title, msg, Notification.NormalUrgency, "weather-clear-night");
         if (fired) {
             Plasmoid.configuration.notificationSpaceWeatherLastDate = todayStr;
             Plasmoid.configuration.notificationSpaceWeatherLastKp = kpVal;
@@ -2181,17 +2508,20 @@ PlasmoidItem {
         var tomorrow = Qt.formatDate(tomorrowDate, "yyyy-MM-dd");
         var reqId = ++_notificationHourlyReqId;
 
-        fetchHourlyForDateDirect(today, function(a) {
-            if (reqId !== _notificationHourlyReqId) return;
-            fetchHourlyForDateDirect(tomorrow, function(b) {
-                if (reqId !== _notificationHourlyReqId) return;
+        fetchHourlyForDateDirect(today, function (a) {
+            if (reqId !== _notificationHourlyReqId)
+                return;
+            fetchHourlyForDateDirect(tomorrow, function (b) {
+                if (reqId !== _notificationHourlyReqId)
+                    return;
                 var merged = [];
                 function pushSamples(dateStr, rows) {
                     rows = rows || [];
                     for (var i = 0; i < rows.length; i++) {
                         var h = rows[i];
                         var tms = _hourSampleEpoch(dateStr, h.hour || "");
-                        if (isNaN(tms)) continue;
+                        if (isNaN(tms))
+                            continue;
                         var code = (h.code !== undefined) ? h.code : NaN;
                         var precip = (h.precipMm !== undefined && h.precipMm !== null) ? h.precipMm : NaN;
                         // Snow also reports precipitation (water equivalent), so it's excluded
@@ -2199,16 +2529,22 @@ PlasmoidItem {
                         // have a precip figure (so a low-accumulation drizzle code doesn't count
                         // as wet); code-only classification is now just the fallback for when
                         // precip data is missing.
-                        var wet = !isNaN(precip)
-                                  ? (!_isSnowCode(code) && precip >= 0.2)
-                                  : _isRainOrStormCode(code);
+                        var wet = !isNaN(precip) ? (!_isSnowCode(code) && precip >= 0.2) : _isRainOrStormCode(code);
                         var snow = _isSnowCode(code);
-                        merged.push({ timeMs: tms, wet: wet, snow: snow, code: code, dateStr: dateStr });
+                        merged.push({
+                            timeMs: tms,
+                            wet: wet,
+                            snow: snow,
+                            code: code,
+                            dateStr: dateStr
+                        });
                     }
                 }
                 pushSamples(today, a || []);
                 pushSamples(tomorrow, b || []);
-                merged.sort(function(x, y) { return x.timeMs - y.timeMs; });
+                merged.sort(function (x, y) {
+                    return x.timeMs - y.timeMs;
+                });
                 _notificationHourlyWindow = merged;
                 _evaluateNotifications();
             });
@@ -2316,7 +2652,7 @@ PlasmoidItem {
 
     function getSimpleModeIconSource() {
         var theme = Plasmoid.configuration.panelIconTheme || "wi-font";
-        var code  = weatherCode;
+        var code = weatherCode;
         var night = isNightTime();
         var style = Plasmoid.configuration.panelSimpleIconStyle || "symbolic";
         // Custom style: use per-condition custom icons from panelCustomIcons
@@ -2348,13 +2684,12 @@ PlasmoidItem {
         if (style === "colorful" || theme === "kde" || theme === "custom")
             return W.weatherCodeToIcon(code, night);
         var iconSz = Plasmoid.configuration.panelIconSize || 22;
-        var resolvedTheme = (theme === "symbolic" && Plasmoid.configuration.panelSymbolicVariant === "light")
-            ? "symbolic-light" : theme;
+        var resolvedTheme = (theme === "symbolic" && Plasmoid.configuration.panelSymbolicVariant === "light") ? "symbolic-light" : theme;
         return IconResolver.svgUrl(IconResolver._conditionSvgStem(code, night), iconSz, _iconsBaseDir, resolvedTheme);
     }
 
     function getMultilineModeIconSource() {
-        var code  = weatherCode;
+        var code = weatherCode;
         var night = isNightTime();
         var style = Plasmoid.configuration.panelMultilineIconStyle || "colorful";
         if (style === "custom") {
@@ -2494,7 +2829,7 @@ PlasmoidItem {
         }
         var t = SC.getMoonTimes(new Date(), lat, lon, locationUtcOffsetMins);
         moonriseTimeText = t.rise || "--";
-        moonsetTimeText  = t.set  || "--";
+        moonsetTimeText = t.set || "--";
     }
 
     onWeatherAlertsChanged: _evaluateNotifications()
@@ -2563,9 +2898,12 @@ PlasmoidItem {
             return "\uF0B1";       // wi-direction (F0B1)
         if (tok === "moonphase") {
             var mm = Plasmoid.configuration.panelMoonPhaseMode || "full";
-            if (mm === "moonrise") return "\uF0C9";
-            if (mm === "moonset") return "\uF0CA";
-            if (mm === "upcoming-times") return _moonUpcoming() === "rise" ? "\uF0C9" : "\uF0CA";
+            if (mm === "moonrise")
+                return "\uF0C9";
+            if (mm === "moonset")
+                return "\uF0CA";
+            if (mm === "upcoming-times")
+                return _moonUpcoming() === "rise" ? "\uF0C9" : "\uF0CA";
             return moonPhaseGlyph();
         }
         if (tok === "moonphase-moonrise")
@@ -2610,7 +2948,7 @@ PlasmoidItem {
         if (tok === "preciprate")
             return "\uF04E";        // wi-sprinkle (rain drop)
         if (tok === "precipsum")
-            return "\uF07C";        
+            return "\uF07C";
         if (tok === "uvindex")
             return "\uF072";        // wi-hot
         if (tok === "airquality")
@@ -2621,7 +2959,8 @@ PlasmoidItem {
             return "\uF06E";        // wi-solar-eclipse
         if (tok === "alerts") {
             var pa = primaryAlert();
-            if (pa) return alertTypeGlyph(pa.awarenessType || 0);
+            if (pa)
+                return alertTypeGlyph(pa.awarenessType || 0);
             return "\uF0CE";        // wi-gale-warning (flag)
         }
         if (tok === "snowcover")
@@ -2651,7 +2990,12 @@ PlasmoidItem {
         // ── Font icons (default) ──────────────────────────────────────────────
         if (theme === "wi-font") {
             var g = panelItemGlyph(tok);
-            return { type: "wi", source: g, svgFallback: "", isMask: false };
+            return {
+                type: "wi",
+                source: g,
+                svgFallback: "",
+                isMask: false
+            };
         }
 
         // ── Custom icon theme - user picks each icon individually ────────────
@@ -2691,9 +3035,19 @@ PlasmoidItem {
                     var condKey = _resolveConditionKey(code2, night2);
                     var fallback2 = W.weatherCodeToIcon(code2, night2);
                     var condSaved2 = (condKey in customMap && customMap[condKey].length > 0) ? customMap[condKey] : fallback2;
-                    return { type: "kde", source: condSaved2, svgFallback: "", isMask: false };
+                    return {
+                        type: "kde",
+                        source: condSaved2,
+                        svgFallback: "",
+                        isMask: false
+                    };
                 }
-                return { type: "kde", source: W.weatherCodeToIcon(weatherCode, isNightTime()), svgFallback: "", isMask: false };
+                return {
+                    type: "kde",
+                    source: W.weatherCodeToIcon(weatherCode, isNightTime()),
+                    svgFallback: "",
+                    isMask: false
+                };
             }
 
             if (tok === "suntimes") {
@@ -2705,31 +3059,61 @@ PlasmoidItem {
                 var sunKey2 = useSet2 ? "suntimes-sunset" : "suntimes-sunrise";
                 var sunDef2 = useSet2 ? "weather-sunset" : "weather-sunrise";
                 var sunSaved2 = (sunKey2 in customMap && customMap[sunKey2].length > 0) ? customMap[sunKey2] : sunDef2;
-                return { type: "kde", source: sunSaved2, svgFallback: "", isMask: false };
+                return {
+                    type: "kde",
+                    source: sunSaved2,
+                    svgFallback: "",
+                    isMask: false
+                };
             }
 
             if (tok === "moonphase" || tok === "moonphase-moonrise" || tok === "moonphase-moonset") {
                 if (tok === "moonphase-moonrise") {
                     var mrSaved = (("moonrise" in customMap) && customMap["moonrise"].length > 0) ? customMap["moonrise"] : "weather-clear-night";
-                    return { type: "kde", source: mrSaved, svgFallback: "", isMask: false };
+                    return {
+                        type: "kde",
+                        source: mrSaved,
+                        svgFallback: "",
+                        isMask: false
+                    };
                 }
                 if (tok === "moonphase-moonset") {
                     var msSaved = (("moonset" in customMap) && customMap["moonset"].length > 0) ? customMap["moonset"] : "weather-clear-night";
-                    return { type: "kde", source: msSaved, svgFallback: "", isMask: false };
+                    return {
+                        type: "kde",
+                        source: msSaved,
+                        svgFallback: "",
+                        isMask: false
+                    };
                 }
                 var mm2 = Plasmoid.configuration.panelMoonPhaseMode || "full";
                 if (mm2 === "moonrise") {
                     var mrS2 = (("moonrise" in customMap) && customMap["moonrise"].length > 0) ? customMap["moonrise"] : "weather-clear-night";
-                    return { type: "kde", source: mrS2, svgFallback: "", isMask: false };
+                    return {
+                        type: "kde",
+                        source: mrS2,
+                        svgFallback: "",
+                        isMask: false
+                    };
                 }
                 if (mm2 === "moonset") {
                     var msS2 = (("moonset" in customMap) && customMap["moonset"].length > 0) ? customMap["moonset"] : "weather-clear-night";
-                    return { type: "kde", source: msS2, svgFallback: "", isMask: false };
+                    return {
+                        type: "kde",
+                        source: msS2,
+                        svgFallback: "",
+                        isMask: false
+                    };
                 }
                 if (mm2 === "upcoming-times") {
                     var utKey = _moonUpcoming() === "rise" ? "moonrise" : "moonset";
                     var utSaved = ((utKey in customMap) && customMap[utKey].length > 0) ? customMap[utKey] : "weather-clear-night";
-                    return { type: "kde", source: utSaved, svgFallback: "", isMask: false };
+                    return {
+                        type: "kde",
+                        source: utSaved,
+                        svgFallback: "",
+                        isMask: false
+                    };
                 }
                 // Phase-showing modes: use bundled SVG moon phase icon
                 var iconSzC = Plasmoid.configuration.panelIconSize || 22;
@@ -2738,7 +3122,12 @@ PlasmoidItem {
             }
 
             var iconName = (tok in customMap && customMap[tok].length > 0) ? customMap[tok] : (tok in defaults ? defaults[tok] : "");
-            return { type: "kde", source: iconName, svgFallback: "", isMask: false };
+            return {
+                type: "kde",
+                source: iconName,
+                svgFallback: "",
+                isMask: false
+            };
         }
 
         // ── KDE / SVG themes - unified via IconResolver ──────────────────────
@@ -2746,8 +3135,7 @@ PlasmoidItem {
         // SVG themes: SVG primary, KDE fallback.
         // KDE theme: KDE primary, symbolic SVG fallback (handled by IconResolver).
         var iconSz = Plasmoid.configuration.panelIconSize || 22;
-        var svgTheme = (theme === "symbolic" && Plasmoid.configuration.panelSymbolicVariant === "light")
-            ? "symbolic-light" : theme;
+        var svgTheme = (theme === "symbolic" && Plasmoid.configuration.panelSymbolicVariant === "light") ? "symbolic-light" : theme;
 
         // Dynamic items: condition, suntimes, moonphase
         if (tok === "condition")
@@ -2764,15 +3152,19 @@ PlasmoidItem {
             if (tok === "moonphase-moonset")
                 return IconResolver.resolve("moonset", iconSz, _iconsBaseDir, svgTheme);
             var mm3 = Plasmoid.configuration.panelMoonPhaseMode || "full";
-            if (mm3 === "moonrise") return IconResolver.resolve("moonrise", iconSz, _iconsBaseDir, svgTheme);
-            if (mm3 === "moonset") return IconResolver.resolve("moonset", iconSz, _iconsBaseDir, svgTheme);
-            if (mm3 === "upcoming-times") return IconResolver.resolve(_moonUpcoming() === "rise" ? "moonrise" : "moonset", iconSz, _iconsBaseDir, svgTheme);
+            if (mm3 === "moonrise")
+                return IconResolver.resolve("moonrise", iconSz, _iconsBaseDir, svgTheme);
+            if (mm3 === "moonset")
+                return IconResolver.resolve("moonset", iconSz, _iconsBaseDir, svgTheme);
+            if (mm3 === "upcoming-times")
+                return IconResolver.resolve(_moonUpcoming() === "rise" ? "moonrise" : "moonset", iconSz, _iconsBaseDir, svgTheme);
             var moonStem = Moon.moonPhaseSvgStem(Moon.moonAgeFromPhase(SC.getMoonIllumination(new Date()).phase));
             return IconResolver.resolveMoonPhase(moonStem, iconSz, _iconsBaseDir, svgTheme);
         }
 
         // Meteocons wind item: directional compass icon (static for all other themes)
-        if (tok === "wind") return IconResolver.resolveWindDirection(W.windDirectionCompassStem(windDirection), iconSz, _iconsBaseDir, svgTheme);
+        if (tok === "wind")
+            return IconResolver.resolveWindDirection(W.windDirectionCompassStem(windDirection), iconSz, _iconsBaseDir, svgTheme);
 
         // Standard items: temperature, humidity, pressure, wind, location, etc.
         return IconResolver.resolve(tok, iconSz, _iconsBaseDir, svgTheme);
@@ -2781,9 +3173,12 @@ PlasmoidItem {
     /** Determines whether to show sunrise or sunset for suntimes panel item */
     function _resolveSuntimesTok() {
         var mode = Plasmoid.configuration.panelSunTimesMode || "upcoming";
-        if (mode === "sunset") return "suntimes-sunset";
-        if (mode === "sunrise") return "suntimes-sunrise";
-        if (mode === "both") return "suntimes-sunrise"; // CompactView handles both-mode split
+        if (mode === "sunset")
+            return "suntimes-sunset";
+        if (mode === "sunrise")
+            return "suntimes-sunrise";
+        if (mode === "both")
+            return "suntimes-sunrise"; // CompactView handles both-mode split
         // "upcoming": pick based on current time
         var nowM = (new Date()).getHours() * 60 + (new Date()).getMinutes();
         var riseM = parseSunTimeMins(sunriseTimeText);
@@ -2801,8 +3196,10 @@ PlasmoidItem {
         var nowM = SunPath.nowMinsAt(locationUtcOffsetMins);
         var riseM = parseSunTimeMins(moonriseTimeText);
         var setM = parseSunTimeMins(moonsetTimeText);
-        if (riseM >= 0 && nowM < riseM) return "rise";
-        if (setM >= 0 && nowM < setM) return "set";
+        if (riseM >= 0 && nowM < riseM)
+            return "rise";
+        if (setM >= 0 && nowM < setM)
+            return "set";
         return "rise";
     }
 
@@ -2811,7 +3208,6 @@ PlasmoidItem {
     function _resolveConditionKey(code, night) {
         return ConfigUtils.resolveConditionKey(code, night);
     }
-
 
     /** Returns the display text for a panel chip */
     function panelItemTextOnly(tok) {
@@ -2836,9 +3232,12 @@ PlasmoidItem {
             if (tok === "moonphase-moonset")
                 return formatTimeForDisplay(moonsetTimeText);
             var mm = Plasmoid.configuration.panelMoonPhaseMode || "full";
-            if (mm === "phase") return moonPhaseLabel();
-            if (mm === "moonrise") return formatTimeForDisplay(moonriseTimeText);
-            if (mm === "moonset") return formatTimeForDisplay(moonsetTimeText);
+            if (mm === "phase")
+                return moonPhaseLabel();
+            if (mm === "moonrise")
+                return formatTimeForDisplay(moonriseTimeText);
+            if (mm === "moonset")
+                return formatTimeForDisplay(moonsetTimeText);
             if (mm === "upcoming-times")
                 return _moonUpcoming() === "rise" ? formatTimeForDisplay(moonriseTimeText) : formatTimeForDisplay(moonsetTimeText);
             // "full", "upcoming", "times" - main chip shows phase label; CompactView handles multi-chip
@@ -2878,9 +3277,7 @@ PlasmoidItem {
         if (tok === "snowcover")
             return snowDepthText(snowDepthCm);
         if (tok === "datetime")
-            return _formatItemDateTime(
-                Plasmoid.configuration.panelDateTimeFormat,
-                Plasmoid.configuration.panelTimeFormat);
+            return _formatItemDateTime(Plasmoid.configuration.panelDateTimeFormat, Plasmoid.configuration.panelTimeFormat);
         return "";
     }
 
@@ -3044,14 +3441,14 @@ PlasmoidItem {
         try {
             var o = JSON.parse(s);
             if (o && typeof o === "object") {
-                root._activeLocName = o.name        || "";
-                root._activeLocLat  = o.lat         || 0;
-                root._activeLocLon  = o.lon         || 0;
-                root._activeLocTz   = o.timezone    || "";
-                root._activeLocCC   = o.countryCode || "";
-                root._activeLocAlt  = o.altitude    !== undefined ? o.altitude : 0;
+                root._activeLocName = o.name || "";
+                root._activeLocLat = o.lat || 0;
+                root._activeLocLon = o.lon || 0;
+                root._activeLocTz = o.timezone || "";
+                root._activeLocCC = o.countryCode || "";
+                root._activeLocAlt = o.altitude !== undefined ? o.altitude : 0;
             }
-        } catch(e) {}
+        } catch (e) {}
         _updateHasSelectedTown();
         refreshDebounce.restart();
         // Restore the once-per-day "already sent" keys BEFORE the first evaluation
@@ -3074,11 +3471,12 @@ PlasmoidItem {
                 var o = JSON.parse(s);
                 if (o && typeof o === "object") {
                     // Skip if fields already match (set by applyLocation via _applyActiveLoc)
-                    if (root._activeLocLat === (o.lat || 0) && root._activeLocLon === (o.lon || 0) && root._activeLocName === (o.name || "")) return;
+                    if (root._activeLocLat === (o.lat || 0) && root._activeLocLon === (o.lon || 0) && root._activeLocName === (o.name || ""))
+                        return;
                     root.activeLocStaged = o;
                     return;
                 }
-            } catch(e) {}
+            } catch (e) {}
             root.activeLocStaged = {};
         }
         // Location/provider/timezone changes must NOT reset alert-notification
@@ -3091,21 +3489,25 @@ PlasmoidItem {
         function onLocationNameChanged() {
             root._updateHasSelectedTown();
             root.weatherAlerts = [];
-            if (!root._batchingLocation) refreshDebounce.restart();
+            if (!root._batchingLocation)
+                refreshDebounce.restart();
         }
         function onLatitudeChanged() {
             root._pendingRainWindowRefresh = true;
             root.weatherAlerts = [];
-            if (!root._batchingLocation) refreshDebounce.restart();
+            if (!root._batchingLocation)
+                refreshDebounce.restart();
         }
         function onLongitudeChanged() {
             root._pendingRainWindowRefresh = true;
             root.weatherAlerts = [];
-            if (!root._batchingLocation) refreshDebounce.restart();
+            if (!root._batchingLocation)
+                refreshDebounce.restart();
         }
         function onTimezoneChanged() {
             root._pendingRainWindowRefresh = true;
-            if (!root._batchingLocation) refreshDebounce.restart();
+            if (!root._batchingLocation)
+                refreshDebounce.restart();
         }
         function onWeatherProviderChanged() {
             root._pendingRainWindowRefresh = true;
@@ -3159,8 +3561,7 @@ PlasmoidItem {
         // treat it as never-fired and send right away).
         function onNotificationTodayEnabledChanged() {
             if (Plasmoid.configuration.notificationTodayEnabled) {
-                var dateKey = (root.dailyData && root.dailyData[0] && root.dailyData[0].dateStr)
-                    || Qt.formatDate(new Date(), "yyyy-MM-dd");
+                var dateKey = (root.dailyData && root.dailyData[0] && root.dailyData[0].dateStr) || Qt.formatDate(new Date(), "yyyy-MM-dd");
                 root._markNotificationSentKey("today:" + dateKey);
             }
             root._evaluateNotifications();
