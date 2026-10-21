@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-10-13 06:29+0300\n"
+"POT-Creation-Date: 2026-10-21 13:44+0300\n"
 "PO-Revision-Date: 2026-05-06 16:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -22,31 +22,31 @@ msgstr ""
 msgid " until dawn"
 msgstr " do svítání"
 
-#: contents/ui/main.qml:1858
+#: contents/ui/main.qml:2154
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: contents/ui/main.qml:1802
+#: contents/ui/main.qml:2057
 msgid "%1 - Today"
 msgstr "%1 - Dnes"
 
-#: contents/ui/main.qml:1875
+#: contents/ui/main.qml:2171
 msgid "%1 - Tomorrow"
 msgstr "%1 - Zítra"
 
-#: contents/ui/main.qml:2010
+#: contents/ui/main.qml:2324
 msgid "%1 is ending"
 msgstr ""
 
-#: contents/ui/main.qml:2004
+#: contents/ui/main.qml:2318
 msgid "%1 is expected"
 msgstr ""
 
-#: contents/ui/main.qml:2011
+#: contents/ui/main.qml:2325
 msgid "%1 is expected to end %2."
 msgstr ""
 
-#: contents/ui/main.qml:2005
+#: contents/ui/main.qml:2319
 msgid "%1 is possible %2."
 msgstr ""
 
@@ -54,7 +54,7 @@ msgstr ""
 msgid "%1 px"
 msgstr ""
 
-#: contents/ui/main.qml:1787
+#: contents/ui/main.qml:2043
 msgid "%1 there will be %2 with a low of %3 and a high of %4."
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr "0 = výchozí (120 px na čip). Zvýšit, pokud jsou hodnoty zkráceny."
 msgid "0 = auto. Increase if items are cut off."
 msgstr "0 = automaticky. Zvyšte, pokud jsou položky odříznuty."
 
-#: contents/ui/main.qml:1099
+#: contents/ui/main.qml:1235
 msgid "1 Alert"
 msgstr "1 Upozornění"
 
@@ -145,11 +145,11 @@ msgstr ""
 msgid "68°F"
 msgstr "68°F"
 
-#: contents/ui/main.qml:1496
+#: contents/ui/main.qml:1724
 msgid "<b>Effective:</b> %1"
 msgstr "<b>Platí od:</b> %1"
 
-#: contents/ui/main.qml:1493 contents/ui/main.qml:1570
+#: contents/ui/main.qml:1721 contents/ui/main.qml:1812
 msgid "<b>Headline:</b> %1"
 msgstr "<b>Nadpis:</b> %1"
 
@@ -159,20 +159,20 @@ msgid ""
 "        <br/><br/>If you enable this option, the following file will be created in: ~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 msgstr ""
 
-#: contents/ui/main.qml:1499
+#: contents/ui/main.qml:1727
 msgid "<b>Instruction:</b> %1"
 msgstr "<b>Instrukce:</b> %1"
 
-#: contents/ui/main.qml:1502 contents/ui/main.qml:1576
+#: contents/ui/main.qml:1730 contents/ui/main.qml:1818
 msgid "<b>Provider:</b> %1"
 msgstr "<b>Poskytovatel:</b> %1"
 
-#: contents/ui/main.qml:1491 contents/ui/main.qml:1568
+#: contents/ui/main.qml:1719 contents/ui/main.qml:1810
 #, javascript-format
 msgid "<b>Severity:</b> %1%2"
 msgstr "<b>Závažnost:</b> %1%2"
 
-#: contents/ui/main.qml:1573
+#: contents/ui/main.qml:1815
 msgid "<b>Starts:</b> %1"
 msgstr ""
 
@@ -205,11 +205,11 @@ msgstr ""
 msgid "AEMET provides hourly forecasts for up to 48 hours. Daily forecast is still available for this date."
 msgstr ""
 
-#: contents/ui/WeatherService.qml:1123
+#: contents/ui/WeatherService.qml:1126
 msgid "AEMET: request failed - retrying automatically."
 msgstr ""
 
-#: contents/ui/WeatherService.qml:1120
+#: contents/ui/WeatherService.qml:1123
 msgid "AEMET: request limit reached - retrying automatically in a minute."
 msgstr ""
 
@@ -265,7 +265,7 @@ msgstr "Přidat polohu"
 msgid "Advanced (all tabs)"
 msgstr "Rozšířený (všechny karty)"
 
-#: contents/ui/main.qml:1838
+#: contents/ui/main.qml:2118
 msgid "Afternoon"
 msgstr "Odpoledne"
 
@@ -328,7 +328,7 @@ msgid "Air quality options"
 msgstr "Možnosti kvality ovzduší"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:653
-#: contents/ui/DetailsView.qml:1518 contents/ui/main.qml:1038
+#: contents/ui/DetailsView.qml:1518 contents/ui/main.qml:1153
 msgid "Alder"
 msgstr "Olše"
 
@@ -396,7 +396,7 @@ msgstr ""
 msgid "Alt: %1 %2"
 msgstr "Nadmoř. výš: %1 %2"
 
-#: contents/ui/config/configLocation.qml:1879
+#: contents/ui/config/configLocation.qml:1932
 msgid "Alt: %1 m"
 msgstr "Nadmoř. výš: %1 m"
 
@@ -448,7 +448,7 @@ msgstr "Vzhled"
 msgid "Apply Settings?"
 msgstr "Použít nastavení?"
 
-#: contents/ui/config/configLocation.qml:1236
+#: contents/ui/config/configLocation.qml:1289
 msgid "Apply detected location"
 msgstr "Použít zjištěnou polohu"
 
@@ -464,7 +464,7 @@ msgstr ""
 msgid "Apply only here"
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1445
+#: contents/ui/config/configLocation.qml:1498
 msgid "Are you sure? This is your last saved location. If you remove it, the widget will no longer show weather information."
 msgstr "Jste si jistý? Toto je vaše poslední uložená poloha. Pokud ji odstraníte, widget již nebude zobrazovat informace o počasí."
 
@@ -512,15 +512,15 @@ msgstr "Automaticky (detekce při uložení)"
 msgid "Auto (device)"
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1590
+#: contents/ui/config/configLocation.qml:1643
 msgid "Auto-detection first asks GeoClue2, the system location service, for your current position. If system location is unavailable, the widget estimates your location from your public IP address, which is usually less precise and only updates when detection runs again."
 msgstr "Automatická detekce nejprve požádá GeoClue2, systémovou službu určování polohy, o vaši aktuální pozici. Pokud systémová poloha není dostupná, widget odhadne vaši polohu z veřejné IP adresy, což je obvykle méně přesné a aktualizuje se pouze při opětovném spuštění detekce."
 
-#: contents/ui/config/configLocation.qml:1550
+#: contents/ui/config/configLocation.qml:1603
 msgid "Auto-detection is limited without QtLocation and QtPositioning. It will fall back to IP-based detection, which may be less accurate and will not update in real time as you move. If you want to improve auto-detection accuracy, please install the required packages for your distribution. For more details, see the install guide."
 msgstr "Bez QtLocation a QtPositioning je automatická detekce omezená. Použije se detekce podle IP adresy, která může být méně přesná a nebude se v reálném čase aktualizovat při pohybu. Pro zlepšení přesnosti detekce nainstalujte požadované balíčky pro vaši distribuci. Více informací najdete v průvodci instalací."
 
-#: contents/ui/config/configLocation.qml:810
+#: contents/ui/config/configLocation.qml:857
 msgid "Auto-detection updated coordinates."
 msgstr "Automatická detekce aktualizovaných souřadnic."
 
@@ -541,7 +541,7 @@ msgstr ""
 msgid "Automatic uses US AQI worldwide, switching to European CAQI or Canadian AQHI based on your location's country."
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1574
+#: contents/ui/config/configLocation.qml:1627
 msgid "Automatically detect location"
 msgstr "Automaticky detekovat polohu"
 
@@ -551,7 +551,7 @@ msgstr "Automaticky detekovat polohu"
 msgid "Available"
 msgstr "K dispozici"
 
-#: contents/ui/config/configNotifications.qml:82 contents/ui/main.qml:1132
+#: contents/ui/config/configNotifications.qml:82 contents/ui/main.qml:1307
 msgid "Avalanche"
 msgstr "Lavina"
 
@@ -601,7 +601,7 @@ msgid "Behavior"
 msgstr "Chování"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:654
-#: contents/ui/DetailsView.qml:1520 contents/ui/main.qml:1039
+#: contents/ui/DetailsView.qml:1520 contents/ui/main.qml:1156
 msgid "Birch"
 msgstr "Bříza"
 
@@ -670,14 +670,14 @@ msgstr ""
 
 #: contents/ui/config/configAppearance.qml:506
 #: contents/ui/config/configAppearance.qml:1034
-#: contents/ui/config/configLocation.qml:1472
+#: contents/ui/config/configLocation.qml:1525
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:85
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:68
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:67
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: contents/ui/config/configLocation.qml:1943
+#: contents/ui/config/configLocation.qml:1996
 msgid "Cancel rename"
 msgstr "Zrušit přejmenování"
 
@@ -746,12 +746,12 @@ msgstr "Vyberte písmo panelu"
 msgid "Choose a custom icon for this item"
 msgstr "Zvolte vlastní ikonu pro tuto položku"
 
-#: contents/ui/config/configLocation.qml:1663
+#: contents/ui/config/configLocation.qml:1716
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:317
 msgid "Choose on Map"
 msgstr "Vybrat na mapě"
 
-#: contents/ui/config/configLocation.qml:1260
+#: contents/ui/config/configLocation.qml:1313
 msgid "Choose on map"
 msgstr "Vybrat na mapě"
 
@@ -771,13 +771,13 @@ msgstr "Jasno (den)"
 msgid "Clear (night)"
 msgstr "Jasno (noc)"
 
-#: contents/ui/main.qml:2232
+#: contents/ui/main.qml:2568
 msgid "Clear night"
 msgstr "Jasná noc"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:48
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:610
-#: contents/ui/main.qml:2232
+#: contents/ui/main.qml:2568
 msgid "Clear sky"
 msgstr "Jasno"
 
@@ -797,7 +797,7 @@ msgstr "Klikněte pro nakonfigurování polohy"
 msgid "Clouds"
 msgstr "Oblačnost"
 
-#: contents/ui/config/configNotifications.qml:80 contents/ui/main.qml:1130
+#: contents/ui/config/configNotifications.qml:80 contents/ui/main.qml:1299
 msgid "Coastal event"
 msgstr "Pobřežní jev"
 
@@ -865,11 +865,11 @@ msgstr "Konfigurovat ikony počasí…"
 msgid "Configure…"
 msgstr "Konfigurovat…"
 
-#: contents/ui/config/configLocation.qml:1935
+#: contents/ui/config/configLocation.qml:1988
 msgid "Confirm rename"
 msgstr "Potvrdit přejmenování"
 
-#: contents/ui/config/configLocation.qml:1190
+#: contents/ui/config/configLocation.qml:1243
 msgid "Confirm your location"
 msgstr "Potvrď svou polohu"
 
@@ -1018,7 +1018,7 @@ msgstr "Výchozí"
 msgid "Default (built-in siren)"
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1910
+#: contents/ui/config/configLocation.qml:1963
 msgid "Default location (click to unset)"
 msgstr "Výchozí poloha (kliknutím zrušíte)"
 
@@ -1056,7 +1056,7 @@ msgstr "Rozvržení podrobností:"
 msgid "Details only"
 msgstr "Pouze podrobnosti"
 
-#: contents/ui/main.qml:407
+#: contents/ui/main.qml:443
 msgid "Detect / change location"
 msgstr "Zjistit / změnit polohu"
 
@@ -1064,7 +1064,7 @@ msgstr "Zjistit / změnit polohu"
 msgid "Detect / change location…"
 msgstr "Zjistit / změnit polohu…"
 
-#: contents/ui/config/configLocation.qml:1606
+#: contents/ui/config/configLocation.qml:1659
 msgid "Detecting…"
 msgstr "Detekuje se…"
 
@@ -1103,7 +1103,7 @@ msgstr "Vypnutý"
 msgid "Discard"
 msgstr "Zahodit"
 
-#: contents/ui/main.qml:557
+#: contents/ui/main.qml:591
 msgid "Dismiss"
 msgstr "Zavřít"
 
@@ -1138,7 +1138,7 @@ msgid "Drag to reorder shown items"
 msgstr "Přetažením změníte pořadí zobrazených položek"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:53
-#: contents/ui/main.qml:2246
+#: contents/ui/main.qml:2582
 msgid "Drizzle"
 msgstr "Mrholení"
 
@@ -1146,7 +1146,7 @@ msgstr "Mrholení"
 msgid "Dual temperature"
 msgstr "Dvojí zobrazení teploty"
 
-#: contents/ui/main.qml:1474
+#: contents/ui/main.qml:1694
 msgctxt "Alert severity"
 msgid "EXTREME"
 msgstr ""
@@ -1171,7 +1171,7 @@ msgstr ""
 msgid "Edit Saved Location"
 msgstr "Upravit uloženou polohu"
 
-#: contents/ui/config/configLocation.qml:1965
+#: contents/ui/config/configLocation.qml:2018
 msgid "Edit location details"
 msgstr "Upravit podrobnosti o lokalitě"
 
@@ -1219,7 +1219,7 @@ msgstr "Zapnutý"
 msgid "Enter Location"
 msgstr "Zadejte polohu"
 
-#: contents/ui/config/configLocation.qml:1677
+#: contents/ui/config/configLocation.qml:1730
 msgid "Enter Manually"
 msgstr "Ruční zadávání"
 
@@ -1227,11 +1227,11 @@ msgstr "Ruční zadávání"
 msgid "Enter a location name and valid coordinates, then click the main Apply button."
 msgstr "Zadejte název místa a platné souřadnice a klikněte na hlavní tlačítko Použít."
 
-#: contents/ui/config/configLocation.qml:1681
+#: contents/ui/config/configLocation.qml:1734
 msgid "Enter exact latitude, longitude, and optional elevation for a more local forecast. You can copy coordinates from OpenStreetMap, GeoNames, or Google Maps."
 msgstr "Zadejte přesnou zeměpisnou šířku, délku a volitelně výšku pro přesnější místní předpověď. Souřadnice můžete zkopírovat z OpenStreetMap, GeoNames nebo Google Maps."
 
-#: contents/ui/config/configLocation.qml:1250
+#: contents/ui/config/configLocation.qml:1303
 msgid "Enter manually"
 msgstr "Ruční zadávání"
 
@@ -1309,7 +1309,7 @@ msgid "Expires"
 msgstr "Vyprší"
 
 #: contents/ui/js/airQuality.js:95 contents/ui/js/spaceWeather.js:172
-#: contents/ui/js/spaceWeather.js:186 contents/ui/main.qml:1004
+#: contents/ui/js/spaceWeather.js:186 contents/ui/main.qml:1109
 msgid "Extreme"
 msgstr "Extrémní"
 
@@ -1329,15 +1329,15 @@ msgstr ""
 msgid "Fahrenheit (°F)"
 msgstr "Fahrenheit (°F)"
 
-#: contents/ui/WeatherService.qml:1156
+#: contents/ui/WeatherService.qml:1159
 msgid "Failed to load weather providers"
 msgstr "Nepodařilo se načíst poskytovatele počasí"
 
-#: contents/ui/WeatherService.qml:1142
+#: contents/ui/WeatherService.qml:1145
 msgid "Failed: %1"
 msgstr "Selhalo: %1"
 
-#: contents/ui/WeatherService.qml:1140
+#: contents/ui/WeatherService.qml:1143
 msgid "Failed: %1 — retrying…"
 msgstr ""
 
@@ -1372,7 +1372,7 @@ msgstr "Vyplnit panel:"
 msgid "Find"
 msgstr "Najít"
 
-#: contents/ui/main.qml:2467
+#: contents/ui/main.qml:2802
 msgid "First Quarter"
 msgstr "První čtvrť"
 
@@ -1393,7 +1393,7 @@ msgstr "Varování před sluneční erupcí"
 msgid "Flat Color (Bundled)"
 msgstr "Jednobarevné (vestavěné)"
 
-#: contents/ui/config/configNotifications.qml:84 contents/ui/main.qml:1134
+#: contents/ui/config/configNotifications.qml:84 contents/ui/main.qml:1315
 msgid "Flood"
 msgstr "Povodeň"
 
@@ -1401,7 +1401,7 @@ msgstr "Povodeň"
 #: contents/ui/config/configNotifications.qml:77
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:52
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:618
-#: contents/ui/main.qml:1127 contents/ui/main.qml:2240
+#: contents/ui/main.qml:1287 contents/ui/main.qml:2576
 msgid "Fog"
 msgstr "Mlha"
 
@@ -1440,7 +1440,7 @@ msgstr "Pouze předpověď"
 msgid "Forecast:"
 msgstr "Předpověď:"
 
-#: contents/ui/config/configNotifications.qml:81 contents/ui/main.qml:1131
+#: contents/ui/config/configNotifications.qml:81 contents/ui/main.qml:1303
 msgid "Forest fire"
 msgstr "Lesní požár"
 
@@ -1462,7 +1462,7 @@ msgstr "Volně dostupný a open-source. Není potřeba žádný klíč API. Dopo
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:54
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:626
-#: contents/ui/main.qml:2252
+#: contents/ui/main.qml:2588
 msgid "Freezing drizzle"
 msgstr "Mrznoucí mrholení"
 
@@ -1476,7 +1476,7 @@ msgstr "Mrznoucí mrholení (noc)"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:56
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:634
-#: contents/ui/main.qml:2262
+#: contents/ui/main.qml:2598
 msgid "Freezing rain"
 msgstr "Mrznoucí déšť"
 
@@ -1492,7 +1492,7 @@ msgstr "Mrznoucí déšť (noc)"
 msgid "Friday"
 msgstr "Pátek"
 
-#: contents/ui/main.qml:2471
+#: contents/ui/main.qml:2806
 msgid "Full Moon"
 msgstr "Úplněk"
 
@@ -1500,7 +1500,7 @@ msgstr "Úplněk"
 msgid "Future alerts"
 msgstr "Budoucí upozornění"
 
-#: contents/ui/config/configLocation.qml:1606
+#: contents/ui/config/configLocation.qml:1659
 msgid "GPS / GeoClue2 unavailable (install qt6-qtlocation for best accuracy). Using IP-based detection."
 msgstr "GPS / GeoClue2 nejsou k dispozici (pro nejlepší přesnost nainstalujte qt6-qtlocation). Používá se detekce podle IP adresy."
 
@@ -1510,7 +1510,7 @@ msgstr "GPS / GeoClue2 nejsou k dispozici (pro nejlepší přesnost nainstalujte
 msgid "General"
 msgstr "Obecné pokyny"
 
-#: contents/ui/config/configLocation.qml:884
+#: contents/ui/config/configLocation.qml:931
 msgid "GeoClue2 unavailable, trying system location…"
 msgstr "GeoClue2 není k dispozici, zkouším systémovou polohu…"
 
@@ -1519,11 +1519,11 @@ msgstr "GeoClue2 není k dispozici, zkouším systémovou polohu…"
 msgid "Geomagnetic Storm"
 msgstr "Solární bouře"
 
-#: contents/ui/config/configNotifications.qml:701 contents/ui/main.qml:2133
+#: contents/ui/config/configNotifications.qml:701 contents/ui/main.qml:2461
 msgid "Geomagnetic activity"
 msgstr "Geomagnetická aktivita"
 
-#: contents/ui/main.qml:2130
+#: contents/ui/main.qml:2457
 msgid "Geomagnetic activity is expected to be %1 (Kp %2)"
 msgstr ""
 
@@ -1536,7 +1536,7 @@ msgid "Good"
 msgstr "Dobrá"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:655
-#: contents/ui/DetailsView.qml:1522 contents/ui/main.qml:1040
+#: contents/ui/DetailsView.qml:1522 contents/ui/main.qml:1159
 msgid "Grass"
 msgstr "Tráva"
 
@@ -1561,20 +1561,20 @@ msgstr ""
 msgid "Heavy"
 msgstr "Silné"
 
-#: contents/ui/main.qml:2248
+#: contents/ui/main.qml:2584
 msgid "Heavy drizzle"
 msgstr "Silné mrholení"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:632
-#: contents/ui/main.qml:2258
+#: contents/ui/main.qml:2594
 msgid "Heavy rain"
 msgstr "Silný déšť"
 
-#: contents/ui/main.qml:2276
+#: contents/ui/main.qml:2612
 msgid "Heavy showers"
 msgstr "Silné přeháňky"
 
-#: contents/ui/main.qml:2268
+#: contents/ui/main.qml:2604
 msgid "Heavy snow"
 msgstr "Silné sněžení"
 
@@ -1586,7 +1586,7 @@ msgstr "Silné sněhové přeháňky"
 msgid "Heavy snowfall"
 msgstr "Silné sněžení"
 
-#: contents/ui/main.qml:2286
+#: contents/ui/main.qml:2622
 msgid "Heavy thunderstorm with hail"
 msgstr "Silné bouřky s kroupami"
 
@@ -1607,7 +1607,7 @@ msgstr "Skrýt ikonu"
 #: contents/ui/DetailsView.qml:1114 contents/ui/FullView.qml:521
 #: contents/ui/js/airQuality.js:122 contents/ui/js/pollen.js:44
 #: contents/ui/js/spaceWeather.js:187 contents/ui/js/spaceWeather.js:199
-#: contents/ui/main.qml:1002 contents/ui/main.qml:1034
+#: contents/ui/main.qml:1106 contents/ui/main.qml:1147
 msgid "High"
 msgstr "Vysoká"
 
@@ -1619,7 +1619,7 @@ msgstr ""
 msgid "High precision forecast provider. API key required below."
 msgstr "Poskytovatel vysoce přesných předpovědí. Níže je vyžadován klíč API."
 
-#: contents/ui/config/configNotifications.qml:78 contents/ui/main.qml:1128
+#: contents/ui/config/configNotifications.qml:78 contents/ui/main.qml:1291
 msgid "High temperature"
 msgstr "Vysoká teplota"
 
@@ -1662,8 +1662,8 @@ msgstr "Vlhkost"
 msgid "Humidity:"
 msgstr "Vlhkost:"
 
-#: contents/ui/config/configLocation.qml:1003
-#: contents/ui/config/configLocation.qml:1034
+#: contents/ui/config/configLocation.qml:1050
+#: contents/ui/config/configLocation.qml:1084
 msgid "IP geolocation"
 msgstr "IP Geolokace"
 
@@ -1710,7 +1710,7 @@ msgstr "Ikony"
 msgid "Ideal air quality for outdoor activities."
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1226
+#: contents/ui/config/configLocation.qml:1279
 msgid "If this looks correct, apply it. Otherwise, choose your location manually."
 msgstr "Pokud to vypadá správně, použij ji. V opačném případě vyber polohu ručně."
 
@@ -1738,7 +1738,7 @@ msgstr ""
 msgid "Individual units"
 msgstr "Jednotlivé jednotky 2005"
 
-#: contents/ui/config/configLocation.qml:1173
+#: contents/ui/config/configLocation.qml:1226
 msgid ""
 "Install it for your distribution:\n"
 "  • Fedora / RHEL / Arch: qt6-qtlocation\n"
@@ -1884,7 +1884,7 @@ msgstr "Předpověď Kp indexu/G:"
 msgid "Large"
 msgstr ""
 
-#: contents/ui/main.qml:2475
+#: contents/ui/main.qml:2810
 msgid "Last Quarter"
 msgstr "Poslední čtvrť"
 
@@ -1933,19 +1933,19 @@ msgid "Light"
 msgstr "Slabé"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:620
-#: contents/ui/main.qml:2244
+#: contents/ui/main.qml:2580
 msgid "Light drizzle"
 msgstr "Mrholení"
 
-#: contents/ui/main.qml:2250
+#: contents/ui/main.qml:2586
 msgid "Light freezing drizzle"
 msgstr "Lehké mrznutí mrholení"
 
-#: contents/ui/main.qml:2260
+#: contents/ui/main.qml:2596
 msgid "Light freezing rain"
 msgstr "Lehký mrznoucí déšť"
 
-#: contents/ui/main.qml:2254
+#: contents/ui/main.qml:2590
 msgid "Light rain"
 msgstr "Slabý déšť"
 
@@ -1957,11 +1957,11 @@ msgstr "Slabý déšť / mrholení (den)"
 msgid "Light rain / Drizzle (night)"
 msgstr "Slabý déšť / mrholení (noc)"
 
-#: contents/ui/main.qml:2272
+#: contents/ui/main.qml:2608
 msgid "Light showers"
 msgstr "Slabé přeháňky"
 
-#: contents/ui/main.qml:2264
+#: contents/ui/main.qml:2600
 msgid "Light snow"
 msgstr "Slabé sněžení"
 
@@ -1973,7 +1973,7 @@ msgstr "Slabé sněžení (den)"
 msgid "Light snow (night)"
 msgstr "Slabé sněžení (noc)"
 
-#: contents/ui/main.qml:2278
+#: contents/ui/main.qml:2614
 msgid "Light snow showers"
 msgstr "Slabé sněhové přeháňky"
 
@@ -2034,11 +2034,12 @@ msgstr "Poloha '%1' je již ve vašem seznamu uložených položek. Vybranou pol
 msgid "Location Name"
 msgstr "Název polohy"
 
-#: contents/ui/config/configLocation.qml:808
+#: contents/ui/config/configLocation.qml:784
+#: contents/ui/config/configLocation.qml:855
 msgid "Location auto-detected."
 msgstr "Poloha byla automaticky detekována."
 
-#: contents/ui/config/configLocation.qml:1606
+#: contents/ui/config/configLocation.qml:1659
 msgid "Location detection is depending on system configuration and permissions."
 msgstr "Detekce polohy závisí na konfiguraci systému a oprávněních."
 
@@ -2063,7 +2064,7 @@ msgstr "Název polohy"
 msgid "Location name:"
 msgstr "Název polohy:"
 
-#: contents/ui/config/configLocation.qml:1587
+#: contents/ui/config/configLocation.qml:1640
 msgid "Location package notice"
 msgstr "Upozornění na balíček pro určování polohy"
 
@@ -2107,7 +2108,7 @@ msgstr "Hledám polohu…"
 #: contents/ui/DetailsView.qml:1114 contents/ui/FullView.qml:541
 #: contents/ui/js/airQuality.js:120 contents/ui/js/pollen.js:42
 #: contents/ui/js/spaceWeather.js:189 contents/ui/js/spaceWeather.js:201
-#: contents/ui/main.qml:1000 contents/ui/main.qml:1032
+#: contents/ui/main.qml:1102 contents/ui/main.qml:1143
 msgid "Low"
 msgstr "Nízká"
 
@@ -2115,21 +2116,21 @@ msgstr "Nízká"
 msgid "Low Risk"
 msgstr ""
 
-#: contents/ui/config/configNotifications.qml:79 contents/ui/main.qml:1129
+#: contents/ui/config/configNotifications.qml:79 contents/ui/main.qml:1295
 msgid "Low temperature"
 msgstr "Nízká teplota"
 
-#: contents/ui/main.qml:1479
+#: contents/ui/main.qml:1707
 msgctxt "Alert severity"
 msgid "MINIMAL"
 msgstr ""
 
-#: contents/ui/main.qml:1477
+#: contents/ui/main.qml:1703
 msgctxt "Alert severity"
 msgid "MINOR"
 msgstr ""
 
-#: contents/ui/main.qml:1476
+#: contents/ui/main.qml:1700
 msgctxt "Alert severity"
 msgid "MODERATE"
 msgstr ""
@@ -2144,7 +2145,7 @@ msgstr "Styl hlavní ikony:"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:49
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:612
-#: contents/ui/main.qml:2234
+#: contents/ui/main.qml:2570
 msgid "Mainly clear"
 msgstr "Převážně jasno"
 
@@ -2234,7 +2235,7 @@ msgstr "Režim:"
 #: contents/ui/js/airQuality.js:92 contents/ui/js/airQuality.js:103
 #: contents/ui/js/airQuality.js:121 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
-#: contents/ui/main.qml:1001 contents/ui/main.qml:1033
+#: contents/ui/main.qml:1104 contents/ui/main.qml:1145
 msgid "Moderate"
 msgstr "Průměrná"
 
@@ -2366,7 +2367,7 @@ msgstr "Pouze západ měsíce"
 msgid "Moonset:"
 msgstr "Západ měsíce:"
 
-#: contents/ui/main.qml:1837
+#: contents/ui/main.qml:2111
 msgid "Morning"
 msgstr "Ráno"
 
@@ -2375,7 +2376,7 @@ msgid "Most allergy sufferers will experience discomfort."
 msgstr "Většina alergiků pocítí nepohodlí."
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:656
-#: contents/ui/DetailsView.qml:1524 contents/ui/main.qml:1041
+#: contents/ui/DetailsView.qml:1524 contents/ui/main.qml:1162
 msgid "Mugwort"
 msgstr "Pelyněk"
 
@@ -2384,9 +2385,9 @@ msgid "Multiple lines (tall panel)"
 msgstr "Více řádků (vysoký panel)"
 
 #: contents/ui/ForecastView.qml:1451 contents/ui/ForecastView.qml:2056
-#: contents/ui/main.qml:907 contents/ui/main.qml:940 contents/ui/main.qml:953
-#: contents/ui/main.qml:961 contents/ui/main.qml:969 contents/ui/main.qml:997
-#: contents/ui/main.qml:1060
+#: contents/ui/main.qml:998 contents/ui/main.qml:1031 contents/ui/main.qml:1046
+#: contents/ui/main.qml:1056 contents/ui/main.qml:1066
+#: contents/ui/main.qml:1097 contents/ui/main.qml:1189
 msgid "N/A"
 msgstr ""
 
@@ -2412,7 +2413,7 @@ msgstr ""
 msgid "Network error"
 msgstr "Chyba sítě"
 
-#: contents/ui/main.qml:2463
+#: contents/ui/main.qml:2798
 msgid "New Moon"
 msgstr "Nov"
 
@@ -2424,7 +2425,7 @@ msgstr "Noc"
 msgid "Nitrogen Dioxide (NO₂)"
 msgstr "Oxid dusičitý (NO₂)"
 
-#: contents/ui/config/configLocation.qml:1372
+#: contents/ui/config/configLocation.qml:1425
 msgid "No"
 msgstr "Ne"
 
@@ -2465,7 +2466,7 @@ msgstr ""
 msgid "No satellite data"
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1711
+#: contents/ui/config/configLocation.qml:1764
 msgid "No saved locations. Save the current location to quickly switch between places."
 msgstr "Žádná uložená místa. Uložte aktuální místo pro rychlé přepínání mezi místy."
 
@@ -2478,8 +2479,8 @@ msgstr "Pro '%1' nebyly nalezeny žádné meteorologické stanice"
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:331
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1170
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:353
-#: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:1097
-#: contents/ui/main.qml:1099
+#: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:1233
+#: contents/ui/main.qml:1235
 msgid "None"
 msgstr "Žádné"
 
@@ -2569,7 +2570,7 @@ msgid "Official Spanish meteorological agency - Spain locations only! API key re
 msgstr ""
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:657
-#: contents/ui/DetailsView.qml:1526 contents/ui/main.qml:1042
+#: contents/ui/DetailsView.qml:1526 contents/ui/main.qml:1165
 msgid "Olive"
 msgstr "Olivovník"
 
@@ -2577,8 +2578,8 @@ msgstr "Olivovník"
 msgid "Only the clicked day expands"
 msgstr "Rozbalí se pouze kliknutý den"
 
-#: contents/ui/config/configLocation.qml:1177
-#: contents/ui/config/configLocation.qml:1554 contents/ui/RadarView.qml:374
+#: contents/ui/config/configLocation.qml:1230
+#: contents/ui/config/configLocation.qml:1607 contents/ui/RadarView.qml:374
 msgid "Open install guide"
 msgstr "Otevřít průvodce instalací"
 
@@ -2645,7 +2646,7 @@ msgstr "Oranžová"
 #: contents/ui/config/configAppearance.qml:699
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:51
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:616
-#: contents/ui/main.qml:2238
+#: contents/ui/main.qml:2574
 msgid "Overcast"
 msgstr "Zataženo"
 
@@ -2724,7 +2725,7 @@ msgstr "Částice (PM2.5)"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:50
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:614
-#: contents/ui/main.qml:2236 contents/ui/main.qml:2288
+#: contents/ui/main.qml:2572 contents/ui/main.qml:2624
 msgid "Partly cloudy"
 msgstr "Polojasno"
 
@@ -2758,7 +2759,7 @@ msgstr "Fáze + východ a západ měsíce"
 msgid "Phase + upcoming rise/set"
 msgstr "Fáze + nadcházející východ/západ"
 
-#: contents/ui/config/configLocation.qml:1667
+#: contents/ui/config/configLocation.qml:1720
 msgid "Pick an exact spot on the map for a more local forecast, such as your neighborhood block or a specific landmark."
 msgstr "Vyberte přesné místo na mapě pro přesnější místní předpověď, například vaši ulici nebo konkrétní orientační bod."
 
@@ -2805,7 +2806,7 @@ msgstr "Pyl:"
 msgid "Poor"
 msgstr "Špatná"
 
-#: contents/ui/main.qml:566
+#: contents/ui/main.qml:600
 msgid "Postpone"
 msgstr "Odložit"
 
@@ -2944,7 +2945,7 @@ msgstr "Chyba QWeather (kód %1). Zkontrolujte svůj klíč API."
 msgid "QWeather provides hourly forecasts for up to 168 hours (7 days). Daily forecast is still available for this date."
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1130
+#: contents/ui/config/configLocation.qml:1183
 msgid "QtLocation and QtPositioning are not installed"
 msgstr "QtLocation a QtPositioning nejsou nainstalovány"
 
@@ -2992,15 +2993,15 @@ msgid "Radar:"
 msgstr "Radar:"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:658
-#: contents/ui/DetailsView.qml:1528 contents/ui/main.qml:1043
+#: contents/ui/DetailsView.qml:1528 contents/ui/main.qml:1168
 msgid "Ragweed"
 msgstr "Ambrozie"
 
 #: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configNotifications.qml:83
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
-#: contents/ui/main.qml:1133 contents/ui/main.qml:1952
-#: contents/ui/main.qml:2256
+#: contents/ui/main.qml:1311 contents/ui/main.qml:2261
+#: contents/ui/main.qml:2592
 msgid "Rain"
 msgstr "Déšť"
 
@@ -3049,8 +3050,8 @@ msgstr "Červená"
 msgid "Reduce or reschedule strenuous outdoor activities, especially if you experience symptoms."
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1609 contents/ui/FullView.qml:430
-#: contents/ui/main.qml:413
+#: contents/ui/config/configLocation.qml:1662 contents/ui/FullView.qml:430
+#: contents/ui/main.qml:449
 msgid "Refresh"
 msgstr "Obnovit"
 
@@ -3088,15 +3089,15 @@ msgstr "Relativní vlhkost"
 msgid "Relative humidity percentage"
 msgstr "Procento relativní vlhkosti"
 
-#: contents/ui/config/configLocation.qml:1420
+#: contents/ui/config/configLocation.qml:1473
 msgid "Remove last location?"
 msgstr "Odebrat poslední místo?"
 
-#: contents/ui/config/configLocation.qml:1983
+#: contents/ui/config/configLocation.qml:2036
 msgid "Remove saved location"
 msgstr "Odebrat uložené místo"
 
-#: contents/ui/config/configLocation.qml:1952
+#: contents/ui/config/configLocation.qml:2005
 msgid "Rename location"
 msgstr "Přejmenovat polohu"
 
@@ -3104,11 +3105,11 @@ msgstr "Přejmenovat polohu"
 msgid "Repeat reminder until dismissed"
 msgstr "Opakovat připomenutí až do zavření"
 
-#: contents/ui/config/configLocation.qml:870
+#: contents/ui/config/configLocation.qml:917
 msgid "Requesting location via GeoClue2…"
 msgstr "Získávám polohu pomocí GeoClue2…"
 
-#: contents/ui/config/configLocation.qml:858
+#: contents/ui/config/configLocation.qml:905
 msgid "Requesting location… (%1)"
 msgstr "Získávám polohu… (%1)"
 
@@ -3132,7 +3133,7 @@ msgstr "Obnovit všechna výchozí nastavení"
 msgid "Reset to default"
 msgstr "Obnovit výchozí nastavení"
 
-#: contents/ui/main.qml:2242
+#: contents/ui/main.qml:2578
 msgid "Rime fog"
 msgstr "Mrznoucí mlha"
 
@@ -3148,7 +3149,7 @@ msgstr ""
 msgid "Routine tests (for example \"Required Weekly Test\") will show a notification, but never play an alert sound."
 msgstr ""
 
-#: contents/ui/main.qml:1475
+#: contents/ui/main.qml:1697
 msgctxt "Alert severity"
 msgid "SEVERE"
 msgstr ""
@@ -3165,7 +3166,7 @@ msgstr ""
 msgid "Saturday"
 msgstr "Sobota"
 
-#: contents/ui/config/configLocation.qml:1695
+#: contents/ui/config/configLocation.qml:1748
 msgid "Saved locations"
 msgstr "Uložená místa"
 
@@ -3181,7 +3182,7 @@ msgstr "Animace posouvání:"
 msgid "Scroll interval (sec):"
 msgstr "Interval posouvání (s):"
 
-#: contents/ui/config/configLocation.qml:1655
+#: contents/ui/config/configLocation.qml:1708
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:276
 msgid "Search Location"
 msgstr "Hledat místo"
@@ -3190,15 +3191,15 @@ msgstr "Hledat místo"
 msgid "Search a weather station to set your location"
 msgstr "Vyhledej meteorologickou stanici pro nastavení polohy"
 
-#: contents/ui/config/configLocation.qml:1659
+#: contents/ui/config/configLocation.qml:1712
 msgid "Search by city or place name. Results show the location name, region, and country, and are suitable for general city-level forecasts rather than exact street-level placement."
 msgstr "Vyhledávání podle názvu města nebo místa. Výsledky zobrazují název místa, region a zemi a jsou vhodné pro obecnou předpověď na úrovni měst, nikoli pro přesné umístění na úrovni ulic."
 
-#: contents/ui/config/configLocation.qml:1647
+#: contents/ui/config/configLocation.qml:1700
 msgid "Search for a location or choose it on the map."
 msgstr "Vyhledejte polohu nebo ji vyberte na mapě."
 
-#: contents/ui/config/configLocation.qml:1245
+#: contents/ui/config/configLocation.qml:1298
 msgid "Search location"
 msgstr "Vyhledat místo"
 
@@ -3223,7 +3224,7 @@ msgstr "Oddělovač:"
 msgid "Serious risk; avoid outdoor activities."
 msgstr "Vážné riziko; vyhněte se venkovním aktivitám."
 
-#: contents/ui/config/configLocation.qml:1317
+#: contents/ui/config/configLocation.qml:1370
 msgid "Set <b>%1</b> as your default location?"
 msgstr "Nastavit <b>%1</b> jako výchozí místo?"
 
@@ -3231,11 +3232,11 @@ msgstr "Nastavit <b>%1</b> jako výchozí místo?"
 msgid "Set Location…"
 msgstr "Nastavit místo…"
 
-#: contents/ui/config/configLocation.qml:1910
+#: contents/ui/config/configLocation.qml:1963
 msgid "Set as default location"
 msgstr "Nastavit jako výchozí místo"
 
-#: contents/ui/config/configLocation.qml:1290
+#: contents/ui/config/configLocation.qml:1343
 msgid "Set as default?"
 msgstr "Nastavit jako výchozí?"
 
@@ -3364,7 +3365,7 @@ msgstr "Zobrazit/skrýt klíč"
 msgid "Show:"
 msgstr "Zobrazit:"
 
-#: contents/ui/main.qml:2274
+#: contents/ui/main.qml:2610
 msgid "Showers"
 msgstr "Přeháňky"
 
@@ -3458,7 +3459,7 @@ msgstr ""
 
 #: contents/ui/config/configNotifications.qml:667
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:57
-#: contents/ui/main.qml:2266
+#: contents/ui/main.qml:2602
 msgid "Snow"
 msgstr "Sníh"
 
@@ -3489,23 +3490,23 @@ msgstr "Hloubka sněhu (cm/in)"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:58
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:642
-#: contents/ui/main.qml:2270
+#: contents/ui/main.qml:2606
 msgid "Snow grains"
 msgstr "Krupobití"
 
-#: contents/ui/main.qml:2039
+#: contents/ui/main.qml:2355
 msgid "Snow is ending"
 msgstr ""
 
-#: contents/ui/main.qml:2034
+#: contents/ui/main.qml:2350
 msgid "Snow is expected"
 msgstr ""
 
-#: contents/ui/main.qml:2040
+#: contents/ui/main.qml:2356
 msgid "Snow is expected to end %1."
 msgstr ""
 
-#: contents/ui/main.qml:2035
+#: contents/ui/main.qml:2351
 msgid "Snow is possible %1."
 msgstr ""
 
@@ -3514,11 +3515,11 @@ msgid "Snow mask"
 msgstr ""
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:60
-#: contents/ui/main.qml:2280
+#: contents/ui/main.qml:2616
 msgid "Snow showers"
 msgstr "Sněhové přeháňky"
 
-#: contents/ui/config/configNotifications.qml:75 contents/ui/main.qml:1125
+#: contents/ui/config/configNotifications.qml:75 contents/ui/main.qml:1279
 msgid "Snow/Ice"
 msgstr "Sníh/Led"
 
@@ -3705,7 +3706,7 @@ msgstr "Symbolické (podle barvy motivu)"
 msgid "System Tray Badge Background Color"
 msgstr "Barva pozadí odznaku v systémové liště"
 
-#: contents/ui/config/configLocation.qml:897
+#: contents/ui/config/configLocation.qml:944
 msgid "System location unavailable, trying IP geolocation…"
 msgstr "Systémová poloha není k dispozici, zkouším geolokaci pomocí IP…"
 
@@ -3822,7 +3823,7 @@ msgstr ""
 msgid "The map needs QtWebEngine, which is not installed. You can still search for a location above."
 msgstr ""
 
-#: contents/ui/config/configLocation.qml:1160
+#: contents/ui/config/configLocation.qml:1213
 msgid "The map picker requires the QtLocation and QtPositioning packages, which are not installed on this system."
 msgstr "Výběr na mapě vyžaduje balíčky QtLocation a QtPositioning, které v tomto systému nejsou nainstalovány."
 
@@ -3850,7 +3851,7 @@ msgstr "Toto místo je již ve vašem seznamu uložených položek."
 #: contents/ui/config/configNotifications.qml:76
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:61
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:654
-#: contents/ui/main.qml:1126 contents/ui/main.qml:2282
+#: contents/ui/main.qml:1283 contents/ui/main.qml:2618
 msgid "Thunderstorm"
 msgstr "Bouřka"
 
@@ -3864,7 +3865,7 @@ msgstr "Bouřka (noc)"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:62
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:656
-#: contents/ui/main.qml:2284
+#: contents/ui/main.qml:2620
 msgid "Thunderstorm with hail"
 msgstr "Bouřka s krupobitím"
 
@@ -3884,7 +3885,7 @@ msgstr "Bouřka, silné krupobití (den)"
 msgid "Thunderstorm, heavy hail (night)"
 msgstr "Bouřka, silné krupobití (noc)"
 
-#: contents/ui/main.qml:1952
+#: contents/ui/main.qml:2261
 msgid "Thunderstorms"
 msgstr "Bouřky"
 
@@ -3916,7 +3917,7 @@ msgstr "Časové pásmo:"
 msgid "To unlock additional map layers (Rain, Clouds, Temperature, Wind, Pressure): disable Adaptive mode from the 'Provider' tab, select OpenWeatherMap as your weather provider, and enter your API key above. When you are ready, you can enable Adaptive mode again."
 msgstr ""
 
-#: contents/ui/ForecastView.qml:533 contents/ui/main.qml:1801
+#: contents/ui/ForecastView.qml:533 contents/ui/main.qml:2056
 #: contents/ui/SimpleView.qml:423
 msgid "Today"
 msgstr "Dnes"
@@ -3931,7 +3932,7 @@ msgstr "Dnešní celkové srážky (mm/in)"
 msgid "Today's weather"
 msgstr "Dnešní počasí"
 
-#: contents/ui/main.qml:1874
+#: contents/ui/main.qml:2170
 msgid "Tomorrow"
 msgstr "Zítra"
 
@@ -3947,7 +3948,7 @@ msgstr "Tomorrow.io (klíč je povinný)"
 msgid "Tomorrow.io API Key:"
 msgstr "Tomorrow.io API Key:"
 
-#: contents/ui/main.qml:1839
+#: contents/ui/main.qml:2125
 msgid "Tonight"
 msgstr "Dnes večer"
 
@@ -4016,7 +4017,7 @@ msgstr ""
 msgid "Turn on any combination to show them side by side instead of a single standard below."
 msgstr ""
 
-#: contents/ui/main.qml:1478
+#: contents/ui/main.qml:1705
 msgctxt "Alert severity"
 msgid "UNKNOWN"
 msgstr ""
@@ -4041,7 +4042,7 @@ msgstr "UV index"
 msgid "UV Index:"
 msgstr "UV index:"
 
-#: contents/ui/config/configNotifications.qml:681 contents/ui/main.qml:2088
+#: contents/ui/config/configNotifications.qml:681 contents/ui/main.qml:2411
 msgid "UV index"
 msgstr "UV index"
 
@@ -4050,7 +4051,7 @@ msgstr "UV index"
 msgid "UV index forecast:"
 msgstr "Předpověď UV indexu:"
 
-#: contents/ui/main.qml:2085
+#: contents/ui/main.qml:2407
 msgid "UV index will be %1 (%2)"
 msgstr ""
 
@@ -4060,8 +4061,8 @@ msgstr ""
 msgid "Ultraviolet index"
 msgstr "Ultrafialový index"
 
-#: contents/ui/config/configLocation.qml:936
-#: contents/ui/config/configLocation.qml:1043
+#: contents/ui/config/configLocation.qml:983
+#: contents/ui/config/configLocation.qml:1096
 msgid "Unable to detect location. All methods failed."
 msgstr "Nelze zjistit polohu. Všechny metody selhaly."
 
@@ -4081,7 +4082,7 @@ msgstr "Předvolba jednotek:"
 msgid "Units"
 msgstr "Jednotky"
 
-#: contents/ui/config/configLocation.qml:1852
+#: contents/ui/config/configLocation.qml:1905
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:657
 #: contents/ui/FullView.qml:370
 msgid "Unknown"
@@ -4116,33 +4117,29 @@ msgstr "Nadcházející (příští východ nebo západ slunce)"
 msgid "Upcoming rise/set only"
 msgstr "Pouze nadcházející východ/západ"
 
-#: contents/ui/main.qml:1583
+#: contents/ui/main.qml:1825
 msgid "Upcoming: %1"
 msgstr ""
 
-#: contents/ui/WeatherService.qml:263
-msgid "Update timed out. Click the refresh button to retry."
-msgstr ""
-
-#: contents/ui/WeatherService.qml:991
+#: contents/ui/WeatherService.qml:994
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: contents/ui/WeatherService.qml:989
+#: contents/ui/WeatherService.qml:992
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: contents/ui/WeatherService.qml:986
+#: contents/ui/WeatherService.qml:989
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: contents/ui/WeatherService.qml:984
+#: contents/ui/WeatherService.qml:987
 msgid "Updated just now"
 msgstr ""
 
@@ -4158,7 +4155,7 @@ msgstr "Použijte 24hodinový formát:"
 msgid "Use KDE locale settings"
 msgstr "Použít nastavení národního prostředí KDE"
 
-#: contents/ui/config/configLocation.qml:1625
+#: contents/ui/config/configLocation.qml:1678
 msgid "Use manual location"
 msgstr "Použít manuální polohu"
 
@@ -4195,8 +4192,8 @@ msgstr "Hodnoty zobrazují desetinná místa"
 msgid "Vertical"
 msgstr "Vertikální"
 
-#: contents/ui/js/pollen.js:45 contents/ui/main.qml:1003
-#: contents/ui/main.qml:1035
+#: contents/ui/js/pollen.js:45 contents/ui/main.qml:1108
+#: contents/ui/main.qml:1149
 msgid "Very High"
 msgstr "Velmi vysoká"
 
@@ -4243,27 +4240,27 @@ msgstr "Visual Crossing (vyžadován klíč)"
 msgid "Visual Crossing API Key:"
 msgstr "Visual Crossing API klíč:"
 
-#: contents/ui/main.qml:2477
+#: contents/ui/main.qml:2812
 msgid "Waning Crescent"
 msgstr "Couvající srpek"
 
-#: contents/ui/main.qml:2473
+#: contents/ui/main.qml:2808
 msgid "Waning Gibbous"
 msgstr "Couvající měsíc"
 
-#: contents/ui/main.qml:2465
+#: contents/ui/main.qml:2800
 msgid "Waxing Crescent"
 msgstr "Dorůstající srpek"
 
-#: contents/ui/main.qml:2469
+#: contents/ui/main.qml:2804
 msgid "Waxing Gibbous"
 msgstr "Dorůstající měsíc"
 
-#: contents/ui/config/configLocation.qml:1219
+#: contents/ui/config/configLocation.qml:1272
 msgid "We detected your coordinates: <b>%1°, %2°</b>."
 msgstr "Zjistili jsme vaše souřadnice: <b>%1°, %2°</b>."
 
-#: contents/ui/config/configLocation.qml:1219
+#: contents/ui/config/configLocation.qml:1272
 msgid "We detected your location as: <b>%1</b>."
 msgstr "Zjistili jsme vaši polohu jako: <b>%1</b>."
 
@@ -4283,7 +4280,7 @@ msgstr "Poskytovatel počasí"
 msgid "Weather Widget"
 msgstr "Widget počasí"
 
-#: contents/ui/main.qml:1493 contents/ui/main.qml:1570
+#: contents/ui/main.qml:1721 contents/ui/main.qml:1812
 msgid "Weather alert"
 msgstr "Výstraha počasí"
 
@@ -4310,7 +4307,7 @@ msgstr "Styl ikony počasí:"
 msgid "Weather icon theme:"
 msgstr "Motiv ikony počasí:"
 
-#: contents/ui/WeatherService.qml:1058
+#: contents/ui/WeatherService.qml:1061
 msgid "Weather provider:"
 msgstr "Poskytovatel počasí:"
 
@@ -4372,7 +4369,7 @@ msgstr ""
 #: contents/ui/config/configAppearance.qml:1943
 #: contents/ui/config/configAppearance.qml:2066
 #: contents/ui/config/configNotifications.qml:74
-#: contents/ui/DetailsView.qml:356 contents/ui/main.qml:1124
+#: contents/ui/DetailsView.qml:356 contents/ui/main.qml:1275
 msgid "Wind"
 msgstr "Vítr"
 
@@ -4425,11 +4422,11 @@ msgstr "Třída rentgenové sluneční erupce"
 msgid "Yellow"
 msgstr "Žlutá"
 
-#: contents/ui/config/configLocation.qml:1326
+#: contents/ui/config/configLocation.qml:1379
 msgid "Yes"
 msgstr "Ano"
 
-#: contents/ui/config/configLocation.qml:1454
+#: contents/ui/config/configLocation.qml:1507
 msgid "Yes, remove it"
 msgstr "Ano, odstranit"
 
@@ -4454,11 +4451,11 @@ msgstr "Přiblížit"
 msgid "Zoom out"
 msgstr "Oddálit"
 
-#: contents/ui/main.qml:2056
+#: contents/ui/main.qml:2375
 msgid "a decrease from yesterday"
 msgstr "pokles oproti včerejšku"
 
-#: contents/ui/main.qml:1830
+#: contents/ui/main.qml:2103
 msgid "a few clouds"
 msgstr "místy oblačno"
 
@@ -4466,23 +4463,23 @@ msgstr "místy oblačno"
 msgid "already set"
 msgstr ""
 
-#: contents/ui/main.qml:2055
+#: contents/ui/main.qml:2373
 msgid "an increase from yesterday"
 msgstr "nárůst oproti včerejšku"
 
-#: contents/ui/main.qml:1831
+#: contents/ui/main.qml:2104
 msgid "clear skies"
 msgstr "jasná obloha"
 
-#: contents/ui/main.qml:1829
+#: contents/ui/main.qml:2101
 msgid "cloudy skies"
 msgstr "zataženo"
 
-#: contents/ui/main.qml:1064
+#: contents/ui/main.qml:1194
 msgid "cm"
 msgstr ""
 
-#: contents/ui/main.qml:1826
+#: contents/ui/main.qml:2095
 msgid "drizzle"
 msgstr "mrholení"
 
@@ -4490,7 +4487,7 @@ msgstr "mrholení"
 msgid "e.g. Sofia, Bulgaria"
 msgstr "např. Sofie, Bulharsko"
 
-#: contents/ui/main.qml:2065 contents/ui/main.qml:2110
+#: contents/ui/main.qml:2388 contents/ui/main.qml:2438
 msgid "extreme"
 msgstr "extrémní"
 
@@ -4498,15 +4495,15 @@ msgstr "extrémní"
 msgid "feet"
 msgstr "stopy"
 
-#: contents/ui/main.qml:1827
+#: contents/ui/main.qml:2097
 msgid "fog"
 msgstr "mlha"
 
-#: contents/ui/main.qml:1824
+#: contents/ui/main.qml:2091
 msgid "freezing rain"
 msgstr "mrznoucí déšť"
 
-#: contents/ui/main.qml:1434
+#: contents/ui/main.qml:1647
 msgid "from %1"
 msgstr "od %1"
 
@@ -4523,19 +4520,19 @@ msgstr ""
 msgid "hPa"
 msgstr ""
 
-#: contents/ui/main.qml:2063
+#: contents/ui/main.qml:2385
 msgid "high"
 msgstr "vysoký"
 
-#: contents/ui/main.qml:964 contents/ui/main.qml:1063
+#: contents/ui/main.qml:1060 contents/ui/main.qml:1193
 msgid "in"
 msgstr ""
 
-#: contents/ui/main.qml:1957
+#: contents/ui/main.qml:2267
 msgid "in the next few hours"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:956
+#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:1050
 msgid "in/h"
 msgstr ""
 
@@ -4544,7 +4541,7 @@ msgstr ""
 msgid "inHg"
 msgstr ""
 
-#: contents/ui/main.qml:973 contents/ui/SimpleView.qml:281
+#: contents/ui/main.qml:1071 contents/ui/SimpleView.qml:281
 #: contents/ui/TooltipContent.qml:449
 msgid "km"
 msgstr ""
@@ -4567,7 +4564,7 @@ msgstr ""
 msgid "left"
 msgstr "zbývá"
 
-#: contents/ui/main.qml:2061
+#: contents/ui/main.qml:2381
 msgid "low"
 msgstr "nízký"
 
@@ -4592,11 +4589,11 @@ msgstr "metry"
 msgid "mg/m³"
 msgstr ""
 
-#: contents/ui/main.qml:972
+#: contents/ui/main.qml:1070
 msgid "mi"
 msgstr ""
 
-#: contents/ui/main.qml:2106
+#: contents/ui/main.qml:2430
 msgid "minor"
 msgstr "menší"
 
@@ -4605,11 +4602,11 @@ msgstr "menší"
 msgid "minutes"
 msgstr "minuty"
 
-#: contents/ui/main.qml:965
+#: contents/ui/main.qml:1061
 msgid "mm"
 msgstr ""
 
-#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:957
+#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:1051
 msgid "mm/h"
 msgstr ""
 
@@ -4618,7 +4615,7 @@ msgstr ""
 msgid "mmHg"
 msgstr ""
 
-#: contents/ui/main.qml:2062 contents/ui/main.qml:2107
+#: contents/ui/main.qml:2383 contents/ui/main.qml:2432
 msgid "moderate"
 msgstr "mírný"
 
@@ -4631,7 +4628,7 @@ msgstr ""
 msgid "not available - left unchanged"
 msgstr ""
 
-#: contents/ui/main.qml:1828
+#: contents/ui/main.qml:2099
 msgid "overcast skies"
 msgstr "zcela zataženo"
 
@@ -4649,11 +4646,11 @@ msgstr "px výška"
 msgid "px width"
 msgstr "px šířka"
 
-#: contents/ui/main.qml:2105
+#: contents/ui/main.qml:2428
 msgid "quiet"
 msgstr "klidná"
 
-#: contents/ui/main.qml:1825
+#: contents/ui/main.qml:2093
 msgid "rain"
 msgstr "déšť"
 
@@ -4661,55 +4658,55 @@ msgstr "déšť"
 msgid "selected here"
 msgstr ""
 
-#: contents/ui/main.qml:2109
+#: contents/ui/main.qml:2436
 msgid "severe"
 msgstr "silná"
 
-#: contents/ui/main.qml:1823
+#: contents/ui/main.qml:2089
 msgid "showers"
 msgstr "přeháňky"
 
-#: contents/ui/main.qml:1819
+#: contents/ui/main.qml:2081
 msgid "showers and thunderstorms"
 msgstr "přeháňky a bouřky"
 
-#: contents/ui/main.qml:2057
+#: contents/ui/main.qml:2376
 msgid "similar to yesterday"
 msgstr "podobné jako včera"
 
-#: contents/ui/main.qml:1822
+#: contents/ui/main.qml:2087
 msgid "snow"
 msgstr "sníh"
 
-#: contents/ui/main.qml:1821
+#: contents/ui/main.qml:2085
 msgid "snow showers"
 msgstr "sněhové přeháňky"
 
-#: contents/ui/main.qml:2108
+#: contents/ui/main.qml:2434
 msgid "strong"
 msgstr "silná"
 
-#: contents/ui/config/configLocation.qml:971
+#: contents/ui/config/configLocation.qml:1018
 msgid "system location"
 msgstr "systémová poloha"
 
-#: contents/ui/main.qml:1960
+#: contents/ui/main.qml:2272
 msgid "this afternoon"
 msgstr "dnes odpoledne"
 
-#: contents/ui/main.qml:1959
+#: contents/ui/main.qml:2270
 msgid "this morning"
 msgstr "dnes ráno"
 
-#: contents/ui/main.qml:1820
+#: contents/ui/main.qml:2083
 msgid "thunderstorms"
 msgstr "bouřky"
 
-#: contents/ui/main.qml:1961
+#: contents/ui/main.qml:2273
 msgid "tonight"
 msgstr "dnes večer"
 
-#: contents/ui/main.qml:1435
+#: contents/ui/main.qml:1649
 msgid "until %1"
 msgstr "do %1"
 
@@ -4717,7 +4714,7 @@ msgstr "do %1"
 msgid "until dawn"
 msgstr "do úsvitu"
 
-#: contents/ui/main.qml:2064
+#: contents/ui/main.qml:2387
 msgid "very high"
 msgstr "velmi vysoký"
 
@@ -4725,8 +4722,8 @@ msgstr "velmi vysoký"
 msgid "will be changed"
 msgstr ""
 
-#: contents/ui/main.qml:1442 contents/ui/main.qml:1799
-#: contents/ui/main.qml:1872
+#: contents/ui/main.qml:1657 contents/ui/main.qml:2054
+#: contents/ui/main.qml:2168
 msgid "your location"
 msgstr "vaše poloha"
 

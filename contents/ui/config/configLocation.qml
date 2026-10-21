@@ -698,7 +698,48 @@ KCM.SimpleKCM {
         }
     }
 
-    function reverseGeocode(lat, lon) {
+    /** Joins "City, Region, Country", skipping empty parts and parts that
+     *  repeat an earlier one (e.g. city-states where city == region). */
+    function _ipLocationName(city, region, country) {
+        var parts = [];
+        [city, region, country].forEach(function (p) {
+            p = (p || "").trim();
+            if (p.length > 0 && parts.every(function (x) {
+                return x.toLowerCase() !== p.toLowerCase();
+            }))
+                parts.push(p);
+        });
+        return parts.join(", ");
+    }
+
+    // Stores a detected name / country code the same way the reverse-geocode
+    // result is stored: staged for the confirm dialog on first detection,
+    // otherwise written straight to the config.
+    function _applyDetectedNameAndCountry(name, countryCode) {
+        if (name && name.length > 0) {
+            if (shouldConfirmAutoDetectedLocation()) {
+                root.detectedLocationName = name;
+                root.showDetectedLocationDialog = true;
+            } else {
+                cfg_locationName = name;
+                Plasmoid.configuration.locationName = name;
+            }
+        }
+        var cc = (countryCode || "").toUpperCase();
+        if (cc.length > 0) {
+            if (shouldConfirmAutoDetectedLocation()) {
+                root.detectedCountryCode = cc;
+            } else {
+                cfg_countryCode = cc;
+                Plasmoid.configuration.countryCode = cc;
+            }
+        }
+    }
+
+    // ipInfo (optional, IP-based tier only): { name, countryCode } from the IP
+    // geolocation response. When it carries a name, the Photon reverse
+    // geocode is skipped and that name is used directly.
+    function reverseGeocode(lat, lon, ipInfo) {
         stageDetectedLocation(lat, lon, NaN, "", "");
         var metaReq = new XMLHttpRequest();
         metaReq.open("GET", "https://api.open-meteo.com/v1/forecast?latitude=" + encodeURIComponent(lat) + "&longitude=" + encodeURIComponent(lon) + "&current=temperature_2m&timezone=auto");
@@ -738,6 +779,12 @@ KCM.SimpleKCM {
             }
         };
         metaReq.send();
+        if (ipInfo && ipInfo.name && ipInfo.name.length > 0) {
+            _applyDetectedNameAndCountry(ipInfo.name, ipInfo.countryCode);
+            autoDetectStatus = i18n("Location auto-detected.");
+            autoDetectBusy = false;
+            return;
+        }
         var req = new XMLHttpRequest();
         // Photon reverse geocoding (OpenStreetMap data). lang=default gives local-language names,
         // the same as the location search. radius is in km: nearest object within 20 km.
@@ -817,13 +864,13 @@ KCM.SimpleKCM {
     // ── 3-tier auto-detection ───────────────────────────────────────────
     // Tier 1: GeoClue2 explicitly
     // Tier 2: Any available Qt Positioning plugin
-    // Tier 3: IP geolocation (geo.kamero.ai → reallyfreegeoip.org)
+    // Tier 3: IP geolocation (ip-api.com → reallyfreegeoip.org)
     // Which tier is active: 0 = idle, 1 = geoclue2, 2 = generic, 3 = IP
     property int _cfgLocationTier: 0
     // GeoClue2 / Qt Positioning can report several fixes for one detection; only the first is used.
     property bool _cfgFixHandled: false
 
-    function _cfgHandlePosition(lat, lon, alt, tierLabel) {
+    function _cfgHandlePosition(lat, lon, alt, tierLabel, ipInfo) {
         if (_cfgFixHandled) {
             console.warn("[LocationSearch] duplicate position fix ignored");
             return;
@@ -856,7 +903,7 @@ KCM.SimpleKCM {
             }
         }
         autoDetectStatus = i18n("Requesting location… (%1)", tierLabel);
-        root.reverseGeocode(lat, lon);
+        root.reverseGeocode(lat, lon, ipInfo);
     }
 
     function refreshAutoDetectedLocation() {
@@ -982,29 +1029,32 @@ KCM.SimpleKCM {
 
     // Tier 3 - IP-based geolocation
     function _cfgIpGeolocate() {
-        console.log("[Location/config] Tier 3: trying geo.kamero.ai…");
+        console.log("[Location/config] Tier 3: trying ip-api.com…");
         var req = new XMLHttpRequest();
         _cfgIpGeoTimer._activeReq = req;
         _cfgIpGeoTimer.restart();
-        req.open("GET", "https://geo.kamero.ai/api/geo");
+        req.open("GET", "http://ip-api.com/json/?fields=status,lat,lon,city,regionName,country,countryCode");
         req.onreadystatechange = function () {
             if (req.readyState !== XMLHttpRequest.DONE)
                 return;
             if (req.status === 200) {
                 try {
                     var data = JSON.parse(req.responseText);
-                    var lat = parseFloat(data.latitude);
-                    var lon = parseFloat(data.longitude);
-                    if (!isNaN(lat) && !isNaN(lon)) {
+                    var lat = parseFloat(data.lat);
+                    var lon = parseFloat(data.lon);
+                    if (data.status === "success" && !isNaN(lat) && !isNaN(lon)) {
                         _cfgIpGeoTimer.stop();
                         _cfgIpGeoTimer._activeReq = null;
                         _cfgLocationTier = 0;
-                        console.log("[Location/config] Tier 3 (geo.kamero.ai): position acquired");
-                        _cfgHandlePosition(lat, lon, NaN, i18n("IP geolocation"));
+                        console.log("[Location/config] Tier 3 (ip-api.com): position acquired");
+                        _cfgHandlePosition(lat, lon, NaN, i18n("IP geolocation"), {
+                            name: _ipLocationName(data.city, data.regionName, data.country),
+                            countryCode: data.countryCode || ""
+                        });
                         return;
                     }
                 } catch (e) {
-                    console.warn("[Location/config] geo.kamero.ai parse error:", e);
+                    console.warn("[Location/config] ip-api.com parse error:", e);
                 }
             }
             _cfgIpGeolocateFallback();
@@ -1031,7 +1081,10 @@ KCM.SimpleKCM {
                     if (!isNaN(lat) && !isNaN(lon)) {
                         _cfgLocationTier = 0;
                         console.log("[Location/config] Tier 3 (reallyfreegeoip): position acquired");
-                        _cfgHandlePosition(lat, lon, NaN, i18n("IP geolocation"));
+                        _cfgHandlePosition(lat, lon, NaN, i18n("IP geolocation"), {
+                            name: _ipLocationName(data.city, data.region_name, data.country_name),
+                            countryCode: data.country_code || ""
+                        });
                         return;
                     }
                 } catch (e) {

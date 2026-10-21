@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Weather Widget\n"
 "Report-Msgid-Bugs-To: https://github.com/pnedyalkov91/advanced-weather-widget/issues\n"
-"POT-Creation-Date: 2026-10-13 06:29+0300\n"
+"POT-Creation-Date: 2026-10-21 13:44+0300\n"
 "PO-Revision-Date: 2026-09-30 14:31+0800\n"
 "Last-Translator: kang guo\n"
 "Language-Team: Chinese (Simplified)\n"
@@ -20,31 +20,31 @@ msgstr ""
 msgid " until dawn"
 msgstr " 后天亮"
 
-#: contents/ui/main.qml:1858
+#: contents/ui/main.qml:2154
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: contents/ui/main.qml:1802
+#: contents/ui/main.qml:2057
 msgid "%1 - Today"
 msgstr "%1 - 今天"
 
-#: contents/ui/main.qml:1875
+#: contents/ui/main.qml:2171
 msgid "%1 - Tomorrow"
 msgstr "%1 - 明天"
 
-#: contents/ui/main.qml:2010
+#: contents/ui/main.qml:2324
 msgid "%1 is ending"
 msgstr "%1 即将结束"
 
-#: contents/ui/main.qml:2004
+#: contents/ui/main.qml:2318
 msgid "%1 is expected"
 msgstr "预计出现 %1"
 
-#: contents/ui/main.qml:2011
+#: contents/ui/main.qml:2325
 msgid "%1 is expected to end %2."
 msgstr "预计%1将在%2结束。"
 
-#: contents/ui/main.qml:2005
+#: contents/ui/main.qml:2319
 msgid "%1 is possible %2."
 msgstr "%2可能出现%1。"
 
@@ -52,7 +52,7 @@ msgstr "%2可能出现%1。"
 msgid "%1 px"
 msgstr "%1 px"
 
-#: contents/ui/main.qml:1787
+#: contents/ui/main.qml:2043
 msgid "%1 there will be %2 with a low of %3 and a high of %4."
 msgstr "%1天气为%2，最低%3，最高%4。"
 
@@ -94,7 +94,7 @@ msgstr "0 = 自动（每个条目 120 px）。如果数值被截断，请增大�
 msgid "0 = auto. Increase if items are cut off."
 msgstr "0 = 自动。如果项目被截断，请增大此值。"
 
-#: contents/ui/main.qml:1099
+#: contents/ui/main.qml:1235
 msgid "1 Alert"
 msgstr "1 条警报"
 
@@ -143,11 +143,11 @@ msgstr "512 px"
 msgid "68°F"
 msgstr "68°F"
 
-#: contents/ui/main.qml:1496
+#: contents/ui/main.qml:1724
 msgid "<b>Effective:</b> %1"
 msgstr "<b>生效时间：</b> %1"
 
-#: contents/ui/main.qml:1493 contents/ui/main.qml:1570
+#: contents/ui/main.qml:1721 contents/ui/main.qml:1812
 msgid "<b>Headline:</b> %1"
 msgstr "<b>标题：</b> %1"
 
@@ -159,20 +159,20 @@ msgstr ""
 "<b>混合显卡 / NVIDIA PRIME + Wayland 崩溃临时解决方案</b><br/><br/>在某些运行 Wayland 的混合显卡笔记本电脑上，由于两块显卡之间存在驱动层面的冲突，雷达标签页中的嵌入式浏览器视图可能在首次绘制画面时导致整个 Plasma 桌面外壳崩溃。此选项会禁用该浏览器视图中的 GPU 加速合成，以避免这一问题。<br/><br/>仅在确实遇到此类崩溃时启用此选项，因为它会降低雷达地图的渲染性能。<br/><br/><b>需要注销并重新登录才能生效</b>，因为此设置必须在 Plasma 启动前应用。它也会影响整个会话，因此其他嵌入 Chromium 浏览器视图的应用程序也会使用同一设置。之后关闭此选项时，同样需要注销并重新登录，才能彻底清除此设置。\n"
 "        <br/><br/>启用此选项后，将创建以下文件：~/.config/plasma-workspace/env/advanced-weather-widget-radar-gpu-workaround.sh"
 
-#: contents/ui/main.qml:1499
+#: contents/ui/main.qml:1727
 msgid "<b>Instruction:</b> %1"
 msgstr "<b>应对建议：</b> %1"
 
-#: contents/ui/main.qml:1502 contents/ui/main.qml:1576
+#: contents/ui/main.qml:1730 contents/ui/main.qml:1818
 msgid "<b>Provider:</b> %1"
 msgstr "<b>数据源：</b> %1"
 
-#: contents/ui/main.qml:1491 contents/ui/main.qml:1568
+#: contents/ui/main.qml:1719 contents/ui/main.qml:1810
 #, javascript-format
 msgid "<b>Severity:</b> %1%2"
 msgstr "<b>严重程度：</b> %1%2"
 
-#: contents/ui/main.qml:1573
+#: contents/ui/main.qml:1815
 msgid "<b>Starts:</b> %1"
 msgstr "<b>开始时间：</b> %1"
 
@@ -205,11 +205,11 @@ msgstr "AEMET 仅覆盖西班牙境内的位置，其他位置会显示“失败
 msgid "AEMET provides hourly forecasts for up to 48 hours. Daily forecast is still available for this date."
 msgstr "AEMET 最多提供未来 48 小时的逐小时预报。此日期仍可查看每日预报。"
 
-#: contents/ui/WeatherService.qml:1123
+#: contents/ui/WeatherService.qml:1126
 msgid "AEMET: request failed - retrying automatically."
 msgstr "AEMET：请求失败，正在自动重试。"
 
-#: contents/ui/WeatherService.qml:1120
+#: contents/ui/WeatherService.qml:1123
 msgid "AEMET: request limit reached - retrying automatically in a minute."
 msgstr "AEMET：已达到请求次数限制，将在 1 分钟后自动重试。"
 
@@ -265,7 +265,7 @@ msgstr "添加位置"
 msgid "Advanced (all tabs)"
 msgstr "高级（所有标签页）"
 
-#: contents/ui/main.qml:1838
+#: contents/ui/main.qml:2118
 msgid "Afternoon"
 msgstr "下午"
 
@@ -328,7 +328,7 @@ msgid "Air quality options"
 msgstr "空气质量选项"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:653
-#: contents/ui/DetailsView.qml:1518 contents/ui/main.qml:1038
+#: contents/ui/DetailsView.qml:1518 contents/ui/main.qml:1153
 msgid "Alder"
 msgstr "桤木"
 
@@ -396,7 +396,7 @@ msgstr "同时通知例行测试警报"
 msgid "Alt: %1 %2"
 msgstr "海拔：%1 %2"
 
-#: contents/ui/config/configLocation.qml:1879
+#: contents/ui/config/configLocation.qml:1932
 msgid "Alt: %1 m"
 msgstr "海拔：%1 m"
 
@@ -448,7 +448,7 @@ msgstr "外观"
 msgid "Apply Settings?"
 msgstr "应用设置？"
 
-#: contents/ui/config/configLocation.qml:1236
+#: contents/ui/config/configLocation.qml:1289
 msgid "Apply detected location"
 msgstr "应用检测到的位置"
 
@@ -464,7 +464,7 @@ msgstr "应用图标主题"
 msgid "Apply only here"
 msgstr "仅应用到此处"
 
-#: contents/ui/config/configLocation.qml:1445
+#: contents/ui/config/configLocation.qml:1498
 msgid "Are you sure? This is your last saved location. If you remove it, the widget will no longer show weather information."
 msgstr "确定吗？这是最后一个已保存位置。移除后，小组件将不再显示天气信息。"
 
@@ -512,15 +512,15 @@ msgstr "自动（保存时检测）"
 msgid "Auto (device)"
 msgstr "自动（根据设备）"
 
-#: contents/ui/config/configLocation.qml:1590
+#: contents/ui/config/configLocation.qml:1643
 msgid "Auto-detection first asks GeoClue2, the system location service, for your current position. If system location is unavailable, the widget estimates your location from your public IP address, which is usually less precise and only updates when detection runs again."
 msgstr "自动检测会先向系统定位服务 GeoClue2 请求你的当前位置。如果系统定位不可用，小组件会根据你的公网 IP 地址估算位置，这通常不太精确，而且只会在再次运行检测时更新。"
 
-#: contents/ui/config/configLocation.qml:1550
+#: contents/ui/config/configLocation.qml:1603
 msgid "Auto-detection is limited without QtLocation and QtPositioning. It will fall back to IP-based detection, which may be less accurate and will not update in real time as you move. If you want to improve auto-detection accuracy, please install the required packages for your distribution. For more details, see the install guide."
 msgstr "缺少 QtLocation 和 QtPositioning 时，自动检测功能会受限。它会回退到基于 IP 的定位，准确性可能较低，并且在你移动时不会实时更新。如果想提高自动检测准确性，请安装你的发行版所需的软件包。详情请参阅安装指南。"
 
-#: contents/ui/config/configLocation.qml:810
+#: contents/ui/config/configLocation.qml:857
 msgid "Auto-detection updated coordinates."
 msgstr "自动检测已更新坐标。"
 
@@ -541,7 +541,7 @@ msgstr "自动（根据位置）"
 msgid "Automatic uses US AQI worldwide, switching to European CAQI or Canadian AQHI based on your location's country."
 msgstr "自动模式默认在全球使用美国 AQI，并根据所在国家切换为欧洲 CAQI 或加拿大 AQHI。"
 
-#: contents/ui/config/configLocation.qml:1574
+#: contents/ui/config/configLocation.qml:1627
 msgid "Automatically detect location"
 msgstr "自动检测位置"
 
@@ -551,7 +551,7 @@ msgstr "自动检测位置"
 msgid "Available"
 msgstr "可用"
 
-#: contents/ui/config/configNotifications.qml:82 contents/ui/main.qml:1132
+#: contents/ui/config/configNotifications.qml:82 contents/ui/main.qml:1307
 msgid "Avalanche"
 msgstr "雪崩"
 
@@ -601,7 +601,7 @@ msgid "Behavior"
 msgstr "行为"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:654
-#: contents/ui/DetailsView.qml:1520 contents/ui/main.qml:1039
+#: contents/ui/DetailsView.qml:1520 contents/ui/main.qml:1156
 msgid "Birch"
 msgstr "桦树"
 
@@ -670,14 +670,14 @@ msgstr "加拿大 AQHI（1-10+）"
 
 #: contents/ui/config/configAppearance.qml:506
 #: contents/ui/config/configAppearance.qml:1034
-#: contents/ui/config/configLocation.qml:1472
+#: contents/ui/config/configLocation.qml:1525
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:85
 #: contents/ui/config/subpages/ConfigPanelSubPage.qml:68
 #: contents/ui/config/subpages/ConfigTooltipSubPage.qml:67
 msgid "Cancel"
 msgstr "取消"
 
-#: contents/ui/config/configLocation.qml:1943
+#: contents/ui/config/configLocation.qml:1996
 msgid "Cancel rename"
 msgstr "取消重命名"
 
@@ -746,12 +746,12 @@ msgstr "选择面板字体"
 msgid "Choose a custom icon for this item"
 msgstr "为此项目选择自定义图标"
 
-#: contents/ui/config/configLocation.qml:1663
+#: contents/ui/config/configLocation.qml:1716
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:317
 msgid "Choose on Map"
 msgstr "在地图上选择"
 
-#: contents/ui/config/configLocation.qml:1260
+#: contents/ui/config/configLocation.qml:1313
 msgid "Choose on map"
 msgstr "在地图上选择"
 
@@ -771,13 +771,13 @@ msgstr "晴朗（白天）"
 msgid "Clear (night)"
 msgstr "晴朗（夜间）"
 
-#: contents/ui/main.qml:2232
+#: contents/ui/main.qml:2568
 msgid "Clear night"
 msgstr "晴朗夜晚"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:48
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:610
-#: contents/ui/main.qml:2232
+#: contents/ui/main.qml:2568
 msgid "Clear sky"
 msgstr "晴朗"
 
@@ -797,7 +797,7 @@ msgstr "点击配置位置"
 msgid "Clouds"
 msgstr "云层"
 
-#: contents/ui/config/configNotifications.qml:80 contents/ui/main.qml:1130
+#: contents/ui/config/configNotifications.qml:80 contents/ui/main.qml:1299
 msgid "Coastal event"
 msgstr "沿海事件"
 
@@ -865,11 +865,11 @@ msgstr "配置天气图标…"
 msgid "Configure…"
 msgstr "配置…"
 
-#: contents/ui/config/configLocation.qml:1935
+#: contents/ui/config/configLocation.qml:1988
 msgid "Confirm rename"
 msgstr "确认重命名"
 
-#: contents/ui/config/configLocation.qml:1190
+#: contents/ui/config/configLocation.qml:1243
 msgid "Confirm your location"
 msgstr "确认您的位置"
 
@@ -1018,7 +1018,7 @@ msgstr "默认"
 msgid "Default (built-in siren)"
 msgstr "默认（内置警笛声）"
 
-#: contents/ui/config/configLocation.qml:1910
+#: contents/ui/config/configLocation.qml:1963
 msgid "Default location (click to unset)"
 msgstr "默认位置（点击取消设置）"
 
@@ -1056,7 +1056,7 @@ msgstr "详情布局："
 msgid "Details only"
 msgstr "仅详情"
 
-#: contents/ui/main.qml:407
+#: contents/ui/main.qml:443
 msgid "Detect / change location"
 msgstr "检测 / 更改位置"
 
@@ -1064,7 +1064,7 @@ msgstr "检测 / 更改位置"
 msgid "Detect / change location…"
 msgstr "检测 / 更改位置…"
 
-#: contents/ui/config/configLocation.qml:1606
+#: contents/ui/config/configLocation.qml:1659
 msgid "Detecting…"
 msgstr "正在检测…"
 
@@ -1103,7 +1103,7 @@ msgstr "已禁用"
 msgid "Discard"
 msgstr "丢弃"
 
-#: contents/ui/main.qml:557
+#: contents/ui/main.qml:591
 msgid "Dismiss"
 msgstr "忽略"
 
@@ -1138,7 +1138,7 @@ msgid "Drag to reorder shown items"
 msgstr "拖动以重新排序显示的项目"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:53
-#: contents/ui/main.qml:2246
+#: contents/ui/main.qml:2582
 msgid "Drizzle"
 msgstr "毛毛雨"
 
@@ -1146,7 +1146,7 @@ msgstr "毛毛雨"
 msgid "Dual temperature"
 msgstr "双温度显示"
 
-#: contents/ui/main.qml:1474
+#: contents/ui/main.qml:1694
 msgctxt "Alert severity"
 msgid "EXTREME"
 msgstr "极端"
@@ -1171,7 +1171,7 @@ msgstr "节能（8 到 10 帧/秒）"
 msgid "Edit Saved Location"
 msgstr "编辑已保存位置"
 
-#: contents/ui/config/configLocation.qml:1965
+#: contents/ui/config/configLocation.qml:2018
 msgid "Edit location details"
 msgstr "编辑位置详情"
 
@@ -1219,7 +1219,7 @@ msgstr "已启用"
 msgid "Enter Location"
 msgstr "输入位置"
 
-#: contents/ui/config/configLocation.qml:1677
+#: contents/ui/config/configLocation.qml:1730
 msgid "Enter Manually"
 msgstr "手动输入"
 
@@ -1227,11 +1227,11 @@ msgstr "手动输入"
 msgid "Enter a location name and valid coordinates, then click the main Apply button."
 msgstr "输入位置名称和有效坐标，然后点击主“应用”按钮。"
 
-#: contents/ui/config/configLocation.qml:1681
+#: contents/ui/config/configLocation.qml:1734
 msgid "Enter exact latitude, longitude, and optional elevation for a more local forecast. You can copy coordinates from OpenStreetMap, GeoNames, or Google Maps."
 msgstr "输入精确的纬度、经度以及可选的海拔，以获得更本地化的预报。你可以从 OpenStreetMap、GeoNames 或 Google Maps 复制坐标。"
 
-#: contents/ui/config/configLocation.qml:1250
+#: contents/ui/config/configLocation.qml:1303
 msgid "Enter manually"
 msgstr "手动输入"
 
@@ -1309,7 +1309,7 @@ msgid "Expires"
 msgstr "失效时间"
 
 #: contents/ui/js/airQuality.js:95 contents/ui/js/spaceWeather.js:172
-#: contents/ui/js/spaceWeather.js:186 contents/ui/main.qml:1004
+#: contents/ui/js/spaceWeather.js:186 contents/ui/main.qml:1109
 msgid "Extreme"
 msgstr "极端"
 
@@ -1329,15 +1329,15 @@ msgstr "FOSS Public Alert Server"
 msgid "Fahrenheit (°F)"
 msgstr "华氏度（°F）"
 
-#: contents/ui/WeatherService.qml:1156
+#: contents/ui/WeatherService.qml:1159
 msgid "Failed to load weather providers"
 msgstr "加载天气数据源失败"
 
-#: contents/ui/WeatherService.qml:1142
+#: contents/ui/WeatherService.qml:1145
 msgid "Failed: %1"
 msgstr "失败：%1"
 
-#: contents/ui/WeatherService.qml:1140
+#: contents/ui/WeatherService.qml:1143
 msgid "Failed: %1 — retrying…"
 msgstr "失败：%1 — 正在重试…"
 
@@ -1372,7 +1372,7 @@ msgstr "填满面板："
 msgid "Find"
 msgstr "查找"
 
-#: contents/ui/main.qml:2467
+#: contents/ui/main.qml:2802
 msgid "First Quarter"
 msgstr "上弦月"
 
@@ -1393,7 +1393,7 @@ msgstr "耀斑预警"
 msgid "Flat Color (Bundled)"
 msgstr "扁平彩色（内置）"
 
-#: contents/ui/config/configNotifications.qml:84 contents/ui/main.qml:1134
+#: contents/ui/config/configNotifications.qml:84 contents/ui/main.qml:1315
 msgid "Flood"
 msgstr "洪水"
 
@@ -1401,7 +1401,7 @@ msgstr "洪水"
 #: contents/ui/config/configNotifications.qml:77
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:52
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:618
-#: contents/ui/main.qml:1127 contents/ui/main.qml:2240
+#: contents/ui/main.qml:1287 contents/ui/main.qml:2576
 msgid "Fog"
 msgstr "雾"
 
@@ -1440,7 +1440,7 @@ msgstr "仅预报"
 msgid "Forecast:"
 msgstr "预报："
 
-#: contents/ui/config/configNotifications.qml:81 contents/ui/main.qml:1131
+#: contents/ui/config/configNotifications.qml:81 contents/ui/main.qml:1303
 msgid "Forest fire"
 msgstr "森林火灾"
 
@@ -1462,7 +1462,7 @@ msgstr "免费且开源。无需 API 密钥。推荐使用。"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:54
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:626
-#: contents/ui/main.qml:2252
+#: contents/ui/main.qml:2588
 msgid "Freezing drizzle"
 msgstr "冻毛毛雨"
 
@@ -1476,7 +1476,7 @@ msgstr "冻毛毛雨（夜间）"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:56
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:634
-#: contents/ui/main.qml:2262
+#: contents/ui/main.qml:2598
 msgid "Freezing rain"
 msgstr "冻雨"
 
@@ -1492,7 +1492,7 @@ msgstr "冻雨（夜间）"
 msgid "Friday"
 msgstr "星期五"
 
-#: contents/ui/main.qml:2471
+#: contents/ui/main.qml:2806
 msgid "Full Moon"
 msgstr "满月"
 
@@ -1500,7 +1500,7 @@ msgstr "满月"
 msgid "Future alerts"
 msgstr "未来警报"
 
-#: contents/ui/config/configLocation.qml:1606
+#: contents/ui/config/configLocation.qml:1659
 msgid "GPS / GeoClue2 unavailable (install qt6-qtlocation for best accuracy). Using IP-based detection."
 msgstr "GPS / GeoClue2 不可用（安装 qt6-qtlocation 可获得最佳准确性）。正在使用基于 IP 的定位。"
 
@@ -1510,7 +1510,7 @@ msgstr "GPS / GeoClue2 不可用（安装 qt6-qtlocation 可获得最佳准确�
 msgid "General"
 msgstr "常规"
 
-#: contents/ui/config/configLocation.qml:884
+#: contents/ui/config/configLocation.qml:931
 msgid "GeoClue2 unavailable, trying system location…"
 msgstr "GeoClue2 不可用，正在尝试系统位置…"
 
@@ -1519,11 +1519,11 @@ msgstr "GeoClue2 不可用，正在尝试系统位置…"
 msgid "Geomagnetic Storm"
 msgstr "地磁暴"
 
-#: contents/ui/config/configNotifications.qml:701 contents/ui/main.qml:2133
+#: contents/ui/config/configNotifications.qml:701 contents/ui/main.qml:2461
 msgid "Geomagnetic activity"
 msgstr "地磁活动"
 
-#: contents/ui/main.qml:2130
+#: contents/ui/main.qml:2457
 msgid "Geomagnetic activity is expected to be %1 (Kp %2)"
 msgstr "预计地磁活动为%1（Kp %2）"
 
@@ -1536,7 +1536,7 @@ msgid "Good"
 msgstr "良好"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:655
-#: contents/ui/DetailsView.qml:1522 contents/ui/main.qml:1040
+#: contents/ui/DetailsView.qml:1522 contents/ui/main.qml:1159
 msgid "Grass"
 msgstr "禾草"
 
@@ -1561,20 +1561,20 @@ msgstr "紧急健康警告：每个人都更容易受到健康影响。"
 msgid "Heavy"
 msgstr "强"
 
-#: contents/ui/main.qml:2248
+#: contents/ui/main.qml:2584
 msgid "Heavy drizzle"
 msgstr "强毛毛雨"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:632
-#: contents/ui/main.qml:2258
+#: contents/ui/main.qml:2594
 msgid "Heavy rain"
 msgstr "大雨"
 
-#: contents/ui/main.qml:2276
+#: contents/ui/main.qml:2612
 msgid "Heavy showers"
 msgstr "强阵雨"
 
-#: contents/ui/main.qml:2268
+#: contents/ui/main.qml:2604
 msgid "Heavy snow"
 msgstr "大雪"
 
@@ -1586,7 +1586,7 @@ msgstr "强阵雪"
 msgid "Heavy snowfall"
 msgstr "大雪"
 
-#: contents/ui/main.qml:2286
+#: contents/ui/main.qml:2622
 msgid "Heavy thunderstorm with hail"
 msgstr "强雷暴伴冰雹"
 
@@ -1607,7 +1607,7 @@ msgstr "隐藏前缀图标"
 #: contents/ui/DetailsView.qml:1114 contents/ui/FullView.qml:521
 #: contents/ui/js/airQuality.js:122 contents/ui/js/pollen.js:44
 #: contents/ui/js/spaceWeather.js:187 contents/ui/js/spaceWeather.js:199
-#: contents/ui/main.qml:1002 contents/ui/main.qml:1034
+#: contents/ui/main.qml:1106 contents/ui/main.qml:1147
 msgid "High"
 msgstr "高"
 
@@ -1619,7 +1619,7 @@ msgstr "高风险"
 msgid "High precision forecast provider. API key required below."
 msgstr "高精度预报数据源。需要在下方填写 API 密钥。"
 
-#: contents/ui/config/configNotifications.qml:78 contents/ui/main.qml:1128
+#: contents/ui/config/configNotifications.qml:78 contents/ui/main.qml:1291
 msgid "High temperature"
 msgstr "高温"
 
@@ -1662,8 +1662,8 @@ msgstr "湿度"
 msgid "Humidity:"
 msgstr "湿度："
 
-#: contents/ui/config/configLocation.qml:1003
-#: contents/ui/config/configLocation.qml:1034
+#: contents/ui/config/configLocation.qml:1050
+#: contents/ui/config/configLocation.qml:1084
 msgid "IP geolocation"
 msgstr "IP 地理定位"
 
@@ -1710,7 +1710,7 @@ msgstr "图标"
 msgid "Ideal air quality for outdoor activities."
 msgstr "空气质量理想，适合户外活动。"
 
-#: contents/ui/config/configLocation.qml:1226
+#: contents/ui/config/configLocation.qml:1279
 msgid "If this looks correct, apply it. Otherwise, choose your location manually."
 msgstr "如果看起来正确，请应用它。否则，请手动选择您的位置。"
 
@@ -1738,7 +1738,7 @@ msgstr ""
 msgid "Individual units"
 msgstr "各项单位"
 
-#: contents/ui/config/configLocation.qml:1173
+#: contents/ui/config/configLocation.qml:1226
 msgid ""
 "Install it for your distribution:\n"
 "  • Fedora / RHEL / Arch: qt6-qtlocation\n"
@@ -1884,7 +1884,7 @@ msgstr "Kp 指数/G 级别预报："
 msgid "Large"
 msgstr "大"
 
-#: contents/ui/main.qml:2475
+#: contents/ui/main.qml:2810
 msgid "Last Quarter"
 msgstr "下弦月"
 
@@ -1933,19 +1933,19 @@ msgid "Light"
 msgstr "弱"
 
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:620
-#: contents/ui/main.qml:2244
+#: contents/ui/main.qml:2580
 msgid "Light drizzle"
 msgstr "小毛毛雨"
 
-#: contents/ui/main.qml:2250
+#: contents/ui/main.qml:2586
 msgid "Light freezing drizzle"
 msgstr "小冻毛毛雨"
 
-#: contents/ui/main.qml:2260
+#: contents/ui/main.qml:2596
 msgid "Light freezing rain"
 msgstr "小冻雨"
 
-#: contents/ui/main.qml:2254
+#: contents/ui/main.qml:2590
 msgid "Light rain"
 msgstr "小雨"
 
@@ -1957,11 +1957,11 @@ msgstr "小雨 / 毛毛雨（白天）"
 msgid "Light rain / Drizzle (night)"
 msgstr "小雨 / 毛毛雨（夜间）"
 
-#: contents/ui/main.qml:2272
+#: contents/ui/main.qml:2608
 msgid "Light showers"
 msgstr "小阵雨"
 
-#: contents/ui/main.qml:2264
+#: contents/ui/main.qml:2600
 msgid "Light snow"
 msgstr "小雪"
 
@@ -1973,7 +1973,7 @@ msgstr "小雪（白天）"
 msgid "Light snow (night)"
 msgstr "小雪（夜间）"
 
-#: contents/ui/main.qml:2278
+#: contents/ui/main.qml:2614
 msgid "Light snow showers"
 msgstr "小阵雪"
 
@@ -2034,11 +2034,12 @@ msgstr "位置“%1”已在你的已保存列表中。你可以应用所选位�
 msgid "Location Name"
 msgstr "位置名称"
 
-#: contents/ui/config/configLocation.qml:808
+#: contents/ui/config/configLocation.qml:784
+#: contents/ui/config/configLocation.qml:855
 msgid "Location auto-detected."
 msgstr "已自动检测位置。"
 
-#: contents/ui/config/configLocation.qml:1606
+#: contents/ui/config/configLocation.qml:1659
 msgid "Location detection is depending on system configuration and permissions."
 msgstr "位置检测取决于系统配置和权限。"
 
@@ -2063,7 +2064,7 @@ msgstr "位置名称"
 msgid "Location name:"
 msgstr "位置名称："
 
-#: contents/ui/config/configLocation.qml:1587
+#: contents/ui/config/configLocation.qml:1640
 msgid "Location package notice"
 msgstr "定位软件包提示"
 
@@ -2107,7 +2108,7 @@ msgstr "正在查找位置…"
 #: contents/ui/DetailsView.qml:1114 contents/ui/FullView.qml:541
 #: contents/ui/js/airQuality.js:120 contents/ui/js/pollen.js:42
 #: contents/ui/js/spaceWeather.js:189 contents/ui/js/spaceWeather.js:201
-#: contents/ui/main.qml:1000 contents/ui/main.qml:1032
+#: contents/ui/main.qml:1102 contents/ui/main.qml:1143
 msgid "Low"
 msgstr "低"
 
@@ -2115,21 +2116,21 @@ msgstr "低"
 msgid "Low Risk"
 msgstr "低风险"
 
-#: contents/ui/config/configNotifications.qml:79 contents/ui/main.qml:1129
+#: contents/ui/config/configNotifications.qml:79 contents/ui/main.qml:1295
 msgid "Low temperature"
 msgstr "低温"
 
-#: contents/ui/main.qml:1479
+#: contents/ui/main.qml:1707
 msgctxt "Alert severity"
 msgid "MINIMAL"
 msgstr "最低"
 
-#: contents/ui/main.qml:1477
+#: contents/ui/main.qml:1703
 msgctxt "Alert severity"
 msgid "MINOR"
 msgstr "轻微"
 
-#: contents/ui/main.qml:1476
+#: contents/ui/main.qml:1700
 msgctxt "Alert severity"
 msgid "MODERATE"
 msgstr "中等"
@@ -2144,7 +2145,7 @@ msgstr "主图标样式："
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:49
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:612
-#: contents/ui/main.qml:2234
+#: contents/ui/main.qml:2570
 msgid "Mainly clear"
 msgstr "大部晴朗"
 
@@ -2234,7 +2235,7 @@ msgstr "模式："
 #: contents/ui/js/airQuality.js:92 contents/ui/js/airQuality.js:103
 #: contents/ui/js/airQuality.js:121 contents/ui/js/pollen.js:43
 #: contents/ui/js/spaceWeather.js:188 contents/ui/js/spaceWeather.js:200
-#: contents/ui/main.qml:1001 contents/ui/main.qml:1033
+#: contents/ui/main.qml:1104 contents/ui/main.qml:1145
 msgid "Moderate"
 msgstr "中等"
 
@@ -2366,7 +2367,7 @@ msgstr "仅月落"
 msgid "Moonset:"
 msgstr "月落："
 
-#: contents/ui/main.qml:1837
+#: contents/ui/main.qml:2111
 msgid "Morning"
 msgstr "上午"
 
@@ -2375,7 +2376,7 @@ msgid "Most allergy sufferers will experience discomfort."
 msgstr "大多数过敏人群会感到不适。"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:656
-#: contents/ui/DetailsView.qml:1524 contents/ui/main.qml:1041
+#: contents/ui/DetailsView.qml:1524 contents/ui/main.qml:1162
 msgid "Mugwort"
 msgstr "艾蒿"
 
@@ -2384,9 +2385,9 @@ msgid "Multiple lines (tall panel)"
 msgstr "多行（高面板）"
 
 #: contents/ui/ForecastView.qml:1451 contents/ui/ForecastView.qml:2056
-#: contents/ui/main.qml:907 contents/ui/main.qml:940 contents/ui/main.qml:953
-#: contents/ui/main.qml:961 contents/ui/main.qml:969 contents/ui/main.qml:997
-#: contents/ui/main.qml:1060
+#: contents/ui/main.qml:998 contents/ui/main.qml:1031 contents/ui/main.qml:1046
+#: contents/ui/main.qml:1056 contents/ui/main.qml:1066
+#: contents/ui/main.qml:1097 contents/ui/main.qml:1189
 msgid "N/A"
 msgstr "暂无数据"
 
@@ -2412,7 +2413,7 @@ msgstr "负间距会使面板项目之间的距离小于正常间距，可能导
 msgid "Network error"
 msgstr "网络错误"
 
-#: contents/ui/main.qml:2463
+#: contents/ui/main.qml:2798
 msgid "New Moon"
 msgstr "新月"
 
@@ -2424,7 +2425,7 @@ msgstr "夜间"
 msgid "Nitrogen Dioxide (NO₂)"
 msgstr "二氧化氮（NO₂）"
 
-#: contents/ui/config/configLocation.qml:1372
+#: contents/ui/config/configLocation.qml:1425
 msgid "No"
 msgstr "否"
 
@@ -2465,7 +2466,7 @@ msgstr "无雷达数据"
 msgid "No satellite data"
 msgstr "无卫星数据"
 
-#: contents/ui/config/configLocation.qml:1711
+#: contents/ui/config/configLocation.qml:1764
 msgid "No saved locations. Save the current location to quickly switch between places."
 msgstr "没有已保存的位置。保存当前位置即可在多个地点之间快速切换。"
 
@@ -2478,8 +2479,8 @@ msgstr "未找到 '%1' 的气象站"
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:331
 #: contents/ui/config/tabs/ConfigPanelTab.qml:1170
 #: contents/ui/config/tabs/ConfigWidgetTab.qml:353
-#: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:1097
-#: contents/ui/main.qml:1099
+#: contents/ui/js/spaceWeather.js:202 contents/ui/main.qml:1233
+#: contents/ui/main.qml:1235
 msgid "None"
 msgstr "无"
 
@@ -2569,7 +2570,7 @@ msgid "Official Spanish meteorological agency - Spain locations only! API key re
 msgstr "西班牙官方气象机构，仅支持西班牙境内的位置！需要在下方填写 API 密钥。"
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:657
-#: contents/ui/DetailsView.qml:1526 contents/ui/main.qml:1042
+#: contents/ui/DetailsView.qml:1526 contents/ui/main.qml:1165
 msgid "Olive"
 msgstr "橄榄"
 
@@ -2577,8 +2578,8 @@ msgstr "橄榄"
 msgid "Only the clicked day expands"
 msgstr "仅展开点击的日期"
 
-#: contents/ui/config/configLocation.qml:1177
-#: contents/ui/config/configLocation.qml:1554 contents/ui/RadarView.qml:374
+#: contents/ui/config/configLocation.qml:1230
+#: contents/ui/config/configLocation.qml:1607 contents/ui/RadarView.qml:374
 msgid "Open install guide"
 msgstr "打开安装指南"
 
@@ -2645,7 +2646,7 @@ msgstr "橙色"
 #: contents/ui/config/configAppearance.qml:699
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:51
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:616
-#: contents/ui/main.qml:2238
+#: contents/ui/main.qml:2574
 msgid "Overcast"
 msgstr "阴"
 
@@ -2724,7 +2725,7 @@ msgstr "颗粒物（PM2.5）"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:50
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:614
-#: contents/ui/main.qml:2236 contents/ui/main.qml:2288
+#: contents/ui/main.qml:2572 contents/ui/main.qml:2624
 msgid "Partly cloudy"
 msgstr "局部多云"
 
@@ -2758,7 +2759,7 @@ msgstr "月相 + 月出和月落"
 msgid "Phase + upcoming rise/set"
 msgstr "月相 + 下一次升/落"
 
-#: contents/ui/config/configLocation.qml:1667
+#: contents/ui/config/configLocation.qml:1720
 msgid "Pick an exact spot on the map for a more local forecast, such as your neighborhood block or a specific landmark."
 msgstr "在地图上选择一个精确位置以获得更本地化的预报，例如你所在街区或某个具体地标。"
 
@@ -2805,7 +2806,7 @@ msgstr "花粉："
 msgid "Poor"
 msgstr "较差"
 
-#: contents/ui/main.qml:566
+#: contents/ui/main.qml:600
 msgid "Postpone"
 msgstr "推迟"
 
@@ -2948,7 +2949,7 @@ msgstr "QWeather 错误（代码 %1）。请检查您的 API 密钥。"
 msgid "QWeather provides hourly forecasts for up to 168 hours (7 days). Daily forecast is still available for this date."
 msgstr "QWeather 最多提供未来 168 小时（7 天）的逐小时预报。该日期的每日预报仍然可用。"
 
-#: contents/ui/config/configLocation.qml:1130
+#: contents/ui/config/configLocation.qml:1183
 msgid "QtLocation and QtPositioning are not installed"
 msgstr "未安装 QtLocation 和 QtPositioning"
 
@@ -2996,15 +2997,15 @@ msgid "Radar:"
 msgstr "雷达："
 
 #: contents/ui/config/subpages/ConfigDetailsSubPage.qml:658
-#: contents/ui/DetailsView.qml:1528 contents/ui/main.qml:1043
+#: contents/ui/DetailsView.qml:1528 contents/ui/main.qml:1168
 msgid "Ragweed"
 msgstr "豚草"
 
 #: contents/ui/components/RadarWebEngineView.qml:129
 #: contents/ui/config/configNotifications.qml:83
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:55
-#: contents/ui/main.qml:1133 contents/ui/main.qml:1952
-#: contents/ui/main.qml:2256
+#: contents/ui/main.qml:1311 contents/ui/main.qml:2261
+#: contents/ui/main.qml:2592
 msgid "Rain"
 msgstr "雨"
 
@@ -3053,8 +3054,8 @@ msgstr "红色"
 msgid "Reduce or reschedule strenuous outdoor activities, especially if you experience symptoms."
 msgstr "减少剧烈的户外活动，或调整活动时间，尤其是在出现不适症状时。"
 
-#: contents/ui/config/configLocation.qml:1609 contents/ui/FullView.qml:430
-#: contents/ui/main.qml:413
+#: contents/ui/config/configLocation.qml:1662 contents/ui/FullView.qml:430
+#: contents/ui/main.qml:449
 msgid "Refresh"
 msgstr "刷新"
 
@@ -3092,15 +3093,15 @@ msgstr "相对湿度 %"
 msgid "Relative humidity percentage"
 msgstr "相对湿度百分比"
 
-#: contents/ui/config/configLocation.qml:1420
+#: contents/ui/config/configLocation.qml:1473
 msgid "Remove last location?"
 msgstr "移除最后一个位置？"
 
-#: contents/ui/config/configLocation.qml:1983
+#: contents/ui/config/configLocation.qml:2036
 msgid "Remove saved location"
 msgstr "移除已保存位置"
 
-#: contents/ui/config/configLocation.qml:1952
+#: contents/ui/config/configLocation.qml:2005
 msgid "Rename location"
 msgstr "重命名位置"
 
@@ -3108,11 +3109,11 @@ msgstr "重命名位置"
 msgid "Repeat reminder until dismissed"
 msgstr "重复提醒直至关闭"
 
-#: contents/ui/config/configLocation.qml:870
+#: contents/ui/config/configLocation.qml:917
 msgid "Requesting location via GeoClue2…"
 msgstr "正在通过 GeoClue2 请求位置…"
 
-#: contents/ui/config/configLocation.qml:858
+#: contents/ui/config/configLocation.qml:905
 msgid "Requesting location… (%1)"
 msgstr "正在请求位置…（%1）"
 
@@ -3136,7 +3137,7 @@ msgstr "全部重置为默认值"
 msgid "Reset to default"
 msgstr "重置为默认值"
 
-#: contents/ui/main.qml:2242
+#: contents/ui/main.qml:2578
 msgid "Rime fog"
 msgstr "雾凇"
 
@@ -3152,7 +3153,7 @@ msgstr "例行测试（例如\"Required Weekly Test\"）将被忽略：不通知
 msgid "Routine tests (for example \"Required Weekly Test\") will show a notification, but never play an alert sound."
 msgstr "例行测试（例如\"Required Weekly Test\"）将显示通知，但不会播放警报声。"
 
-#: contents/ui/main.qml:1475
+#: contents/ui/main.qml:1697
 msgctxt "Alert severity"
 msgid "SEVERE"
 msgstr "严重"
@@ -3169,7 +3170,7 @@ msgstr "卫星"
 msgid "Saturday"
 msgstr "星期六"
 
-#: contents/ui/config/configLocation.qml:1695
+#: contents/ui/config/configLocation.qml:1748
 msgid "Saved locations"
 msgstr "已保存位置"
 
@@ -3185,7 +3186,7 @@ msgstr "滚动动画："
 msgid "Scroll interval (sec):"
 msgstr "滚动间隔（秒）："
 
-#: contents/ui/config/configLocation.qml:1655
+#: contents/ui/config/configLocation.qml:1708
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:276
 msgid "Search Location"
 msgstr "搜索位置"
@@ -3194,15 +3195,15 @@ msgstr "搜索位置"
 msgid "Search a weather station to set your location"
 msgstr "搜索气象站以设置您的位置"
 
-#: contents/ui/config/configLocation.qml:1659
+#: contents/ui/config/configLocation.qml:1712
 msgid "Search by city or place name. Results show the location name, region, and country, and are suitable for general city-level forecasts rather than exact street-level placement."
 msgstr "按城市或地点名称搜索。结果会显示位置名称、地区和国家，适合一般的城市级预报，而不是精确到街道级的位置。"
 
-#: contents/ui/config/configLocation.qml:1647
+#: contents/ui/config/configLocation.qml:1700
 msgid "Search for a location or choose it on the map."
 msgstr "搜索位置或在地图上选择。"
 
-#: contents/ui/config/configLocation.qml:1245
+#: contents/ui/config/configLocation.qml:1298
 msgid "Search location"
 msgstr "搜索位置"
 
@@ -3227,7 +3228,7 @@ msgstr "分隔符："
 msgid "Serious risk; avoid outdoor activities."
 msgstr "风险严重；避免户外活动。"
 
-#: contents/ui/config/configLocation.qml:1317
+#: contents/ui/config/configLocation.qml:1370
 msgid "Set <b>%1</b> as your default location?"
 msgstr "将 <b>%1</b> 设为默认位置吗？"
 
@@ -3235,11 +3236,11 @@ msgstr "将 <b>%1</b> 设为默认位置吗？"
 msgid "Set Location…"
 msgstr "设置位置…"
 
-#: contents/ui/config/configLocation.qml:1910
+#: contents/ui/config/configLocation.qml:1963
 msgid "Set as default location"
 msgstr "设为默认位置"
 
-#: contents/ui/config/configLocation.qml:1290
+#: contents/ui/config/configLocation.qml:1343
 msgid "Set as default?"
 msgstr "设为默认？"
 
@@ -3368,7 +3369,7 @@ msgstr "显示/隐藏密钥"
 msgid "Show:"
 msgstr "显示："
 
-#: contents/ui/main.qml:2274
+#: contents/ui/main.qml:2610
 msgid "Showers"
 msgstr "阵雨"
 
@@ -3462,7 +3463,7 @@ msgstr "平滑处理"
 
 #: contents/ui/config/configNotifications.qml:667
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:57
-#: contents/ui/main.qml:2266
+#: contents/ui/main.qml:2602
 msgid "Snow"
 msgstr "雪"
 
@@ -3493,23 +3494,23 @@ msgstr "积雪深度（cm/in）"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:58
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:642
-#: contents/ui/main.qml:2270
+#: contents/ui/main.qml:2606
 msgid "Snow grains"
 msgstr "雪粒"
 
-#: contents/ui/main.qml:2039
+#: contents/ui/main.qml:2355
 msgid "Snow is ending"
 msgstr "降雪即将结束"
 
-#: contents/ui/main.qml:2034
+#: contents/ui/main.qml:2350
 msgid "Snow is expected"
 msgstr "预计有降雪"
 
-#: contents/ui/main.qml:2040
+#: contents/ui/main.qml:2356
 msgid "Snow is expected to end %1."
 msgstr "预计降雪将在%1结束。"
 
-#: contents/ui/main.qml:2035
+#: contents/ui/main.qml:2351
 msgid "Snow is possible %1."
 msgstr "%1可能有降雪。"
 
@@ -3518,11 +3519,11 @@ msgid "Snow mask"
 msgstr "降雪蒙版"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:60
-#: contents/ui/main.qml:2280
+#: contents/ui/main.qml:2616
 msgid "Snow showers"
 msgstr "阵雪"
 
-#: contents/ui/config/configNotifications.qml:75 contents/ui/main.qml:1125
+#: contents/ui/config/configNotifications.qml:75 contents/ui/main.qml:1279
 msgid "Snow/Ice"
 msgstr "雪/冰"
 
@@ -3709,7 +3710,7 @@ msgstr "符号图标（跟随主题颜色）"
 msgid "System Tray Badge Background Color"
 msgstr "系统托盘徽章背景色"
 
-#: contents/ui/config/configLocation.qml:897
+#: contents/ui/config/configLocation.qml:944
 msgid "System location unavailable, trying IP geolocation…"
 msgstr "系统位置不可用，正在尝试 IP 地理定位…"
 
@@ -3826,7 +3827,7 @@ msgstr "无法加载地图。请检查你的网络连接。"
 msgid "The map needs QtWebEngine, which is not installed. You can still search for a location above."
 msgstr "地图功能需要 QtWebEngine，但当前尚未安装。你仍然可以在上方搜索位置。"
 
-#: contents/ui/config/configLocation.qml:1160
+#: contents/ui/config/configLocation.qml:1213
 msgid "The map picker requires the QtLocation and QtPositioning packages, which are not installed on this system."
 msgstr "地图选点功能需要 QtLocation 和 QtPositioning 软件包，但当前系统尚未安装。"
 
@@ -3854,7 +3855,7 @@ msgstr "此位置已在你的已保存列表中。"
 #: contents/ui/config/configNotifications.qml:76
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:61
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:654
-#: contents/ui/main.qml:1126 contents/ui/main.qml:2282
+#: contents/ui/main.qml:1283 contents/ui/main.qml:2618
 msgid "Thunderstorm"
 msgstr "雷暴"
 
@@ -3868,7 +3869,7 @@ msgstr "雷暴（夜间）"
 
 #: contents/ui/config/subpages/ConfigLocationSubPage.qml:62
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:656
-#: contents/ui/main.qml:2284
+#: contents/ui/main.qml:2620
 msgid "Thunderstorm with hail"
 msgstr "雷暴伴冰雹"
 
@@ -3888,7 +3889,7 @@ msgstr "雷暴伴强冰雹（白天）"
 msgid "Thunderstorm, heavy hail (night)"
 msgstr "雷暴伴强冰雹（夜间）"
 
-#: contents/ui/main.qml:1952
+#: contents/ui/main.qml:2261
 msgid "Thunderstorms"
 msgstr "雷暴"
 
@@ -3920,7 +3921,7 @@ msgstr "时区："
 msgid "To unlock additional map layers (Rain, Clouds, Temperature, Wind, Pressure): disable Adaptive mode from the 'Provider' tab, select OpenWeatherMap as your weather provider, and enter your API key above. When you are ready, you can enable Adaptive mode again."
 msgstr "要解锁更多地图图层（降雨、云层、温度、风和气压），请在“数据源”标签页中关闭自适应模式，选择 OpenWeatherMap 作为天气数据源，并在上方输入 API 密钥。设置完成后，可以重新启用自适应模式。"
 
-#: contents/ui/ForecastView.qml:533 contents/ui/main.qml:1801
+#: contents/ui/ForecastView.qml:533 contents/ui/main.qml:2056
 #: contents/ui/SimpleView.qml:423
 msgid "Today"
 msgstr "今天"
@@ -3935,7 +3936,7 @@ msgstr "今天的总降水量（mm/in）"
 msgid "Today's weather"
 msgstr "今日天气"
 
-#: contents/ui/main.qml:1874
+#: contents/ui/main.qml:2170
 msgid "Tomorrow"
 msgstr "明天"
 
@@ -3951,7 +3952,7 @@ msgstr "Tomorrow.io（需要密钥）"
 msgid "Tomorrow.io API Key:"
 msgstr "Tomorrow.io API 密钥："
 
-#: contents/ui/main.qml:1839
+#: contents/ui/main.qml:2125
 msgid "Tonight"
 msgstr "今晚"
 
@@ -4020,7 +4021,7 @@ msgstr "关闭上方的三个开关，即可在此选择单一标准。"
 msgid "Turn on any combination to show them side by side instead of a single standard below."
 msgstr "可开启任意组合，将多个标准并排显示，而不使用下方的单一标准。"
 
-#: contents/ui/main.qml:1478
+#: contents/ui/main.qml:1705
 msgctxt "Alert severity"
 msgid "UNKNOWN"
 msgstr "未知"
@@ -4045,7 +4046,7 @@ msgstr "紫外线指数"
 msgid "UV Index:"
 msgstr "紫外线指数："
 
-#: contents/ui/config/configNotifications.qml:681 contents/ui/main.qml:2088
+#: contents/ui/config/configNotifications.qml:681 contents/ui/main.qml:2411
 msgid "UV index"
 msgstr "紫外线指数"
 
@@ -4054,7 +4055,7 @@ msgstr "紫外线指数"
 msgid "UV index forecast:"
 msgstr "紫外线指数预报："
 
-#: contents/ui/main.qml:2085
+#: contents/ui/main.qml:2407
 msgid "UV index will be %1 (%2)"
 msgstr "紫外线指数将为 %1（%2）"
 
@@ -4064,8 +4065,8 @@ msgstr "紫外线指数将为 %1（%2）"
 msgid "Ultraviolet index"
 msgstr "紫外线指数"
 
-#: contents/ui/config/configLocation.qml:936
-#: contents/ui/config/configLocation.qml:1043
+#: contents/ui/config/configLocation.qml:983
+#: contents/ui/config/configLocation.qml:1096
 msgid "Unable to detect location. All methods failed."
 msgstr "无法检测位置。所有方法均失败。"
 
@@ -4085,7 +4086,7 @@ msgstr "单位预设："
 msgid "Units"
 msgstr "单位"
 
-#: contents/ui/config/configLocation.qml:1852
+#: contents/ui/config/configLocation.qml:1905
 #: contents/ui/config/subpages/ConfigMapSubPage.qml:657
 #: contents/ui/FullView.qml:370
 msgid "Unknown"
@@ -4120,30 +4121,26 @@ msgstr "即将到来（下一次日出或日落）"
 msgid "Upcoming rise/set only"
 msgstr "仅下一次升/落"
 
-#: contents/ui/main.qml:1583
+#: contents/ui/main.qml:1825
 msgid "Upcoming: %1"
 msgstr "即将生效：%1"
 
-#: contents/ui/WeatherService.qml:263
-msgid "Update timed out. Click the refresh button to retry."
-msgstr "更新超时。请点击刷新按钮重试。"
-
-#: contents/ui/WeatherService.qml:991
+#: contents/ui/WeatherService.qml:994
 msgid "Updated %1 day ago"
 msgid_plural "Updated %1 days ago"
 msgstr[0] "%1 天前更新"
 
-#: contents/ui/WeatherService.qml:989
+#: contents/ui/WeatherService.qml:992
 msgid "Updated %1 hour ago"
 msgid_plural "Updated %1 hours ago"
 msgstr[0] "%1 小时前更新"
 
-#: contents/ui/WeatherService.qml:986
+#: contents/ui/WeatherService.qml:989
 msgid "Updated %1 minute ago"
 msgid_plural "Updated %1 minutes ago"
 msgstr[0] "%1 分钟前更新"
 
-#: contents/ui/WeatherService.qml:984
+#: contents/ui/WeatherService.qml:987
 msgid "Updated just now"
 msgstr "刚刚更新"
 
@@ -4159,7 +4156,7 @@ msgstr "使用 24 小时制："
 msgid "Use KDE locale settings"
 msgstr "使用 KDE 区域设置"
 
-#: contents/ui/config/configLocation.qml:1625
+#: contents/ui/config/configLocation.qml:1678
 msgid "Use manual location"
 msgstr "使用手动位置"
 
@@ -4196,8 +4193,8 @@ msgstr "数值显示小数位"
 msgid "Vertical"
 msgstr "垂直"
 
-#: contents/ui/js/pollen.js:45 contents/ui/main.qml:1003
-#: contents/ui/main.qml:1035
+#: contents/ui/js/pollen.js:45 contents/ui/main.qml:1108
+#: contents/ui/main.qml:1149
 msgid "Very High"
 msgstr "很高"
 
@@ -4244,27 +4241,27 @@ msgstr "Visual Crossing（需要密钥）"
 msgid "Visual Crossing API Key:"
 msgstr "Visual Crossing API 密钥："
 
-#: contents/ui/main.qml:2477
+#: contents/ui/main.qml:2812
 msgid "Waning Crescent"
 msgstr "渐亏蛾眉月"
 
-#: contents/ui/main.qml:2473
+#: contents/ui/main.qml:2808
 msgid "Waning Gibbous"
 msgstr "亏凸月"
 
-#: contents/ui/main.qml:2465
+#: contents/ui/main.qml:2800
 msgid "Waxing Crescent"
 msgstr "渐盈蛾眉月"
 
-#: contents/ui/main.qml:2469
+#: contents/ui/main.qml:2804
 msgid "Waxing Gibbous"
 msgstr "盈凸月"
 
-#: contents/ui/config/configLocation.qml:1219
+#: contents/ui/config/configLocation.qml:1272
 msgid "We detected your coordinates: <b>%1°, %2°</b>."
 msgstr "检测到您的坐标：<b>%1°, %2°</b>。"
 
-#: contents/ui/config/configLocation.qml:1219
+#: contents/ui/config/configLocation.qml:1272
 msgid "We detected your location as: <b>%1</b>."
 msgstr "检测到您的位置为：<b>%1</b>。"
 
@@ -4284,7 +4281,7 @@ msgstr "天气数据源"
 msgid "Weather Widget"
 msgstr "天气小组件"
 
-#: contents/ui/main.qml:1493 contents/ui/main.qml:1570
+#: contents/ui/main.qml:1721 contents/ui/main.qml:1812
 msgid "Weather alert"
 msgstr "天气警报"
 
@@ -4311,7 +4308,7 @@ msgstr "天气图标样式："
 msgid "Weather icon theme:"
 msgstr "天气图标主题："
 
-#: contents/ui/WeatherService.qml:1058
+#: contents/ui/WeatherService.qml:1061
 msgid "Weather provider:"
 msgstr "天气数据源："
 
@@ -4381,7 +4378,7 @@ msgstr "小组件 › 常规 › 天气图标主题"
 #: contents/ui/config/configAppearance.qml:1943
 #: contents/ui/config/configAppearance.qml:2066
 #: contents/ui/config/configNotifications.qml:74
-#: contents/ui/DetailsView.qml:356 contents/ui/main.qml:1124
+#: contents/ui/DetailsView.qml:356 contents/ui/main.qml:1275
 msgid "Wind"
 msgstr "风"
 
@@ -4434,11 +4431,11 @@ msgstr "X 射线耀斑等级"
 msgid "Yellow"
 msgstr "黄色"
 
-#: contents/ui/config/configLocation.qml:1326
+#: contents/ui/config/configLocation.qml:1379
 msgid "Yes"
 msgstr "是"
 
-#: contents/ui/config/configLocation.qml:1454
+#: contents/ui/config/configLocation.qml:1507
 msgid "Yes, remove it"
 msgstr "是，移除它"
 
@@ -4463,11 +4460,11 @@ msgstr "放大"
 msgid "Zoom out"
 msgstr "缩小"
 
-#: contents/ui/main.qml:2056
+#: contents/ui/main.qml:2375
 msgid "a decrease from yesterday"
 msgstr "较昨日下降"
 
-#: contents/ui/main.qml:1830
+#: contents/ui/main.qml:2103
 msgid "a few clouds"
 msgstr "少云"
 
@@ -4475,23 +4472,23 @@ msgstr "少云"
 msgid "already set"
 msgstr "已设置"
 
-#: contents/ui/main.qml:2055
+#: contents/ui/main.qml:2373
 msgid "an increase from yesterday"
 msgstr "较昨日上升"
 
-#: contents/ui/main.qml:1831
+#: contents/ui/main.qml:2104
 msgid "clear skies"
 msgstr "晴朗"
 
-#: contents/ui/main.qml:1829
+#: contents/ui/main.qml:2101
 msgid "cloudy skies"
 msgstr "多云"
 
-#: contents/ui/main.qml:1064
+#: contents/ui/main.qml:1194
 msgid "cm"
 msgstr "cm"
 
-#: contents/ui/main.qml:1826
+#: contents/ui/main.qml:2095
 msgid "drizzle"
 msgstr "毛毛雨"
 
@@ -4499,7 +4496,7 @@ msgstr "毛毛雨"
 msgid "e.g. Sofia, Bulgaria"
 msgstr "例如 Sofia, Bulgaria"
 
-#: contents/ui/main.qml:2065 contents/ui/main.qml:2110
+#: contents/ui/main.qml:2388 contents/ui/main.qml:2438
 msgid "extreme"
 msgstr "极端"
 
@@ -4507,15 +4504,15 @@ msgstr "极端"
 msgid "feet"
 msgstr "英尺"
 
-#: contents/ui/main.qml:1827
+#: contents/ui/main.qml:2097
 msgid "fog"
 msgstr "雾"
 
-#: contents/ui/main.qml:1824
+#: contents/ui/main.qml:2091
 msgid "freezing rain"
 msgstr "冻雨"
 
-#: contents/ui/main.qml:1434
+#: contents/ui/main.qml:1647
 msgid "from %1"
 msgstr "来自 %1"
 
@@ -4532,19 +4529,19 @@ msgstr "粒/m³"
 msgid "hPa"
 msgstr "hPa"
 
-#: contents/ui/main.qml:2063
+#: contents/ui/main.qml:2385
 msgid "high"
 msgstr "高"
 
-#: contents/ui/main.qml:964 contents/ui/main.qml:1063
+#: contents/ui/main.qml:1060 contents/ui/main.qml:1193
 msgid "in"
 msgstr "in"
 
-#: contents/ui/main.qml:1957
+#: contents/ui/main.qml:2267
 msgid "in the next few hours"
 msgstr "未来几小时内"
 
-#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:956
+#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:1050
 msgid "in/h"
 msgstr "in/h"
 
@@ -4553,7 +4550,7 @@ msgstr "in/h"
 msgid "inHg"
 msgstr "inHg"
 
-#: contents/ui/main.qml:973 contents/ui/SimpleView.qml:281
+#: contents/ui/main.qml:1071 contents/ui/SimpleView.qml:281
 #: contents/ui/TooltipContent.qml:449
 msgid "km"
 msgstr "km"
@@ -4576,7 +4573,7 @@ msgstr "kn"
 msgid "left"
 msgstr "后结束"
 
-#: contents/ui/main.qml:2061
+#: contents/ui/main.qml:2381
 msgid "low"
 msgstr "低"
 
@@ -4601,11 +4598,11 @@ msgstr "米"
 msgid "mg/m³"
 msgstr "mg/m³"
 
-#: contents/ui/main.qml:972
+#: contents/ui/main.qml:1070
 msgid "mi"
 msgstr "mi"
 
-#: contents/ui/main.qml:2106
+#: contents/ui/main.qml:2430
 msgid "minor"
 msgstr "轻微"
 
@@ -4614,11 +4611,11 @@ msgstr "轻微"
 msgid "minutes"
 msgstr "分钟"
 
-#: contents/ui/main.qml:965
+#: contents/ui/main.qml:1061
 msgid "mm"
 msgstr "mm"
 
-#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:957
+#: contents/ui/components/RadarWebEngineView.qml:850 contents/ui/main.qml:1051
 msgid "mm/h"
 msgstr "mm/h"
 
@@ -4627,7 +4624,7 @@ msgstr "mm/h"
 msgid "mmHg"
 msgstr "mmHg"
 
-#: contents/ui/main.qml:2062 contents/ui/main.qml:2107
+#: contents/ui/main.qml:2383 contents/ui/main.qml:2432
 msgid "moderate"
 msgstr "中等"
 
@@ -4640,7 +4637,7 @@ msgstr "mph"
 msgid "not available - left unchanged"
 msgstr "不可用，保持不变"
 
-#: contents/ui/main.qml:1828
+#: contents/ui/main.qml:2099
 msgid "overcast skies"
 msgstr "阴天"
 
@@ -4658,11 +4655,11 @@ msgstr "px 高度"
 msgid "px width"
 msgstr "px 宽度"
 
-#: contents/ui/main.qml:2105
+#: contents/ui/main.qml:2428
 msgid "quiet"
 msgstr "平静"
 
-#: contents/ui/main.qml:1825
+#: contents/ui/main.qml:2093
 msgid "rain"
 msgstr "降雨"
 
@@ -4670,55 +4667,55 @@ msgstr "降雨"
 msgid "selected here"
 msgstr "此处已选中"
 
-#: contents/ui/main.qml:2109
+#: contents/ui/main.qml:2436
 msgid "severe"
 msgstr "严重"
 
-#: contents/ui/main.qml:1823
+#: contents/ui/main.qml:2089
 msgid "showers"
 msgstr "阵雨"
 
-#: contents/ui/main.qml:1819
+#: contents/ui/main.qml:2081
 msgid "showers and thunderstorms"
 msgstr "阵雨和雷暴"
 
-#: contents/ui/main.qml:2057
+#: contents/ui/main.qml:2376
 msgid "similar to yesterday"
 msgstr "与昨日相近"
 
-#: contents/ui/main.qml:1822
+#: contents/ui/main.qml:2087
 msgid "snow"
 msgstr "降雪"
 
-#: contents/ui/main.qml:1821
+#: contents/ui/main.qml:2085
 msgid "snow showers"
 msgstr "阵雪"
 
-#: contents/ui/main.qml:2108
+#: contents/ui/main.qml:2434
 msgid "strong"
 msgstr "强"
 
-#: contents/ui/config/configLocation.qml:971
+#: contents/ui/config/configLocation.qml:1018
 msgid "system location"
 msgstr "系统位置"
 
-#: contents/ui/main.qml:1960
+#: contents/ui/main.qml:2272
 msgid "this afternoon"
 msgstr "今天下午"
 
-#: contents/ui/main.qml:1959
+#: contents/ui/main.qml:2270
 msgid "this morning"
 msgstr "今天上午"
 
-#: contents/ui/main.qml:1820
+#: contents/ui/main.qml:2083
 msgid "thunderstorms"
 msgstr "雷暴"
 
-#: contents/ui/main.qml:1961
+#: contents/ui/main.qml:2273
 msgid "tonight"
 msgstr "今晚"
 
-#: contents/ui/main.qml:1435
+#: contents/ui/main.qml:1649
 msgid "until %1"
 msgstr "持续到 %1"
 
@@ -4726,7 +4723,7 @@ msgstr "持续到 %1"
 msgid "until dawn"
 msgstr "后天亮"
 
-#: contents/ui/main.qml:2064
+#: contents/ui/main.qml:2387
 msgid "very high"
 msgstr "很高"
 
@@ -4734,14 +4731,17 @@ msgstr "很高"
 msgid "will be changed"
 msgstr "将被更改"
 
-#: contents/ui/main.qml:1442 contents/ui/main.qml:1799
-#: contents/ui/main.qml:1872
+#: contents/ui/main.qml:1657 contents/ui/main.qml:2054
+#: contents/ui/main.qml:2168
 msgid "your location"
 msgstr "你的位置"
 
 #: contents/ui/js/airQuality.js:283
 msgid "µg/m³"
 msgstr "µg/m³"
+
+#~ msgid "Update timed out. Click the refresh button to retry."
+#~ msgstr "更新超时。请点击刷新按钮重试。"
 
 #~ msgid "Smooth (12 to 30 fps)"
 #~ msgstr "流畅（12 到 30 帧/秒）"
